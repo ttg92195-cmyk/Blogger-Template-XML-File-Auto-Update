@@ -13,15 +13,15 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V9 - CineMM Post Detail
+  CINEMA DARK V10 - Card Post Detail
   - App-style slide-out drawer menu
   - Toggle expandable search bar
   - Movies/Series tabs on homepage
-  - CineMM-style Post Detail page
+  - Card-style Post Detail page
   - Centered poster + metadata pills
-  - Download source cards
+  - Synopsis/Download/Trailer cards
   - Desktop: 3 col, Mobile: 3 col
-  Version: 9.0
+  Version: 10.0
 =======================================*/
 :root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:6px;--r2:8px;--r3:12px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1200px;--drawer-w:280px;--header-h:56px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -161,9 +161,9 @@ ul,ol{list-style:none}
 .label-list a{display:inline-block;padding:4px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
 .label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* ========== POST DETAIL PAGE (CineMM Style) ========== */
+/* ========== POST DETAIL PAGE (Card Style) ========== */
 .post-detail{padding:20px 0}
-.pd-wrap{max-width:620px;margin:0 auto}
+.pd-wrap{max-width:740px;margin:0 auto}
 
 /* Breadcrumb */
 .pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
@@ -171,7 +171,7 @@ ul,ol{list-style:none}
 
 /* Centered Poster */
 .pd-poster-wrap{text-align:center;margin-bottom:20px}
-.pd-poster{width:220px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.08)}
+.pd-poster{width:200px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.08)}
 .pd-poster img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Centered Title */
@@ -193,40 +193,48 @@ ul,ol{list-style:none}
 .pd-pill-info{background:rgba(255,255,255,.07);color:var(--txt2)}
 .pd-pill-rating{background:rgba(251,191,36,.15);color:var(--star)}
 
-/* Description / Synopsis */
-.pd-description{color:var(--txt2);font-size:13.5px;line-height:1.85;margin-bottom:16px;text-align:left}
-.pd-description p{margin-bottom:10px}
+/* Post Body Container */
+.pd-body{margin-bottom:20px}
+.pd-body p{font-size:14px;line-height:1.9;color:var(--txt2);margin-bottom:14px}
+.pd-body p:last-child{margin-bottom:0}
+.pd-body p strong{color:var(--txt)}
+.pd-body a{color:var(--accent);font-weight:600}
+.pd-body img{border-radius:var(--r2);margin:8px 0}
 
-/* Technical Metadata (inline in text) */
-.pd-tech-meta{margin-bottom:16px}
-.pd-tech-row{display:flex;align-items:baseline;gap:6px;font-size:13px;padding:4px 0;color:var(--txt2)}
-.pd-tech-row .t-label{color:var(--muted);font-weight:500;white-space:nowrap}
-.pd-tech-row .t-value{color:var(--txt2);font-weight:400}
-.pd-tech-row.genre-val .t-value{color:var(--accent)}
+/* Card Sections (Synopsis, Download, Trailer) */
+.pd-card{background:var(--card);border-radius:var(--r3);border:1px solid var(--border);padding:24px;margin-bottom:20px}
+.pd-card:last-child{margin-bottom:0}
 
-/* Download Sources Section */
-.pd-sources{margin-bottom:24px}
-.pd-sources-head{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px}
-.pd-sources-head i{font-size:13px;color:var(--accent)}
-.pd-source-card{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:8px;transition:var(--tr)}
-.pd-source-card:last-child{margin-bottom:0}
-.pd-source-card:hover{border-color:rgba(34,197,94,.3);background:var(--card-h)}
-.pd-source-dot{width:8px;height:8px;border-radius:50%;background:#7c3aed;flex-shrink:0}
-.pd-source-info{flex:1;min-width:0}
-.pd-source-name{font-size:14px;font-weight:600;color:var(--txt);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pd-source-meta{font-size:11px;color:var(--muted)}
-.pd-source-size{font-size:12px;color:var(--txt2);font-weight:500;flex-shrink:0;margin-right:4px}
-.pd-source-dl{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,.08);color:var(--accent);border-radius:50%;font-size:14px;flex-shrink:0;transition:var(--tr)}
-.pd-source-card:hover .pd-source-dl{background:var(--accent);color:#fff}
+/* Card Section Title */
+.pd-card-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.pd-card-title i{color:var(--accent);font-size:15px}
+.pd-card-title .imdb-badge{margin-left:auto;font-size:12px;font-weight:600;color:var(--star);background:rgba(251,191,36,.1);padding:3px 12px;border-radius:50px}
 
-/* Legacy table fallback */
-.pd-dl-table{display:none}
+/* Metadata Grid (2-col inside Synopsis card) */
+.pd-meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.pd-meta-item{display:flex;gap:8px;font-size:13px}
+.pd-meta-item .pm-label{color:var(--muted);min-width:85px;white-space:nowrap}
+.pd-meta-item .pm-value{color:var(--txt);font-weight:500}
+.pd-meta-item.genre-v .pm-value{color:var(--accent)}
+
+/* Download Table inside cards */
+.pd-card .dl-table-wrap{overflow-x:auto}
+.pd-card table{width:100%;border-collapse:collapse;font-size:13px}
+.pd-card thead th{background:var(--bg2);padding:10px 14px;text-align:left;font-weight:600;color:var(--txt);border-bottom:2px solid var(--accent)}
+.pd-card tbody td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--txt2)}
+.pd-card tbody td a{color:var(--accent);font-weight:600}
+.pd-card tbody tr:last-child td{border-bottom:none}
+.pd-card tbody tr:hover{background:rgba(34,197,94,.04)}
+
+/* Responsive Video / Trailer */
+.pd-video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--r2)}
+.pd-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 
 /* Related Posts */
 .related-section{margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 
-/* Post body content styling */
+/* Post body content styling (fallback for plain HTML) */
 .post-body{color:var(--txt2);font-size:14px;line-height:1.85}
 .post-body table{width:100%;border-collapse:collapse;margin:12px 0}
 .post-body td,.post-body th{padding:8px 12px;border:1px solid var(--border);font-size:13px}
@@ -328,14 +336,20 @@ body.no-scroll{overflow:hidden}
   .movies-section{padding:10px 0}
   .sidebar{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .pd-hero,.pd-info,.pd-tabs,.pd-tab,.pd-synopsis,.pd-cast,.pd-cast-grid,.pd-cast-img,.pd-cast-name,.pd-cast-title,.pd-section-head,.pd-synopsis-text,.pd-genres,.pd-genre-pill,.pd-meta-row{display:none!important}
-  .pd-poster{width:180px;min-width:180px}
+  .pd-poster{width:160px}
   .pd-title{font-size:18px}
   .pd-pills{gap:6px}
   .pd-pill{padding:4px 10px;font-size:10px}
-  .pd-source-card{padding:12px 14px}
-  .pd-source-name{font-size:13px}
-  .pd-description{font-size:13px}
+  .pd-body{font-size:13px}
+  .pd-body p{font-size:13px;line-height:1.8}
+  .pd-card{padding:16px;margin-bottom:14px}
+  .pd-card-title{font-size:14px;margin-bottom:12px;padding-bottom:10px}
+  .pd-card-title .imdb-badge{font-size:11px;padding:2px 10px}
+  .pd-meta-grid{grid-template-columns:1fr;gap:8px;margin-top:12px;padding-top:12px}
+  .pd-meta-item{font-size:12px}
+  .pd-meta-item .pm-label{min-width:75px}
+  .pd-card thead th{padding:8px 10px;font-size:12px}
+  .pd-card tbody td{padding:8px 10px;font-size:12px}
   .related-grid{grid-template-columns:repeat(2,1fr)}
   .container{padding:0 10px}
   body.post-page .sidebar{display:none!important}
@@ -549,8 +563,8 @@ body.no-scroll{overflow:hidden}
                     </b:loop>
                   </div>
 
-                  <!-- Description (post body) -->
-                  <div class='pd-description' id='pdDescription'><data:post.body/></div>
+                  <!-- Post Body Content -->
+                  <div class='pd-body' id='pdBody'><data:post.body/></div>
 
                   <!-- Related Posts -->
                   <div class='related-section'>
@@ -1055,146 +1069,15 @@ function processPostDetail(){
     labelEls.forEach(function(el){ el.parentNode.removeChild(el); });
   }
 
-  // Process description: extract tech metadata + convert download tables to source cards
-  var descEl = document.getElementById('pdDescription');
-  if(!descEl) return;
-
-  // Auto-detect label-value pairs and convert to inline tech metadata
-  var techLabels = ['File size','File Size','Quality','Format','Genre','Duration','Subtitle','Resolution','Language','Audio','Director','Release Date','IMDb Rating','IMDB Rating','IMDb','Rating','Year','Size','Codec'];
-  var children = descEl.childNodes;
-  var blocks = [];
-  for(var ci = 0; ci < children.length; ci++){
-    var node = children[ci];
-    if(node.nodeType === 3){
-      var t = node.textContent.trim();
-      if(t) blocks.push({type:'text', text:t, node:node});
-    } else if(node.nodeType === 1 && node.tagName !== 'TABLE' && node.tagName !== 'DIV' && node.tagName !== 'IMG'){
-      var t = node.textContent.trim();
-      if(t) blocks.push({type:'elem', text:t, node:node});
-    }
-  }
-
-  var usedIndices = {};
-  var metaPairs = [];
-  for(var bi = 0; bi < blocks.length; bi++){
-    if(usedIndices[bi]) continue;
-    var bText = blocks[bi].text;
-    var isLabel = false;
-    for(var li = 0; li < techLabels.length; li++){
-      if(bText.toLowerCase() === techLabels[li].toLowerCase()){
-        isLabel = true;
-        break;
-      }
-    }
-    if(!isLabel && bText.indexOf(':') === bText.length - 1 && bText.length < 30){
-      isLabel = true;
-    }
-    if(isLabel && bi + 1 < blocks.length && !usedIndices[bi + 1]){
-      metaPairs.push({
-        label: bText.replace(/:$/, ''),
-        value: blocks[bi + 1].text,
-        labelNode: blocks[bi].node,
-        valueNode: blocks[bi + 1].node,
-        labelBlock: blocks[bi],
-        valueBlock: blocks[bi + 1]
-      });
-      usedIndices[bi] = true;
-      usedIndices[bi + 1] = true;
-    }
-  }
-
-  // Build inline tech metadata
-  if(metaPairs.length >= 2){
-    var metaHtml = '<div class="pd-tech-meta">';
-    for(var pi = 0; pi < metaPairs.length; pi++){
-      var label = metaPairs[pi].label;
-      var value = metaPairs[pi].value;
-      var rowClass = 'pd-tech-row';
-      if(label.toLowerCase().indexOf('genre') !== -1) rowClass += ' genre-val';
-      metaHtml += '<div class="' + rowClass + '"><span class="t-label">' + label + ':</span> <span class="t-value">' + value + '</span></div>';
-    }
-    metaHtml += '</div>';
-
-    // Remove paired nodes from DOM
-    for(var pi = 0; pi < metaPairs.length; pi++){
-      try{ metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode); }catch(e){}
-      try{ metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode); }catch(e){}
-    }
-
-    // Clean up empty elements
-    var emptyPs = descEl.querySelectorAll('p, div, span, br');
-    for(var ep = 0; ep < emptyPs.length; ep++){
-      if(emptyPs[ep].textContent.trim() === '' && emptyPs[ep].children.length === 0){
-        emptyPs[ep].parentNode.removeChild(emptyPs[ep]);
-      }
-    }
-
-    // Insert tech meta at the beginning of description
-    descEl.insertAdjacentHTML('afterbegin', metaHtml);
-  }
-
-  // Convert post body tables to CineMM-style source cards
-  var tables = descEl.querySelectorAll('table');
-  tables.forEach(function(table){
-    var rows = table.querySelectorAll('tr');
-    if(rows.length < 2) return;
-
-    var sourceCards = [];
-    var startIndex = 1; // skip header row
-    for(var ri = startIndex; ri < rows.length; ri++){
-      var cells = rows[ri].querySelectorAll('td, th');
-      if(cells.length < 2) continue;
-
-      var serverName = cells[0] ? cells[0].textContent.trim() : '';
-      var serverInfo = cells.length > 2 && cells[1] ? cells[1].textContent.trim() : '';
-      var fileSize = cells.length > 2 && cells[2] ? cells[2].textContent.trim() : (cells[1] ? cells[1].textContent.trim() : '');
-      var link = cells.length > 2 && cells[2] ? cells[2].querySelector('a') : (cells[1] ? cells[1].querySelector('a') : null);
-      var linkHref = link ? link.getAttribute('href') : '#';
-
-      // Try to detect if second cell is the link (2-column table)
-      if(cells.length === 2){
-        link = cells[1].querySelector('a');
-        linkHref = link ? link.getAttribute('href') : '#';
-        fileSize = '';
-        serverInfo = '';
-      }
-
-      sourceCards.push({
-        name: serverName,
-        meta: serverInfo,
-        size: fileSize,
-        href: linkHref
-      });
-    }
-
-    if(sourceCards.length > 0){
-      var sourcesHtml = '<div class="pd-sources">';
-      sourcesHtml += '<div class="pd-sources-head"><i class="fas fa-download"></i> ' + sourceCards.length + ' Sources Available</div>';
-      for(var si = 0; si < sourceCards.length; si++){
-        var s = sourceCards[si];
-        sourcesHtml += '<a class="pd-source-card" href="' + s.href + '" target="_blank" rel="noopener">';
-        sourcesHtml += '<div class="pd-source-dot"></div>';
-        sourcesHtml += '<div class="pd-source-info">';
-        sourcesHtml += '<div class="pd-source-name">' + s.name + '</div>';
-        if(s.meta) sourcesHtml += '<div class="pd-source-meta">' + s.meta + '</div>';
-        sourcesHtml += '</div>';
-        if(s.size) sourcesHtml += '<span class="pd-source-size">' + s.size + '</span>';
-        sourcesHtml += '<div class="pd-source-dl"><i class="fas fa-download"></i></div>';
-        sourcesHtml += '</a>';
-      }
-      sourcesHtml += '</div>';
-
-      // Replace table with source cards
-      var wrapper = document.createElement('div');
-      wrapper.innerHTML = sourcesHtml;
-      table.parentNode.replaceChild(wrapper.firstElementChild, table);
-    }
-  });
+  // Post body renders as-is (card-style HTML from sample-movie-posts.html)
+  // No tech metadata extraction or table conversion needed
+  // The post body HTML contains styled cards (Synopsis, Download, Trailer)
 }
 
 // Related Posts (JSON feed for post page only)
 (function(){
-  if(!document.getElementById('relatedPosts')) return;
+  var c = document.getElementById('relatedPosts');
+  if(!c) return;
   var labelEls = document.querySelectorAll('.label-data');
   var feedLabel = labelEls.length > 0 ? (labelEls[0].getAttribute('data-name') || labelEls[0].textContent.trim()) : '';
   if(feedLabel){
