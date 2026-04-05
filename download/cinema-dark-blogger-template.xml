@@ -13,14 +13,15 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V7 - Tabs + Compact Cards
+  CINEMA DARK V8 - App Menu + Toggle Search
+  - App-style slide-out drawer menu
+  - Toggle expandable search bar
   - Movies/Series tabs on homepage
   - Compact small poster cards
-  - Nuclear hide for Blogger defaults
   - Desktop: 3 col, Mobile: 2 col
-  Version: 7.0
+  Version: 8.0
 =======================================*/
-:root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:6px;--r2:8px;--r3:12px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1200px}
+:root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:6px;--r2:8px;--r3:12px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1200px;--drawer-w:280px;--header-h:56px}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
@@ -35,30 +36,62 @@ ul,ol{list-style:none}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 16px}
 
-/* Header */
-.site-header{background:var(--bg);border-bottom:1px solid var(--border);padding:12px 0;position:sticky;top:0;z-index:1000}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo a{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
-.search-box{display:flex;align-items:center;background:var(--input);border:1px solid var(--border);border-radius:50px;overflow:hidden;flex:1;max-width:400px}
-.search-box:focus-within{border-color:var(--accent)}
-.search-box input{flex:1;background:0 0;border:none;padding:9px 16px;color:var(--txt);font-family:inherit;font-size:13px;outline:none}
-.search-box input::placeholder{color:var(--muted)}
-.search-box button{background:var(--accent);border:none;padding:9px 14px;color:#fff;cursor:pointer;font-size:13px}
-.search-box button:hover{background:var(--accent2)}
-.header-right{display:flex;align-items:center;gap:12px}
-.header-right a,.header-right button{color:var(--txt2);font-size:18px;background:none;border:none;cursor:pointer}
-.header-right a:hover,.header-right button:hover{color:var(--accent)}
-.header-search{flex:1;max-width:400px}
-.mobile-menu-btn{display:none}
+/* ========== HEADER ========== */
+.site-header{background:var(--bg);border-bottom:1px solid var(--border);padding:0;position:sticky;top:0;z-index:1001;height:var(--header-h)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);gap:12px}
+.logo a{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
+.logo a i{font-size:22px}
 
-/* Navigation */
-.site-nav{background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto}
-.site-nav::-webkit-scrollbar{height:0}
-.nav-list{display:flex;align-items:center}
-.nav-list li a{display:flex;align-items:center;gap:6px;padding:11px 14px;color:var(--txt2);font-size:13px;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent}
-.nav-list li a:hover,.nav-list li a.active{color:var(--accent);border-bottom-color:var(--accent)}
+/* Header action buttons */
+.header-actions{display:flex;align-items:center;gap:4px}
+.header-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:18px;background:none;border:none;border-radius:50%;cursor:pointer;transition:var(--tr)}
+.header-btn:hover{color:var(--accent);background:rgba(34,197,94,.1)}
 
-/* Content Tabs */
+/* ========== TOGGLE SEARCH BAR ========== */
+.search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1002;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(4px)}
+.search-overlay.active{opacity:1;visibility:visible}
+.search-bar{position:fixed;top:0;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:1003;padding:16px 0;transform:translateY(-100%);transition:transform .3s ease}
+.search-bar.active{transform:translateY(0)}
+.search-bar-inner{display:flex;align-items:center;gap:10px;max-width:680px;margin:0 auto}
+.search-bar form{flex:1;display:flex;align-items:center;background:var(--input);border:2px solid var(--border);border-radius:50px;overflow:hidden;transition:var(--tr)}
+.search-bar form:focus-within{border-color:var(--accent)}
+.search-bar input{flex:1;background:0 0;border:none;padding:12px 20px;color:var(--txt);font-family:inherit;font-size:15px;outline:none}
+.search-bar input::placeholder{color:var(--muted)}
+.search-bar .sb-submit{width:44px;height:44px;background:var(--accent);border:none;color:#fff;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.search-bar .sb-submit:hover{background:var(--accent2)}
+.search-bar .sb-close{width:40px;height:40px;background:none;border:none;color:var(--txt2);font-size:18px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--tr);flex-shrink:0}
+.search-bar .sb-close:hover{color:var(--accent);background:rgba(34,197,94,.1)}
+
+/* ========== APP DRAWER MENU ========== */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1004;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(2px)}
+.drawer-overlay.active{opacity:1;visibility:visible}
+.app-drawer{position:fixed;top:0;left:0;bottom:0;width:var(--drawer-w);max-width:85vw;background:var(--bg2);z-index:1005;transform:translateX(-100%);transition:transform .3s ease;overflow-y:auto;display:flex;flex-direction:column;border-right:1px solid var(--border)}
+.app-drawer.active{transform:translateX(0)}
+.app-drawer::-webkit-scrollbar{width:4px}
+.app-drawer::-webkit-scrollbar-thumb{background:var(--card);border-radius:2px}
+
+/* Drawer Header */
+.drawer-header{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.drawer-header .dh-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--accent)}
+.drawer-header .dh-logo i{font-size:20px}
+.drawer-header .dh-close{width:32px;height:32px;background:none;border:none;color:var(--txt2);font-size:16px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.drawer-header .dh-close:hover{color:var(--accent);background:rgba(34,197,94,.1)}
+
+/* Drawer Nav */
+.drawer-nav{flex:1;padding:8px 0}
+.drawer-nav-label{padding:12px 20px 6px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.drawer-nav a{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--txt2);font-size:14px;font-weight:500;transition:var(--tr);border-radius:0;margin:1px 8px;border-radius:var(--r);position:relative}
+.drawer-nav a i{width:20px;text-align:center;font-size:15px}
+.drawer-nav a:hover{color:var(--accent);background:rgba(34,197,94,.08)}
+.drawer-nav a.active{color:var(--accent);background:rgba(34,197,94,.12);font-weight:600}
+.drawer-nav a.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0}
+
+/* Drawer Footer */
+.drawer-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.drawer-footer a{width:32px;height:32px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:13px;transition:var(--tr)}
+.drawer-footer a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ========== CONTENT TABS ========== */
 .content-tabs{display:flex;align-items:center;gap:0;margin:16px 0 0;border-bottom:2px solid var(--border)}
 .tab-btn{padding:10px 20px;font-size:13px;font-weight:600;color:var(--txt2);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:var(--tr);display:flex;align-items:center;gap:6px}
 .tab-btn:hover{color:var(--txt)}
@@ -69,7 +102,7 @@ ul,ol{list-style:none}
 .section-header h2{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
 .section-header h2 i{color:var(--accent);font-size:14px}
 
-/* Movie Grid - COMPACT */
+/* ========== MOVIE GRID - COMPACT ========== */
 .movies-section{padding:14px 0}
 .movie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .movie-card{background:var(--card);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);transition:var(--tr)}
@@ -103,7 +136,7 @@ ul,ol{list-style:none}
 .pagination a{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500}
 .pagination a:hover,.pagination a.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* Sidebar */
+/* ========== SIDEBAR ========== */
 .main-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;padding:20px 0}
 .sidebar{display:flex;flex-direction:column;gap:16px}
 .sidebar-widget{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);overflow:hidden}
@@ -126,7 +159,7 @@ ul,ol{list-style:none}
 .label-list a{display:inline-block;padding:4px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
 .label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* POST DETAIL PAGE */
+/* ========== POST DETAIL PAGE ========== */
 .post-detail{padding:20px 0}
 .pd-wrap{max-width:850px;margin:0 auto}
 .pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:12px;color:var(--muted);flex-wrap:wrap}
@@ -170,7 +203,7 @@ ul,ol{list-style:none}
 .comments-section h3{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .comments-section h3 i{color:var(--accent)}
 
-/* Footer */
+/* ========== FOOTER ========== */
 .site-footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 0 0;margin-top:36px}
 .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:20px}
 .footer-col h4{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
@@ -193,16 +226,9 @@ ul,ol{list-style:none}
 .back-top.visible{opacity:1;visibility:visible}
 .back-top:hover{background:var(--accent2);transform:translateY(-3px)}
 
-/* ============================================
-   NUCLEAR: Hide ALL Blogger default elements
-   on homepage/label/search pages
-   ============================================ */
-
-/* Post page: full width, hide sidebar */
+/* ========== HIDE BLOGGER DEFAULTS ========== */
 body.post-page .main-layout{grid-template-columns:1fr}
 body.post-page .sidebar{display:none}
-
-/* TARGETED hide: Only Blogger default elements, NOT our custom content */
 .blog-posts{display:none!important}
 .blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important}
 .status-msg-wrap,.status-msg-body,.status-msg-border{display:none!important}
@@ -218,10 +244,11 @@ body:not(.post-page) .entry-content{display:none!important}
 body:not(.post-page) .post-snippet{display:none!important}
 body:not(.post-page) .post-summary{display:none!important}
 body:not(.post-page) .comment-link{display:none!important}
-
-/* Generic Blogger cleanup */
 .widget ul{list-style:none}
 #comments{background:none}
+
+/* Body scroll lock */
+body.no-scroll{overflow:hidden}
 
 /* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -239,7 +266,7 @@ body:not(.post-page) .comment-link{display:none!important}
 .movie-card:nth-child(11){animation-delay:.32s}
 .movie-card:nth-child(12){animation-delay:.35s}
 
-/* Responsive */
+/* ========== RESPONSIVE ========== */
 @media(max-width:1024px){
   .main-layout{grid-template-columns:1fr}
   .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
@@ -247,13 +274,6 @@ body:not(.post-page) .comment-link{display:none!important}
   .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  .mobile-menu-btn{display:block}
-  .header-search{order:3;max-width:100%;width:100%;margin-top:8px}
-  .header-inner{flex-wrap:wrap}
-  .site-nav{display:none}
-  .site-nav.active{display:block}
-  .nav-list{flex-direction:column}
-  .nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:10px 16px}
   .movie-grid{grid-template-columns:repeat(2,1fr);gap:8px}
   .mc-poster{aspect-ratio:2/3}
   .mc-info{padding:6px}
@@ -275,6 +295,8 @@ body:not(.post-page) .comment-link{display:none!important}
   .container{padding:0 10px}
   .pd-title{font-size:18px}
   body.post-page .sidebar{display:none!important}
+  .search-bar{padding:12px 10px}
+  .search-bar input{padding:10px 14px;font-size:14px}
 }
 @media(max-width:480px){
   .movie-grid{grid-template-columns:repeat(2,1fr);gap:6px}
@@ -283,6 +305,8 @@ body:not(.post-page) .comment-link{display:none!important}
   .mc-genres{font-size:8px}
   .mc-year{font-size:9px}
   .related-grid{grid-template-columns:1fr}
+  .logo a{font-size:16px}
+  .logo a i{font-size:18px}
 }
 ]]></b:skin>
 </head>
@@ -292,44 +316,71 @@ body:not(.post-page) .comment-link{display:none!important}
 
 <a class='back-top' href='#' id='backTop' title='Back to Top'><i class='fas fa-chevron-up'></i></a>
 
-<!-- Header -->
+<!-- ========== SEARCH BAR (Toggle) ========== -->
+<div class='search-overlay' id='searchOverlay'></div>
+<div class='search-bar' id='searchBar'>
+  <div class='container'>
+    <div class='search-bar-inner'>
+      <form expr:action='data:blog.searchUrl' method='get'>
+        <input autocomplete='off' name='q' placeholder='Search movies, series...' type='text'/>
+        <button class='sb-submit' type='submit'><i class='fas fa-search'></i></button>
+      </form>
+      <button class='sb-close' id='searchClose'><i class='fas fa-times'></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== APP DRAWER MENU ========== -->
+<div class='drawer-overlay' id='drawerOverlay'></div>
+<div class='app-drawer' id='appDrawer'>
+  <div class='drawer-header'>
+    <div class='dh-logo'><i class='fas fa-play-circle'></i><span><data:blog.title/></span></div>
+    <button class='dh-close' id='drawerClose'><i class='fas fa-times'></i></button>
+  </div>
+  <div class='drawer-nav'>
+    <div class='drawer-nav-label'>Navigation</div>
+    <a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'><i class='fas fa-film'></i> Movies</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'><i class='fas fa-tv'></i> Series</a>
+    <div class='drawer-nav-label'>Genres</div>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Action&quot;'><i class='fas fa-fist-raised'></i> Action</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Drama&quot;'><i class='fas fa-theater-masks'></i> Drama</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Comedy&quot;'><i class='fas fa-laugh'></i> Comedy</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Horror&quot;'><i class='fas fa-ghost'></i> Horror</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Sci-Fi&quot;'><i class='fas fa-rocket'></i> Sci-Fi</a>
+    <div class='drawer-nav-label'>More</div>
+    <a href='#'><i class='fas fa-info-circle'></i> About</a>
+    <a href='#'><i class='fas fa-shield-alt'></i> Privacy Policy</a>
+    <a href='#'><i class='fas fa-file-contract'></i> DMCA</a>
+  </div>
+  <div class='drawer-footer'>
+    <a href='#' title='Facebook'><i class='fab fa-facebook-f'></i></a>
+    <a href='#' title='Telegram'><i class='fab fa-telegram-plane'></i></a>
+    <a href='#' title='YouTube'><i class='fab fa-youtube'></i></a>
+    <a expr:href='data:blog.homepageUrl + &quot;feeds/posts/default&quot;' title='RSS'><i class='fas fa-rss'></i></a>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
 <header class='site-header'>
   <div class='container'>
     <div class='header-inner'>
-      <div class='logo'>
-        <a expr:href='data:blog.homepageUrl'><i class='fas fa-play-circle'></i><span><data:blog.title/></span></a>
+      <!-- Left: Menu Button + Logo -->
+      <div style='display:flex;align-items:center;gap:8px'>
+        <button class='header-btn' id='menuBtn' title='Menu'><i class='fas fa-bars'></i></button>
+        <div class='logo'>
+          <a expr:href='data:blog.homepageUrl'><i class='fas fa-play-circle'></i><span><data:blog.title/></span></a>
+        </div>
       </div>
-      <div class='header-search'>
-        <form class='search-box' expr:action='data:blog.searchUrl' method='get'>
-          <input autocomplete='off' name='q' placeholder='Search movies, series...' type='text'/>
-          <button type='submit'><i class='fas fa-search'></i></button>
-        </form>
-      </div>
-      <div class='header-right'>
-        <button aria-label='Menu' class='mobile-menu-btn' id='mobileMenuBtn'><i class='fas fa-bars'></i></button>
-        <a expr:href='data:blog.homepageUrl + &quot;feeds/posts/default&quot;' title='RSS'><i class='fas fa-rss'></i></a>
+      <!-- Right: Search + RSS -->
+      <div class='header-actions'>
+        <button class='header-btn' id='searchBtn' title='Search'><i class='fas fa-search'></i></button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- Navigation -->
-<nav class='site-nav' id='siteNav'>
-  <div class='container'>
-    <ul class='nav-list'>
-      <li><a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'><i class='fas fa-film'></i> Movies</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'><i class='fas fa-tv'></i> Series</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Action&quot;'><i class='fas fa-fist-raised'></i> Action</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Drama&quot;'><i class='fas fa-theater-masks'></i> Drama</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Comedy&quot;'><i class='fas fa-laugh'></i> Comedy</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Horror&quot;'><i class='fas fa-ghost'></i> Horror</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Sci-Fi&quot;'><i class='fas fa-rocket'></i> Sci-Fi</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Main Content -->
+<!-- ========== MAIN CONTENT ========== -->
 <main>
   <div class='container'>
     <div class='main-layout'>
@@ -582,7 +633,7 @@ body:not(.post-page) .comment-link{display:none!important}
   </div>
 </main>
 
-<!-- Footer -->
+<!-- ========== FOOTER ========== -->
 <footer class='site-footer'>
   <div class='container'>
     <div class='footer-grid'>
@@ -619,7 +670,7 @@ body:not(.post-page) .comment-link{display:none!important}
   </div>
 </footer>
 
-<!-- JavaScript -->
+<!-- ========== JAVASCRIPT ========== -->
 <script>
 //<![CDATA[
 var SKIP_LABELS = ['Movie', 'Movies', 'Series'];
@@ -653,10 +704,9 @@ var RATING_PREFIX = 'Rating-';
   setTimeout(injectCustomCSS, 1000);
 })();
 
-// ===== TARGETED: Remove only Blogger default elements, keep our cards =====
+// ===== TARGETED: Hide Blogger default elements =====
 (function(){
   function cleanBlogger(){
-    // Only remove specific Blogger default elements
     var hideSelectors = ['.status-msg-wrap','.blog-posts','.blog-pager','.feed-links','.blog-feeds'];
     for(var i = 0; i < hideSelectors.length; i++){
       var els = document.querySelectorAll(hideSelectors[i]);
@@ -676,6 +726,67 @@ var RATING_PREFIX = 'Rating-';
   }
 })();
 
+// ===== APP DRAWER MENU =====
+(function(){
+  var menuBtn = document.getElementById('menuBtn');
+  var drawer = document.getElementById('appDrawer');
+  var overlay = document.getElementById('drawerOverlay');
+  var closeBtn = document.getElementById('drawerClose');
+
+  function openDrawer(){
+    drawer.classList.add('active');
+    overlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+  }
+  function closeDrawer(){
+    drawer.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  }
+  if(menuBtn){menuBtn.addEventListener('click', openDrawer);}
+  if(closeBtn){closeBtn.addEventListener('click', closeDrawer);}
+  if(overlay){overlay.addEventListener('click', closeDrawer);}
+
+  // Close drawer when clicking a nav link
+  var navLinks = drawer ? drawer.querySelectorAll('.drawer-nav a') : [];
+  for(var i = 0; i < navLinks.length; i++){
+    navLinks[i].addEventListener('click', closeDrawer);
+  }
+
+  // Close on ESC key
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      closeDrawer();
+      closeSearch();
+    }
+  });
+})();
+
+// ===== TOGGLE SEARCH BAR =====
+var searchBar = null, searchOverlay = null, searchInput = null;
+function openSearch(){
+  searchBar.classList.add('active');
+  searchOverlay.classList.add('active');
+  document.body.classList.add('no-scroll');
+  setTimeout(function(){searchInput.focus();}, 350);
+}
+function closeSearch(){
+  searchBar.classList.remove('active');
+  searchOverlay.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+}
+(function(){
+  searchBar = document.getElementById('searchBar');
+  searchOverlay = document.getElementById('searchOverlay');
+  var searchBtn = document.getElementById('searchBtn');
+  var searchCloseBtn = document.getElementById('searchClose');
+  searchInput = searchBar ? searchBar.querySelector('input') : null;
+
+  if(searchBtn){searchBtn.addEventListener('click', openSearch);}
+  if(searchCloseBtn){searchCloseBtn.addEventListener('click', closeSearch);}
+  if(searchOverlay){searchOverlay.addEventListener('click', closeSearch);}
+})();
+
 // Back to Top
 (function(){
   var bt = document.getElementById('backTop');
@@ -687,15 +798,6 @@ var RATING_PREFIX = 'Rating-';
       e.preventDefault();
       window.scrollTo({top:0,behavior:'smooth'});
     });
-  }
-})();
-
-// Mobile Menu
-(function(){
-  var m = document.getElementById('mobileMenuBtn');
-  var n = document.getElementById('siteNav');
-  if(m && n){
-    m.addEventListener('click',function(){n.classList.toggle('active');});
   }
 })();
 
@@ -785,7 +887,6 @@ function initTabs(){
   if(cards.length === 0) return;
 
   function switchTab(tab){
-    // Update active tab
     tabAll.classList.toggle('active', tab === 'all');
     tabMovies.classList.toggle('active', tab === 'movies');
     tabSeries.classList.toggle('active', tab === 'series');
@@ -813,7 +914,6 @@ function initTabs(){
       }
     });
 
-    // Show empty message if no cards visible
     var grid = document.getElementById('movieGrid');
     if(grid){
       var emptyMsg = grid.querySelector('.mc-empty');
@@ -837,8 +937,6 @@ function initTabs(){
   tabAll.addEventListener('click',function(){switchTab('all');});
   tabMovies.addEventListener('click',function(){switchTab('movies');});
   tabSeries.addEventListener('click',function(){switchTab('series');});
-
-  // Show all by default
   switchTab('all');
 }
 
@@ -846,19 +944,16 @@ function initTabs(){
 function processPostDetail(){
   var ratingEl = document.getElementById('postRating');
   if(!ratingEl) return;
-
   var labels = [];
   var labelEls = document.querySelectorAll('.pd-label');
   labelEls.forEach(function(el){
     labels.push(el.textContent.trim());
   });
-
   var rating = null;
   labels.forEach(function(l){
     var r = getRatingFromLabel(l);
     if(r) rating = r;
   });
-
   ratingEl.textContent = rating || '--';
 }
 
