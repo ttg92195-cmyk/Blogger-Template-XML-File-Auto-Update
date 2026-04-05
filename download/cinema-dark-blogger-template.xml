@@ -1808,7 +1808,7 @@ ul, ol {
 
 <!-- Main Content Area -->
 <main>
-  <b:section class='featured-section' id='featured' maxwidgets='1' showaddelement='yes'>
+  <b:section class='featured-section' id='featured' name='Featured Slider' maxwidgets='1' showaddelement='yes'>
     <b:widget id='HTML50' locked='false' title='Featured Slider' type='HTML' version='2' visible='true'>
       <b:widget-settings>
         <b:widget-setting name='content'/>
@@ -1862,7 +1862,7 @@ ul, ol {
     <div class='main-layout'>
       <!-- Main Content -->
       <div class='main-content'>
-        <b:section class='main-posts' id='main-posts' maxwidgets='1' showaddelement='yes'>
+        <b:section class='main-posts' id='main-posts' name='Main Blog Posts' maxwidgets='1' showaddelement='yes'>
           <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
             <b:includable id='main' var='this'>
               <b:loop index='i' values='data:posts' var='post'>
@@ -2027,7 +2027,7 @@ ul, ol {
 
       <!-- Sidebar -->
       <aside class='sidebar'>
-        <b:section class='sidebar-widgets' id='sidebar' showaddelement='yes'>
+        <b:section class='sidebar-widgets' id='sidebar' name='Sidebar Widgets' showaddelement='yes'>
           <b:widget id='Label1' locked='false' title='Genre / Category' type='Label' version='2' visible='true'>
             <b:widget-settings>
               <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
