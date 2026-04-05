@@ -198,9 +198,9 @@ ul,ol{list-style:none}
 
 /* Technical Metadata */
 .pd-tech-meta{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:16px}
-.pd-tech-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.pd-tech-row:last-child{border-bottom:none}
-.pd-tech-row .t-label{color:var(--muted)}
+.pd-tech-row{display:flex;align-items:baseline;gap:8px;padding:10px 0;font-size:13px}
+.pd-tech-row+.pd-tech-row{border-top:1px solid var(--border)}
+.pd-tech-row .t-label{color:var(--muted);min-width:100px;flex-shrink:0}
 .pd-tech-row .t-value{color:var(--txt);font-weight:500}
 
 /* Download Links Table */
@@ -340,7 +340,8 @@ body.no-scroll{overflow:hidden}
   .pd-title{font-size:19px}
   .pd-tab{padding:10px 12px;font-size:13px}
   .pd-dl-table th,.pd-dl-table td{padding:8px 6px;font-size:11px}
-  .pd-tech-row{font-size:12px}
+  .pd-tech-row{font-size:12px;gap:6px}
+  .pd-tech-row .t-label{min-width:80px}
   body.post-page .sidebar{display:none!important}
   .search-bar{padding:12px 10px}
   .search-bar input{padding:10px 14px;font-size:14px}
@@ -1143,7 +1144,7 @@ function processPostDetail(){
         if(label.toLowerCase().indexOf('genre') !== -1){
           valStyle = ' style="color:var(--accent)"';
         }
-        metaHtml += '<div class="pd-tech-row"><span class="t-label">' + label + '</span><span class="t-value"' + valStyle + '>' + value + '</span></div>';
+        metaHtml += '<div class="pd-tech-row"><span class="t-label">' + label + ':</span><span class="t-value"' + valStyle + '>' + value + '</span></div>';
       }
       metaHtml += '</div>';
 
