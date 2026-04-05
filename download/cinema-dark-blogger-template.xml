@@ -1,1789 +1,845 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 <meta content='blogger' name='generator'/>
 <meta content='index, follow' name='robots'/>
-
-<!-- Title -->
 <title><data:blog.pageTitle/></title>
-
-<!-- Favicon -->
 <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
-
-<!-- Google Fonts -->
-<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap' rel='stylesheet'/>
-
-<!-- Font Awesome Icons -->
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
 <link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK - Blogger Template
-  Dark Movie/Cinema Theme
-  Version: 1.0
+  CINEMA DARK V2 - Blogger Template
+  ysflix-inspired Movie Theme
+  Version: 2.0
 =======================================*/
 
-/* === CSS Variables === */
 :root {
-  --bg-primary: #0a0e17;
-  --bg-secondary: #111827;
-  --bg-card: #1a2236;
-  --bg-card-hover: #243049;
-  --bg-sidebar: #111827;
-  --bg-header: rgba(10, 14, 23, 0.95);
-  --bg-footer: #0a0e17;
-  --text-primary: #e8eaed;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
-  --accent-green: #10b981;
-  --accent-green-hover: #34d399;
-  --accent-blue: #3b82f6;
-  --accent-gold: #f59e0b;
-  --accent-red: #ef4444;
-  --accent-purple: #8b5cf6;
-  --border-color: #1f2937;
-  --border-light: #374151;
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --transition: all 0.3s ease;
-  --max-width: 1200px;
+  --bg-primary: #0f1117;
+  --bg-secondary: #161922;
+  --bg-card: #1c1f2e;
+  --bg-card-hover: #252940;
+  --bg-header: #0f1117;
+  --bg-input: #1c1f2e;
+  --text-primary: #ffffff;
+  --text-secondary: #8b92a5;
+  --text-muted: #5a6178;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --star: #fbbf24;
+  --border: #2a2d3e;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --shadow: 0 4px 15px rgba(0,0,0,0.3);
+  --transition: all 0.25s ease;
+  --max-width: 1100px;
 }
 
-/* === Reset & Base === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.7;
-  overflow-x: hidden;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
 }
+a { text-decoration:none; color:inherit; transition:var(--transition); }
+a:hover { color:var(--accent); }
+img { max-width:100%; height:auto; display:block; }
+ul,ol { list-style:none; }
+::selection { background:var(--accent); color:#fff; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg-primary); }
+::-webkit-scrollbar-thumb { background:var(--bg-card); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:var(--accent); }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition);
-}
-
-a:hover {
-  color: var(--accent-green);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-::selection {
-  background: var(--accent-green);
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--bg-card);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-green);
-}
-
-/* === Container === */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* === Preloader === */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  transition: opacity 0.5s ease;
-}
-
-#preloader.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.loader-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--bg-card);
-  border-top: 3px solid var(--accent-green);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* === Top Bar === */
-.top-bar {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-  padding: 8px 0;
-  font-size: 12px;
-}
-
-.top-bar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: var(--text-secondary);
-}
-
-.top-bar-left i {
-  color: var(--accent-green);
-  margin-right: 5px;
-}
-
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.top-bar-right a {
-  color: var(--text-secondary);
-  font-size: 14px;
-  transition: var(--transition);
-}
-
-.top-bar-right a:hover {
-  color: var(--accent-green);
-  transform: translateY(-1px);
-}
+.container { max-width:var(--max-width); margin:0 auto; padding:0 16px; }
 
 /* === Header === */
-.main-header {
-  background: var(--bg-header);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 15px 0;
+.site-header {
+  background:var(--bg-header);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
-
 .header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-
-/* Logo */
-.logo {
-  flex-shrink: 0;
-}
-
 .logo a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:22px;
+  font-weight:800;
+  color:var(--accent);
+  letter-spacing:-0.5px;
 }
-
-.logo-icon {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: #fff;
-}
-
-.logo span {
-  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Search Bar */
+.logo a i { font-size:24px; }
 .header-search {
-  flex: 1;
-  max-width: 500px;
+  flex:1;
+  max-width:420px;
 }
-
-.search-form {
-  display: flex;
-  align-items: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 50px;
-  overflow: hidden;
-  transition: var(--transition);
+.search-box {
+  display:flex;
+  align-items:center;
+  background:var(--bg-input);
+  border:1px solid var(--border);
+  border-radius:50px;
+  overflow:hidden;
 }
-
-.search-form:focus-within {
-  border-color: var(--accent-green);
-  box-shadow: var(--shadow-glow);
+.search-box:focus-within { border-color:var(--accent); }
+.search-box input {
+  flex:1;
+  background:transparent;
+  border:none;
+  padding:10px 18px;
+  color:var(--text-primary);
+  font-family:inherit;
+  font-size:13px;
+  outline:none;
 }
-
-.search-form input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 12px 20px;
-  color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  outline: none;
+.search-box input::placeholder { color:var(--text-muted); }
+.search-box button {
+  background:var(--accent);
+  border:none;
+  padding:10px 16px;
+  color:#fff;
+  cursor:pointer;
+  font-size:13px;
 }
-
-.search-form input::placeholder {
-  color: var(--text-muted);
+.search-box button:hover { background:var(--accent-hover); }
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
-
-.search-form button {
-  background: var(--accent-green);
-  border: none;
-  padding: 12px 20px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  transition: var(--transition);
+.header-right a,.header-right button {
+  color:var(--text-secondary);
+  font-size:18px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  transition:var(--transition);
 }
-
-.search-form button:hover {
-  background: var(--accent-green-hover);
-}
-
-/* Header Actions */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.header-actions a,
-.header-actions button {
-  color: var(--text-secondary);
-  font-size: 18px;
-  transition: var(--transition);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.header-actions a:hover,
-.header-actions button:hover {
-  color: var(--accent-green);
-}
+.header-right a:hover,.header-right button:hover { color:var(--accent); }
+.mobile-menu-btn { display:none; }
 
 /* === Navigation === */
-.main-nav {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0;
-  overflow-x: auto;
+.site-nav {
+  background:var(--bg-secondary);
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;
 }
-
-.main-nav::-webkit-scrollbar {
-  height: 0;
-}
-
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
+.site-nav::-webkit-scrollbar { height:0; }
+.nav-list { display:flex; align-items:center; }
 .nav-list li a {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 14px 18px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  transition: var(--transition);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:12px 16px;
+  color:var(--text-secondary);
+  font-size:13px;
+  font-weight:500;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:var(--transition);
 }
-
 .nav-list li a:hover,
 .nav-list li a.active {
-  color: var(--accent-green);
-  border-bottom-color: var(--accent-green);
-  background: rgba(16, 185, 129, 0.05);
+  color:var(--accent);
+  border-bottom-color:var(--accent);
 }
+.nav-list li a i { font-size:12px; }
 
-.nav-list li a i {
-  font-size: 14px;
+/* === Section Header === */
+.section-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
 }
-
-/* === Featured Slider === */
-.featured-section {
-  padding: 25px 0;
+.section-header h2 {
+  font-size:18px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: 700;
+.section-header h2 i { color:var(--accent); font-size:16px; }
+.section-header a {
+  font-size:13px;
+  font-weight:600;
+  color:var(--accent);
+  background:rgba(34,197,94,0.1);
+  padding:6px 16px;
+  border-radius:50px;
+  border:1px solid rgba(34,197,94,0.3);
 }
+.section-header a:hover { background:var(--accent); color:#fff; }
 
-.section-title i {
-  color: var(--accent-green);
-  font-size: 22px;
-}
-
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--border-color), transparent);
-}
-
-.slider-container {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.slider-wrapper {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.slider-slide {
-  min-width: 100%;
-  position: relative;
-  aspect-ratio: 21/9;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-}
-
-.slider-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slider-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 40px 30px 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
-}
-
-.slider-badge {
-  display: inline-block;
-  background: var(--accent-green);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-
-.slider-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.slider-meta {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.slider-meta span {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.slider-meta .star {
-  color: var(--accent-gold);
-}
-
-.slider-desc {
-  color: var(--text-secondary);
-  font-size: 14px;
-  max-width: 600px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.slider-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-green);
-  color: #fff;
-  padding: 10px 24px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 15px;
-  transition: var(--transition);
-}
-
-.slider-btn:hover {
-  background: var(--accent-green-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-}
-
-.slider-nav {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.slider-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.slider-dot.active {
-  background: var(--accent-green);
-  width: 30px;
-  border-radius: 5px;
-}
-
-.slider-arrows {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.slider-arrow {
-  width: 40px;
-  height: 40px;
-  background: rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  cursor: pointer;
-  pointer-events: all;
-  transition: var(--transition);
-  font-size: 14px;
-}
-
-.slider-arrow:hover {
-  background: var(--accent-green);
-  border-color: var(--accent-green);
-}
-
-/* === Main Layout === */
-.main-layout {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 30px;
-  padding: 25px 0;
-}
-
-/* === Movie Grid === */
+/* === Movie Grid Cards (ysflix style) === */
+.movies-section { padding:24px 0; }
 .movie-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
-
 .movie-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
-  position: relative;
+  background:var(--bg-card);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  border:1px solid var(--border);
+  transition:var(--transition);
+  cursor:pointer;
 }
-
 .movie-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--accent-green);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow);
+  border-color:var(--accent);
 }
-
-.movie-card:hover .movie-poster img {
-  transform: scale(1.08);
+.movie-card:hover .mc-poster img { transform:scale(1.06); }
+.mc-poster {
+  position:relative;
+  aspect-ratio:2/3;
+  overflow:hidden;
+  background:var(--bg-secondary);
 }
-
-.movie-card:hover .movie-overlay {
-  opacity: 1;
+.mc-poster img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.4s ease;
 }
-
-.movie-poster {
-  position: relative;
-  aspect-ratio: 2/3;
-  overflow: hidden;
+.mc-rating {
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  gap:4px;
+  padding:4px 9px;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:700;
 }
-
-.movie-poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+.mc-rating i { color:var(--star); font-size:10px; }
+.mc-quality {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:var(--accent);
+  color:#fff;
+  padding:2px 8px;
+  border-radius:4px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.3px;
 }
-
-.movie-quality {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: var(--accent-green);
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+.mc-info { padding:12px; }
+.mc-title {
+  font-size:14px;
+  font-weight:600;
+  line-height:1.35;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  margin-bottom:6px;
 }
-
-.movie-quality.hd {
-  background: var(--accent-blue);
+.mc-title a:hover { color:var(--accent); }
+.mc-meta {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
 }
-
-.movie-quality.uhd {
-  background: var(--accent-purple);
+.mc-year {
+  font-size:12px;
+  color:var(--text-primary);
+  font-weight:500;
 }
-
-.movie-rating-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-  color: var(--accent-gold);
-  padding: 4px 10px;
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.mc-genre {
+  font-size:11px;
+  color:var(--text-muted);
 }
-
-.movie-rating-badge i {
-  font-size: 10px;
+.mc-genre a { color:var(--text-muted); }
+.mc-genre a:hover { color:var(--accent); }
+.mc-overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:var(--transition);
 }
-
-.movie-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.play-btn {
-  width: 55px;
-  height: 55px;
-  background: var(--accent-green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 20px;
-  transition: var(--transition);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-}
-
-.play-btn:hover {
-  transform: scale(1.1);
-  background: var(--accent-green-hover);
-}
-
-.movie-info {
-  padding: 15px;
-}
-
-.movie-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.4;
-}
-
-.movie-title a:hover {
-  color: var(--accent-green);
-}
-
-.movie-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-.movie-genre {
-  color: var(--accent-green);
-  font-weight: 500;
-}
-
-.movie-year {
-  color: var(--text-muted);
-}
-
-/* === Movie List Style === */
-.movie-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.movie-list-item {
-  display: flex;
-  gap: 15px;
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
-}
-
-.movie-list-item:hover {
-  border-color: var(--accent-green);
-  box-shadow: var(--shadow-card);
-}
-
-.movie-list-poster {
-  width: 120px;
-  min-height: 170px;
-  flex-shrink: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.movie-list-poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.movie-list-item:hover .movie-list-poster img {
-  transform: scale(1.05);
-}
-
-.movie-list-info {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.movie-list-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  line-height: 1.4;
-}
-
-.movie-list-title a:hover {
-  color: var(--accent-green);
-}
-
-.movie-list-desc {
-  color: var(--text-secondary);
-  font-size: 13px;
-  margin-bottom: 10px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.movie-list-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.movie-list-meta .stars {
-  color: var(--accent-gold);
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.movie-list-meta .stars i {
-  font-size: 11px;
+.movie-card:hover .mc-overlay { opacity:1; }
+.mc-play {
+  width:48px;
+  height:48px;
+  background:var(--accent);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+  box-shadow:0 0 20px rgba(34,197,94,0.4);
 }
 
 /* === Pagination === */
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 30px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:30px 0;
 }
-
 .pagination a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  transition: var(--transition);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:38px;
+  height:38px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  color:var(--text-secondary);
+  font-size:13px;
+  font-weight:500;
+}
+.pagination a:hover,.pagination a.active {
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
 }
 
-.pagination a:hover,
-.pagination a.active {
-  background: var(--accent-green);
-  border-color: var(--accent-green);
-  color: #fff;
+/* === Genre Tags Section === */
+.genre-section { padding:20px 0; }
+.genre-list {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.genre-pill {
+  display:inline-block;
+  padding:7px 16px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:50px;
+  color:var(--text-secondary);
+  font-size:12px;
+  font-weight:500;
+  transition:var(--transition);
+}
+.genre-pill:hover {
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
 }
 
 /* === Sidebar === */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+.main-layout {
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:24px;
+  padding:24px 0;
 }
-
+.sidebar { display:flex; flex-direction:column; gap:20px; }
 .sidebar-widget {
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  overflow: hidden;
+  background:var(--bg-card);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  overflow:hidden;
 }
-
-.widget-title {
-  padding: 16px 18px;
-  font-size: 15px;
-  font-weight: 700;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.sw-title {
+  padding:14px 16px;
+  font-size:14px;
+  font-weight:700;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-
-.widget-title i {
-  color: var(--accent-green);
-}
-
-.widget-content {
-  padding: 15px;
-}
-
-/* Genre Tags */
-.genre-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.genre-tag {
-  display: inline-block;
-  padding: 6px 14px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 50px;
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.genre-tag:hover {
-  background: var(--accent-green);
-  border-color: var(--accent-green);
-  color: #fff;
-}
-
-/* Popular Posts Widget */
-.popular-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
+.sw-title i { color:var(--accent); }
+.sw-content { padding:14px; }
+.popular-list { display:flex; flex-direction:column; gap:10px; }
 .popular-item {
-  display: flex;
-  gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-color);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
 }
-
-.popular-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
 .popular-num {
-  width: 30px;
-  height: 30px;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent-green);
-  flex-shrink: 0;
+  width:26px;
+  height:26px;
+  background:var(--bg-secondary);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:700;
+  color:var(--accent);
+  flex-shrink:0;
 }
-
-.popular-item:nth-child(1) .popular-num {
-  background: var(--accent-green);
-  color: #fff;
+.popular-item:nth-child(1) .popular-num { background:var(--accent); color:#fff; }
+.popular-item:nth-child(2) .popular-num { background:#3b82f6; color:#fff; }
+.popular-item:nth-child(3) .popular-num { background:var(--star); color:#000; }
+.popular-text h4 {
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  margin-bottom:2px;
 }
-
-.popular-item:nth-child(2) .popular-num {
-  background: var(--accent-blue);
-  color: #fff;
-}
-
-.popular-item:nth-child(3) .popular-num {
-  background: var(--accent-gold);
-  color: #fff;
-}
-
-.popular-info {
-  flex: 1;
-}
-
-.popular-info h4 {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 4px;
-}
-
-.popular-info h4 a:hover {
-  color: var(--accent-green);
-}
-
-.popular-info span {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* Sidebar Ad */
+.popular-text h4 a:hover { color:var(--accent); }
+.popular-text span { font-size:11px; color:var(--text-muted); }
 .sidebar-ad {
-  background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
-  border-radius: var(--radius-md);
-  padding: 25px;
-  text-align: center;
-  border: 1px dashed var(--border-light);
+  background:var(--bg-secondary);
+  border:1px dashed var(--border);
+  border-radius:var(--radius-lg);
+  padding:20px;
+  text-align:center;
 }
+.sidebar-ad i { font-size:28px; color:var(--text-muted); margin-bottom:8px; }
+.sidebar-ad p { color:var(--text-muted); font-size:12px; }
 
-.sidebar-ad i {
-  font-size: 36px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-}
+/* === POST DETAIL PAGE (ysflix style) === */
+.post-detail { padding:24px 0; }
+.pd-wrap { max-width:850px; margin:0 auto; }
 
-.sidebar-ad p {
-  color: var(--text-muted);
-  font-size: 13px;
+/* Breadcrumb */
+.pd-breadcrumb {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:20px;
+  font-size:12px;
+  color:var(--text-muted);
+  flex-wrap:wrap;
 }
+.pd-breadcrumb a { color:var(--accent); }
+.pd-breadcrumb i { font-size:8px; }
 
-/* === Post Page === */
-.post-page {
-  padding: 25px 0;
+/* Movie Top Section */
+.pd-top {
+  display:flex;
+  gap:24px;
+  margin-bottom:24px;
+  background:var(--bg-card);
+  border-radius:var(--radius-xl);
+  border:1px solid var(--border);
+  padding:24px;
 }
+.pd-poster {
+  width:220px;
+  min-width:220px;
+  aspect-ratio:2/3;
+  border-radius:var(--radius);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.pd-poster img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.pd-info {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.pd-labels {
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.pd-label {
+  padding:4px 14px;
+  background:rgba(34,197,94,0.1);
+  border:1px solid rgba(34,197,94,0.3);
+  border-radius:50px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--accent);
+}
+.pd-title {
+  font-size:26px;
+  font-weight:800;
+  line-height:1.3;
+  margin-bottom:10px;
+}
+.pd-rating-row {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.pd-stars {
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+.pd-stars i { color:var(--star); font-size:14px; }
+.pd-rating-num {
+  font-size:18px;
+  font-weight:700;
+  color:var(--star);
+}
+.pd-meta-items {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--text-secondary);
+  font-size:13px;
+  flex-wrap:wrap;
+}
+.pd-meta-items span { display:flex; align-items:center; gap:4px; }
+.pd-meta-items .dot { color:var(--text-muted); }
+.pd-meta-items i { color:var(--accent); font-size:12px; }
+.pd-director {
+  margin-top:10px;
+  font-size:13px;
+  color:var(--text-secondary);
+}
+.pd-director strong { color:var(--text-primary); font-weight:600; }
 
-.post-single {
-  max-width: 850px;
-  margin: 0 auto;
+/* Synopsis Section */
+.pd-section {
+  background:var(--bg-card);
+  border-radius:var(--radius-xl);
+  border:1px solid var(--border);
+  padding:24px;
+  margin-bottom:20px;
 }
+.pd-section-title {
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.pd-section-title i { color:var(--accent); }
+.pd-section-title .imdb-badge {
+  margin-left:auto;
+  font-size:12px;
+  font-weight:600;
+  color:var(--star);
+  background:rgba(251,191,36,0.1);
+  padding:3px 12px;
+  border-radius:50px;
+}
+.synopsis-text {
+  font-size:14px;
+  line-height:1.9;
+  color:var(--text-secondary);
+}
+.synopsis-text p { margin-bottom:14px; }
 
-.post-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: var(--text-muted);
+/* Technical Info */
+.tech-info {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
 }
+.tech-row {
+  display:flex;
+  gap:8px;
+  font-size:13px;
+}
+.tech-row .tl { color:var(--text-muted); min-width:85px; }
+.tech-row .tv { color:var(--text-primary); font-weight:500; }
 
-.post-breadcrumb a {
-  color: var(--accent-green);
+/* Download Table (ysflix style) */
+.dl-table-wrap {
+  overflow-x:auto;
 }
-
-.post-breadcrumb span {
-  color: var(--text-muted);
+.dl-table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
 }
-
-.post-featured-img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 25px;
+.dl-table thead th {
+  background:var(--bg-secondary);
+  padding:10px 14px;
+  text-align:left;
+  font-weight:600;
+  color:var(--text-primary);
+  border-bottom:2px solid var(--accent);
+  white-space:nowrap;
 }
-
-.post-featured-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.dl-table tbody td {
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  color:var(--text-secondary);
+  white-space:nowrap;
 }
-
-.post-content-wrap {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  padding: 30px;
+.dl-table tbody tr:hover { background:rgba(34,197,94,0.03); }
+.dl-table .server-link {
+  color:var(--accent);
+  font-weight:600;
 }
-
-.post-header-info {
-  margin-bottom: 20px;
-}
-
-.post-labels {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.post-label {
-  padding: 4px 12px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 50px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent-green);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.post-title-single {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.3;
-  margin-bottom: 12px;
-}
-
-.post-meta-bar {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  flex-wrap: wrap;
-}
-
-.post-meta-bar span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.post-meta-bar i {
-  color: var(--accent-green);
-}
-
-/* Star Rating in Post */
-.post-rating {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 15px 0;
-  padding: 12px 16px;
-  background: rgba(245, 158, 11, 0.1);
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.post-rating .stars {
-  color: var(--accent-gold);
-  font-size: 16px;
-  display: flex;
-  gap: 2px;
-}
-
-.post-rating .rating-num {
-  font-weight: 700;
-  color: var(--accent-gold);
-  font-size: 16px;
-}
-
-.post-rating .rating-text {
-  color: var(--text-secondary);
-  font-size: 13px;
-}
-
-/* Post Body */
-.post-body {
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--text-secondary);
-}
-
-.post-body h2 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 25px 0 12px;
-}
-
-.post-body h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 20px 0 10px;
-}
-
-.post-body p {
-  margin-bottom: 16px;
-}
-
-.post-body img {
-  border-radius: var(--radius-md);
-  margin: 15px 0;
-}
-
-.post-body a {
-  color: var(--accent-green);
-  text-decoration: underline;
-}
-
-.post-body ul, .post-body ol {
-  margin: 10px 0 16px 20px;
-}
-
-.post-body li {
-  margin-bottom: 6px;
-}
-
-.post-body blockquote {
-  border-left: 3px solid var(--accent-green);
-  padding: 15px 20px;
-  margin: 16px 0;
-  background: var(--bg-secondary);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-style: italic;
-}
-
-.post-body pre, .post-body code {
-  background: var(--bg-secondary);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-}
-
-.post-body code {
-  padding: 2px 6px;
-}
-
-.post-body pre {
-  padding: 16px;
-  overflow-x: auto;
-}
-
-/* Movie Info Box */
-.movie-info-box {
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid var(--border-color);
-}
-
-.movie-info-box h3 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: var(--accent-green);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.info-row {
-  display: flex;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 13px;
-}
-
-.info-row:last-child {
-  border-bottom: none;
-}
-
-.info-row .label {
-  width: 120px;
-  color: var(--text-muted);
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-.info-row .value {
-  color: var(--text-primary);
-}
-
-/* Download Box */
-.download-box {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-  border-radius: var(--radius-md);
-  padding: 25px;
-  margin: 25px 0;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  text-align: center;
-}
-
-.download-box h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.download-box h3 i {
-  color: var(--accent-green);
-}
-
-.download-box p {
-  color: var(--text-secondary);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.download-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 600;
-  transition: var(--transition);
-  color: #fff;
-}
-
-.download-btn.primary {
-  background: var(--accent-green);
-}
-
-.download-btn.secondary {
-  background: var(--accent-blue);
-}
-
-.download-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.download-btn.primary:hover {
-  background: var(--accent-green-hover);
-}
+.dl-table .server-link:hover { text-decoration:underline; }
 
 /* Share Buttons */
-.share-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
+.share-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
 }
-
-.share-box span {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-
+.share-row span { font-weight:600; font-size:13px; }
 .share-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 14px;
-  transition: var(--transition);
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:13px;
+  transition:var(--transition);
 }
-
-.share-btn.facebook { background: #1877f2; }
-.share-btn.twitter { background: #1da1f2; }
-.share-btn.telegram { background: #0088cc; }
-.share-btn.whatsapp { background: #25d366; }
-.share-btn.pinterest { background: #e60023; }
-
-.share-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
+.share-btn:hover { transform:translateY(-2px); opacity:0.9; }
+.share-btn.fb { background:#1877f2; }
+.share-btn.tw { background:#1da1f2; }
+.share-btn.tg { background:#0088cc; }
+.share-btn.wa { background:#25d366; }
 
 /* Related Posts */
-.related-section {
-  margin-top: 30px;
-}
-
 .related-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:14px;
 }
-
 .related-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
+  background:var(--bg-card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border);
+  transition:var(--transition);
 }
-
-.related-card:hover {
-  border-color: var(--accent-green);
-  transform: translateY(-3px);
-}
-
-.related-card-img {
-  aspect-ratio: 16/9;
-  overflow: hidden;
-}
-
-.related-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.related-card:hover .related-card-img img {
-  transform: scale(1.05);
-}
-
-.related-card-info {
-  padding: 12px;
-}
-
+.related-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+.related-card-img { aspect-ratio:16/9; overflow:hidden; }
+.related-card-img img { width:100%; height:100%; object-fit:cover; transition:var(--transition); }
+.related-card:hover .related-card-img img { transform:scale(1.05); }
+.related-card-info { padding:10px; }
 .related-card-info h4 {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
-
-.related-card-info h4 a:hover {
-  color: var(--accent-green);
-}
+.related-card-info h4 a:hover { color:var(--accent); }
 
 /* === Comments === */
 .comments-section {
-  margin-top: 30px;
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-  padding: 25px;
+  background:var(--bg-card);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  padding:20px;
+  margin-top:24px;
 }
-
 .comments-section h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-
-.comments-section h3 i {
-  color: var(--accent-green);
-}
+.comments-section h3 i { color:var(--accent); }
 
 /* === Footer === */
-.main-footer {
-  background: var(--bg-footer);
-  border-top: 1px solid var(--border-color);
-  padding: 40px 0 0;
-  margin-top: 40px;
+.site-footer {
+  background:var(--bg-secondary);
+  border-top:1px solid var(--border);
+  padding:30px 0 0;
+  margin-top:40px;
 }
-
 .footer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding-bottom: 30px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  padding-bottom:24px;
 }
-
 .footer-col h4 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
-
-.footer-col h4 i {
-  color: var(--accent-green);
-}
-
-.footer-about p {
-  color: var(--text-secondary);
-  font-size: 13px;
-  line-height: 1.8;
-  margin-bottom: 15px;
-}
-
-.footer-social {
-  display: flex;
-  gap: 10px;
-}
-
+.footer-col h4 i { color:var(--accent); font-size:13px; }
+.footer-about p { color:var(--text-secondary); font-size:12px; line-height:1.8; margin-bottom:12px; }
+.footer-social { display:flex; gap:8px; }
 .footer-social a {
-  width: 36px;
-  height: 36px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 14px;
-  transition: var(--transition);
+  width:32px; height:32px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-secondary);
+  font-size:12px;
 }
-
-.footer-social a:hover {
-  background: var(--accent-green);
-  border-color: var(--accent-green);
-  color: #fff;
-}
-
-.footer-links li {
-  margin-bottom: 8px;
-}
-
+.footer-social a:hover { background:var(--accent); border-color:var(--accent); color:#fff; }
+.footer-links li { margin-bottom:6px; }
 .footer-links li a {
-  color: var(--text-secondary);
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  color:var(--text-secondary); font-size:12px;
+  display:flex; align-items:center; gap:6px;
 }
-
-.footer-links li a:hover {
-  color: var(--accent-green);
-  padding-left: 5px;
-}
-
-.footer-links li a i {
-  font-size: 8px;
-  color: var(--accent-green);
-}
-
+.footer-links li a:hover { color:var(--accent); padding-left:4px; }
+.footer-links li a i { font-size:6px; color:var(--accent); }
 .footer-contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
-  color: var(--text-secondary);
-  font-size: 13px;
+  display:flex; align-items:flex-start; gap:8px;
+  margin-bottom:8px; color:var(--text-secondary); font-size:12px;
 }
-
-.footer-contact li i {
-  color: var(--accent-green);
-  margin-top: 3px;
-}
-
+.footer-contact li i { color:var(--accent); margin-top:2px; }
 .footer-bottom {
-  border-top: 1px solid var(--border-color);
-  padding: 18px 0;
-  text-align: center;
+  border-top:1px solid var(--border);
+  padding:14px 0;
+  text-align:center;
 }
-
-.footer-bottom p {
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-.footer-bottom a {
-  color: var(--accent-green);
-  font-weight: 500;
-}
+.footer-bottom p { color:var(--text-muted); font-size:11px; }
+.footer-bottom a { color:var(--accent); font-weight:500; }
 
 /* === Back to Top === */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 45px;
-  height: 45px;
-  background: var(--accent-green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-  z-index: 999;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+.back-top {
+  position:fixed; bottom:24px; right:24px;
+  width:40px; height:40px;
+  background:var(--accent);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:14px;
+  cursor:pointer;
+  opacity:0; visibility:hidden;
+  transition:var(--transition);
+  z-index:999;
 }
+.back-top.visible { opacity:1; visibility:visible; }
+.back-top:hover { background:var(--accent-hover); transform:translateY(-3px); }
 
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  background: var(--accent-green-hover);
-  transform: translateY(-3px);
-}
-
-/* === Responsive === */
-@media (max-width: 1024px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .sidebar {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .top-bar {
-    display: none;
-  }
-  
-  .header-inner {
-    flex-wrap: wrap;
-  }
-  
-  .header-search {
-    order: 3;
-    max-width: 100%;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .nav-list li a {
-    padding: 12px 14px;
-    font-size: 12px;
-  }
-  
-  .slider-title {
-    font-size: 20px;
-  }
-  
-  .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  
-  .sidebar {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .post-title-single {
-    font-size: 22px;
-  }
-  
-  .related-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .container {
-    padding: 0 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  
-  .movie-info {
-    padding: 10px;
-  }
-  
-  .movie-title {
-    font-size: 12px;
-  }
-  
-  .post-content-wrap {
-    padding: 18px;
-  }
-  
-  .related-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .download-links {
-    flex-direction: column;
-  }
-  
-  .download-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+/* === Blogger Overrides === */
+.post-outer,.post { background:none!important; border:none!important; padding:0!important; }
+.post-body img { background:none; border:none; padding:0; border-radius:var(--radius); }
+#comments { background:none; }
+.widget ul { list-style:none; }
+.blog-posts .post-outer-container { margin-bottom:0; }
+.status-msg-wrap { margin:12px 0; padding:10px 14px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius); color:var(--accent); font-size:13px; }
 
 /* === Animations === */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.movie-card { animation:fadeUp 0.4s ease forwards; }
+.movie-card:nth-child(2){animation-delay:.05s}
+.movie-card:nth-child(3){animation-delay:.1s}
+.movie-card:nth-child(4){animation-delay:.15s}
+.movie-card:nth-child(5){animation-delay:.2s}
+.movie-card:nth-child(6){animation-delay:.25s}
+.movie-card:nth-child(7){animation-delay:.3s}
+.movie-card:nth-child(8){animation-delay:.35s}
+.movie-card:nth-child(9){animation-delay:.4s}
+
+/* === Responsive === */
+@media(max-width:1024px){
+  .main-layout{grid-template-columns:1fr}
+  .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
+  .movie-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-.movie-card {
-  animation: fadeInUp 0.5s ease forwards;
+@media(max-width:768px){
+  .mobile-menu-btn{display:block}
+  .header-search{order:3;max-width:100%;width:100%;margin-top:10px}
+  .header-inner{flex-wrap:wrap}
+  .site-nav{display:none}
+  .site-nav.active{display:block}
+  .nav-list{flex-direction:column}
+  .nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:11px 16px}
+  .movie-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .sidebar{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .pd-top{flex-direction:column;align-items:center;text-align:center}
+  .pd-poster{width:180px;min-width:180px}
+  .pd-rating-row{justify-content:center}
+  .pd-labels{justify-content:center}
+  .pd-director{justify-content:center}
+  .tech-info{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+  .container{padding:0 12px}
+  .pd-title{font-size:20px}
 }
-
-.movie-card:nth-child(2) { animation-delay: 0.1s; }
-.movie-card:nth-child(3) { animation-delay: 0.2s; }
-.movie-card:nth-child(4) { animation-delay: 0.3s; }
-.movie-card:nth-child(5) { animation-delay: 0.4s; }
-.movie-card:nth-child(6) { animation-delay: 0.5s; }
-
-/* === Blogger Default Overrides === */
-.blog-posts .post-outer-container {
-  margin-bottom: 0;
+@media(max-width:480px){
+  .movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .mc-info{padding:10px}
+  .mc-title{font-size:12px}
+  .mc-genre{font-size:10px}
+  .related-grid{grid-template-columns:1fr}
+  .dl-table{font-size:11px}
+  .dl-table thead th,.dl-table tbody td{padding:8px 10px}
 }
-
-.post-outer, .post {
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-}
-
-.post-body img {
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-#comments {
-  background: none;
-}
-
-.widget ul {
-  list-style: none;
-}
-
-/* Mobile Menu Toggle */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: 22px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-@media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: block;
-  }
-  
-  .main-nav {
-    display: none;
-  }
-  
-  .main-nav.active {
-    display: block;
-  }
-  
-  .nav-list {
-    flex-direction: column;
-  }
-  
-  .nav-list li a {
-    border-bottom: 1px solid var(--border-color);
-    width: 100%;
-    padding: 12px 18px;
-  }
-}
-
-/* Status Message */
-.status-msg-wrap {
-  margin: 15px 0;
-  padding: 12px 18px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: var(--radius-sm);
-  color: var(--accent-green);
-  font-size: 14px;
-}
-
 ]]></b:skin>
 </head>
 <body>
 
-<!-- Preloader -->
-<div id='preloader'>
-  <div class='loader-spinner'/>
-</div>
-
 <!-- Back to Top -->
-<a class='back-to-top' href='#' id='backToTop' title='Back to Top'>
+<a class='back-top' href='#' id='backTop' title='Back to Top'>
   <i class='fas fa-chevron-up'/>
 </a>
 
 <!-- Header -->
-<header class='main-header' id='mainHeader'>
+<header class='site-header'>
   <div class='container'>
     <div class='header-inner'>
-      <!-- Logo -->
       <div class='logo'>
         <a expr:href='data:blog.homepageUrl'>
-          <div class='logo-icon'><i class='fas fa-film'/></div>
+          <i class='fas fa-play-circle'/>
           <span><data:blog.title/></span>
         </a>
       </div>
-
-      <!-- Search -->
       <div class='header-search'>
-        <form class='search-form' expr:action='data:blog.searchUrl' method='get'>
-          <input autocomplete='off' name='q' placeholder='ရုပ်ရှင်အမည်ဖြင့်ရှာပါ...' type='text'/>
+        <form class='search-box' expr:action='data:blog.searchUrl' method='get'>
+          <input autocomplete='off' name='q' placeholder='Search movies...' type='text'/>
           <button type='submit'><i class='fas fa-search'/></button>
         </form>
       </div>
-
-      <!-- Actions -->
-      <div class='header-actions'>
+      <div class='header-right'>
         <button aria-label='Menu' class='mobile-menu-btn' id='mobileMenuBtn'>
           <i class='fas fa-bars'/>
         </button>
-        <a href='#' title='Dark Mode'><i class='fas fa-moon'/></a>
         <a expr:href='data:blog.homepageUrl + &quot;feeds/posts/default&quot;' title='RSS'><i class='fas fa-rss'/></a>
       </div>
     </div>
@@ -1791,10 +847,10 @@ ul, ol {
 </header>
 
 <!-- Navigation -->
-<nav class='main-nav' id='mainNav'>
+<nav class='site-nav' id='siteNav'>
   <div class='container'>
-    <ul class='nav-list' id='navList'>
-      <li><a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> မူလစာမျက်နှာ</a></li>
+    <ul class='nav-list'>
+      <li><a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> Home</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Action&quot;'><i class='fas fa-fist-raised'/> Action</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Drama&quot;'><i class='fas fa-theater-masks'/> Drama</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Comedy&quot;'><i class='fas fa-laugh'/> Comedy</a></li>
@@ -1806,360 +862,331 @@ ul, ol {
   </div>
 </nav>
 
-<!-- Main Content Area -->
+<!-- Main Content -->
 <main>
-  <b:section class='featured-section' id='featured' name='Featured Slider' maxwidgets='1' showaddelement='yes'>
-    <b:widget id='HTML50' locked='false' title='Featured Slider' type='HTML' version='2' visible='true'>
-      <b:widget-settings>
-        <b:widget-setting name='content'/>
-      </b:widget-settings>
-      <b:includable id='main'>
-        <b:if cond='data:content == &quot;&quot;'>
-          <!-- Default Featured Slider (shows when no content is added) -->
-          <div class='container'>
-            <h2 class='section-title'><i class='fas fa-fire'/> လက်ရှိလက်ရှိရုပ်ရှင်များ</h2>
-            <div class='slider-container' id='featuredSlider'>
-              <div class='slider-wrapper' id='sliderWrapper'>
-                <div class='slider-slide'>
-                  <img alt='Featured Movie' src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&amp;h=500&amp;fit=crop'/>
-                  <div class='slider-overlay'>
-                    <span class='slider-badge'>Featured</span>
-                    <h3 class='slider-title'>လက်ရှိရုပ်ရှင်အသစ်များ</h3>
-                    <div class='slider-meta'>
-                      <span class='star'><i class='fas fa-star'/> 8.5</span>
-                      <span><i class='fas fa-clock'/> 2h 15min</span>
-                      <span><i class='fas fa-calendar'/> 2025</span>
-                    </div>
-                    <p class='slider-desc'>Featured slider ကို စင်းစစ်ရန် layout &#11111; Blogger Admin &gt; Layout &#11111; Featured Slider widget မှာ HTML content ထည့်ပါ။</p>
-                    <a class='slider-btn' href='#'><i class='fas fa-play'/> ပြန်လည်ကြည့်ရန်</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <b:else/>
-          <div class='container'>
-            <h2 class='section-title'><i class='fas fa-fire'/> လက်ရှိလက်ရှိရုပ်ရှင်များ</h2>
-            <div class='slider-container'>
-              <div class='slider-wrapper' id='sliderWrapper'>
-                <div class='slider-slide'>
-                  <img alt='Featured' src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&amp;h=500&amp;fit=crop'/>
-                  <div class='slider-overlay'>
-                    <span class='slider-badge'>Featured</span>
-                    <h3 class='slider-title'>Featured Slider</h3>
-                    <p class='slider-desc'>Add your featured movie content via Blogger widget settings.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </b:if>
-      </b:includable>
-    </b:widget>
-  </b:section>
-
   <div class='container'>
-    <div class='main-layout'>
-      <!-- Main Content -->
-      <div class='main-content'>
-        <b:section class='main-posts' id='main-posts' name='Main Blog Posts' maxwidgets='1' showaddelement='yes'>
-          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
-            <b:includable id='main' var='this'>
-              <b:loop index='i' values='data:posts' var='post'>
-                <b:include data='post' name='post'/>
-              </b:loop>
-              <b:include name='pagination'/>
-            </b:includable>
 
-            <b:includable id='post' var='post'>
-              <!-- Index Page: Movie Grid Cards -->
-              <b:if cond='data:view.isHomepage or data:view.isLabelSearch or data:view.isSearch'>
+    <!-- Homepage / Label / Search -->
+    <b:if cond='data:view.isHomepage or data:view.isLabelSearch or data:view.isSearch'>
+
+      <div class='main-layout'>
+        <!-- Main Content -->
+        <div class='main-content'>
+          <b:section class='main-posts' id='main-posts' name='Main Blog Posts' maxwidgets='1' showaddelement='yes'>
+            <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+              <b:includable id='main' var='this'>
+                <div class='movies-section'>
+                  <div class='section-header'>
+                    <h2><i class='fas fa-film'/> Movies</h2>
+                    <b:if cond='data:view.isLabelSearch'>
+                      <a expr:href='data:blog.homepageUrl'>View All</a>
+                    </b:if>
+                  </div>
+                  <div class='movie-grid'>
+                    <b:loop values='data:posts' var='post'>
+                      <b:include data='post' name='post'/>
+                    </b:loop>
+                  </div>
+                </div>
+                <b:include name='pagination'/>
+              </b:includable>
+
+              <b:includable id='post' var='post'>
                 <div class='movie-card'>
                   <b:if cond='data:post.featuredImage'>
-                    <div class='movie-poster'>
-                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage resize 400'/>
-                      <span class='movie-quality'>HD</span>
-                      <span class='movie-rating-badge'><i class='fas fa-star'/> 7.8</span>
-                      <div class='movie-overlay'>
-                        <a class='play-btn' expr:href='data:post.url'><i class='fas fa-play'/></a>
+                    <div class='mc-poster'>
+                      <a expr:href='data:post.url'>
+                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage resize 400'/>
+                      </a>
+                      <div class='mc-rating'><i class='fas fa-star'/> 7.8</div>
+                      <div class='mc-quality'>HD</div>
+                      <div class='mc-overlay'>
+                        <a class='mc-play' expr:href='data:post.url'><i class='fas fa-play'/></a>
                       </div>
                     </div>
                   </b:if>
-                  <div class='movie-info'>
-                    <h3 class='movie-title'>
+                  <div class='mc-info'>
+                    <h3 class='mc-title'>
                       <a expr:href='data:post.url'><data:post.title/></a>
                     </h3>
-                    <div class='movie-meta'>
-                      <span class='movie-genre'>
+                    <div class='mc-meta'>
+                      <span class='mc-year'>2025</span>
+                      <span class='mc-genre'>
                         <b:loop values='data:post.labels' var='label'>
                           <a expr:href='data:label.url'><data:label.name/></a>
                           <b:if cond='!data:label.isLast'>, </b:if>
                         </b:loop>
                       </span>
-                      <span class='movie-year'><i class='far fa-calendar-alt'/> <data:post.date/></span>
                     </div>
                   </div>
                 </div>
-              </b:if>
+              </b:includable>
 
-              <!-- Single Post Page -->
-              <b:if cond='data:view.isPost'>
-                <div class='post-page'>
-                  <div class='post-single'>
-                    <div class='post-breadcrumb'>
-                      <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> မူလ</a>
-                      <span><i class='fas fa-chevron-right'/></span>
-                      <b:loop values='data:post.labels' var='label'>
-                        <a expr:href='data:label.url'><data:label.name/></a>
+              <b:includable id='pagination'>
+                <div class='pagination'>
+                  <b:if cond='data:newerPageUrl'>
+                    <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'/></a>
+                  </b:if>
+                  <b:if cond='data:olderPageUrl'>
+                    <a class='active' expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'/></a>
+                  </b:if>
+                </div>
+              </b:includable>
+
+              <b:includable id='comments' var='post'>
+                <div class='comments-block'>
+                  <b:if cond='data:post.embedCommentForm'>
+                    <b:include data='post' name='threaded-comment-form'/>
+                  </b:if>
+                </div>
+              </b:includable>
+              <b:includable id='threaded-comment-form' var='post'>
+                <div id='comment-editor'/>
+                <script type='text/javascript'>
+                  BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+                </script>
+              </b:includable>
+              <b:includable id='postCommentsAndAd' var='post'/>
+              <b:includable id='commentDeleteIcon' var='comment'/>
+              <b:includable id='backlinkDeleteIcon' var='backlink'/>
+              <b:includable id='postQuickEdit' var='post'/>
+              <b:includable id='threadedCommentJs' var='post'/>
+              <b:includable id='backlinks' var='post'/>
+              <b:includable id='feedLinks'/>
+              <b:includable id='feedLinksBody' var='links'/>
+            </b:widget>
+          </b:section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class='sidebar'>
+          <b:section class='sidebar-widgets' id='sidebar' name='Sidebar Widgets' showaddelement='yes'>
+            <b:widget id='Label1' locked='false' title='Genre / Category' type='Label' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+                <b:widget-setting name='display'>CLOUD</b:widget-setting>
+                <b:widget-setting name='selectedLabelsList'/>
+                <b:widget-setting name='showType'>ALL</b:widget-setting>
+                <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='this'>
+                <div class='sidebar-widget'>
+                  <div class='sw-title'><i class='fas fa-tags'/> Genre / Category</div>
+                  <div class='sw-content'>
+                    <div class='genre-list'>
+                      <b:loop values='data:labels' var='label'>
+                        <a class='genre-pill' expr:href='data:label.url'><data:label.name/></a>
                       </b:loop>
-                      <span><i class='fas fa-chevron-right'/></span>
-                      <span><data:post.title/></span>
                     </div>
-
-                    <b:if cond='data:post.featuredImage'>
-                      <div class='post-featured-img'>
-                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                      </div>
-                    </b:if>
-
-                    <div class='post-content-wrap'>
-                      <div class='post-header-info'>
-                        <b:if cond='data:post.labels'>
-                          <div class='post-labels'>
-                            <b:loop values='data:post.labels' var='label'>
-                              <a class='post-label' expr:href='data:label.url'><data:label.name/></a>
-                            </b:loop>
-                          </div>
-                        </b:if>
-                        <h1 class='post-title-single'><data:post.title/></h1>
-                        <div class='post-meta-bar'>
-                          <span><i class='far fa-user'/> <data:post.author/></span>
-                          <span><i class='far fa-calendar-alt'/> <data:post.date/></span>
-                          <span><i class='far fa-comment'/> <data:post.numberOfComments/> Comments</span>
-                        </div>
-                        <div class='post-rating'>
-                          <div class='stars'>
-                            <i class='fas fa-star'/>
-                            <i class='fas fa-star'/>
-                            <i class='fas fa-star'/>
-                            <i class='fas fa-star-half-alt'/>
-                            <i class='far fa-star'/>
-                          </div>
-                          <span class='rating-num'>7.8</span>
-                          <span class='rating-text'>/ 10 IMDb Rating</span>
-                        </div>
-                      </div>
-
-                      <div class='post-body'>
-                        <data:post.body/>
-                      </div>
-
-                      <!-- Share -->
-                      <div class='share-box'>
-                        <span><i class='fas fa-share-alt'/> Share:</span>
-                        <a class='share-btn facebook' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank' title='Facebook'><i class='fab fa-facebook-f'/></a>
-                        <a class='share-btn twitter' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank' title='Twitter'><i class='fab fa-twitter'/></a>
-                        <a class='share-btn telegram' expr:href='&quot;https://telegram.me/share/url?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank' title='Telegram'><i class='fab fa-telegram-plane'/></a>
-                        <a class='share-btn whatsapp' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.url' rel='nofollow noopener' target='_blank' title='WhatsApp'><i class='fab fa-whatsapp'/></a>
-                        <a class='share-btn pinterest' expr:href='&quot;https://pinterest.com/pin/create/button/?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank' title='Pinterest'><i class='fab fa-pinterest-p'/></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Related Posts -->
-                  <div class='related-section'>
-                    <h2 class='section-title'><i class='fas fa-film'/> ဆက်စပ်ရုပ်ရှင်များ</h2>
-                    <div class='related-grid' id='relatedPosts'>
-                      <!-- Related posts loaded via JS or shown statically -->
-                    </div>
-                  </div>
-
-                  <!-- Comments -->
-                  <div class='comments-section'>
-                    <h3><i class='fas fa-comments'/> မှတ်ချက်များ</h3>
-                    <b:if cond='data:post.allowComments'>
-                      <div id='comments'>
-                        <b:include data='post' name='comments'/>
-                      </div>
-                    </b:if>
                   </div>
                 </div>
-              </b:if>
-            </b:includable>
+              </b:includable>
+            </b:widget>
 
-            <b:includable id='pagination'>
-              <div class='pagination'>
-                <b:if cond='data:newerPageUrl'>
-                  <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'/></a>
-                </b:if>
-                <b:if cond='data:olderPageUrl'>
-                  <a class='active' expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'/></a>
-                </b:if>
-              </div>
-            </b:includable>
+            <b:widget id='PopularPosts1' locked='false' title='Popular Movies' type='PopularPosts' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+                <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+                <b:widget-setting name='showSnippets'>false</b:widget-setting>
+                <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='this'>
+                <div class='sidebar-widget'>
+                  <div class='sw-title'><i class='fas fa-fire'/> Popular Movies</div>
+                  <div class='sw-content'>
+                    <div class='popular-list'>
+                      <b:loop index='i' values='data:posts' var='post'>
+                        <div class='popular-item'>
+                          <span class='popular-num'><b:eval expr='data:i + 1'/></span>
+                          <div class='popular-text'>
+                            <h4><a expr:href='data:post.url'><data:post.title/></a></h4>
+                            <span><data:post.date/></span>
+                          </div>
+                        </div>
+                      </b:loop>
+                    </div>
+                  </div>
+                </div>
+              </b:includable>
+            </b:widget>
 
-            <b:includable id='comments' var='post'>
-              <div class='comments-block'>
-                <b:if cond='data:post.embedCommentForm'>
-                  <b:include data='post' name='threaded-comment-form'/>
-                </b:if>
-              </div>
-            </b:includable>
-
-            <b:includable id='threaded-comment-form' var='post'>
-              <div id='comment-editor'/>
-              <script type='text/javascript'>
-                BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
-              </script>
-            </b:includable>
-
-            <b:includable id='postCommentsAndAd' var='post'/>
-            <b:includable id='commentDeleteIcon' var='comment'/>
-            <b:includable id='backlinkDeleteIcon' var='backlink'/>
-            <b:includable id='postQuickEdit' var='post'/>
-            <b:includable id='threadedCommentJs' var='post'/>
-            <b:includable id='backlinks' var='post'/>
-            <b:includable id='feedLinks'/>
-            <b:includable id='feedLinksBody' var='links'/>
-          </b:widget>
-        </b:section>
+            <b:widget id='HTML1' locked='false' title='Ad Space' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'/>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <div class='sidebar-ad'>
+                  <i class='fas fa-ad'/>
+                  <p>Ad Space - 300x250</p>
+                </div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </aside>
       </div>
 
-      <!-- Sidebar -->
-      <aside class='sidebar'>
-        <b:section class='sidebar-widgets' id='sidebar' name='Sidebar Widgets' showaddelement='yes'>
-          <b:widget id='Label1' locked='false' title='Genre / Category' type='Label' version='2' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
-              <b:widget-setting name='display'>CLOUD</b:widget-setting>
-              <b:widget-setting name='selectedLabelsList'/>
-              <b:widget-setting name='showType'>ALL</b:widget-setting>
-              <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main' var='this'>
-              <div class='sidebar-widget'>
-                <div class='widget-title'><i class='fas fa-tags'/> Genre / Category</div>
-                <div class='widget-content'>
-                  <div class='genre-tags'>
-                    <b:loop values='data:labels' var='label'>
-                      <a class='genre-tag' expr:href='data:label.url'><data:label.name/></a>
-                    </b:loop>
-                  </div>
-                </div>
-              </div>
-            </b:includable>
-          </b:widget>
+    </b:if>
 
-          <b:widget id='PopularPosts1' locked='false' title='Popular Movies' type='PopularPosts' version='2' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
-              <b:widget-setting name='showThumbnails'>true</b:widget-setting>
-              <b:widget-setting name='showSnippets'>false</b:widget-setting>
-              <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main' var='this'>
-              <div class='sidebar-widget'>
-                <div class='widget-title'><i class='fas fa-chart-line'/> Popular Movies</div>
-                <div class='widget-content'>
-                  <div class='popular-list'>
-                    <b:loop index='i' values='data:posts' var='post'>
-                      <div class='popular-item'>
-                        <span class='popular-num'><b:eval expr='data:i + 1'/></span>
-                        <div class='popular-info'>
-                          <h4><a expr:href='data:post.url'><data:post.title/></a></h4>
-                          <span><data:post.date/></span>
-                        </div>
+    <!-- Post Detail Page -->
+    <b:if cond='data:view.isPost'>
+      <b:section class='post-detail-section' id='post-detail-section' name='Post Detail' maxwidgets='1' showaddelement='yes'>
+        <b:widget id='Blog2' locked='true' title='Post Detail' type='Blog' version='2' visible='true'>
+          <b:includable id='main' var='this'>
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='post'/>
+            </b:loop>
+          </b:includable>
+
+          <b:includable id='post' var='post'>
+            <div class='post-detail'>
+              <div class='pd-wrap'>
+
+                <!-- Breadcrumb -->
+                <div class='pd-breadcrumb'>
+                  <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> Home</a>
+                  <i class='fas fa-chevron-right'/>
+                  <b:loop values='data:post.labels' var='label'>
+                    <a expr:href='data:label.url'><data:label.name/></a>
+                    <i class='fas fa-chevron-right'/>
+                  </b:loop>
+                  <span><data:post.title/></span>
+                </div>
+
+                <!-- Movie Top Section -->
+                <div class='pd-top'>
+                  <b:if cond='data:post.featuredImage'>
+                    <div class='pd-poster'>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                    </div>
+                  </b:if>
+                  <div class='pd-info'>
+                    <b:if cond='data:post.labels'>
+                      <div class='pd-labels'>
+                        <b:loop values='data:post.labels' var='label'>
+                          <a class='pd-label' expr:href='data:label.url'><data:label.name/></a>
+                        </b:loop>
                       </div>
-                    </b:loop>
+                    </b:if>
+                    <h1 class='pd-title'><data:post.title/></h1>
+                    <div class='pd-rating-row'>
+                      <div class='pd-stars'>
+                        <i class='fas fa-star'/>
+                        <i class='fas fa-star'/>
+                        <i class='fas fa-star'/>
+                        <i class='fas fa-star-half-alt'/>
+                        <i class='far fa-star'/>
+                      </div>
+                      <span class='pd-rating-num'>7.8</span>
+                      <div class='pd-meta-items'>
+                        <span><data:post.date/></span>
+                        <span class='dot'>•</span>
+                        <span><i class='far fa-clock'/> 2h 15min</span>
+                      </div>
+                    </div>
+                    <div class='pd-director'>
+                      <strong>Director:</strong> Christopher Nolan
+                    </div>
                   </div>
                 </div>
-              </div>
-            </b:includable>
-          </b:widget>
 
-          <b:widget id='HTML1' locked='false' title='Ad Space' type='HTML' version='2' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='content'/>
-            </b:widget-settings>
-            <b:includable id='main'>
-              <div class='sidebar-ad'>
-                <i class='fas fa-ad'/>
-                <p>Ad Space - 300x250</p>
-              </div>
-            </b:includable>
-          </b:widget>
-
-          <b:widget id='Label2' locked='false' title='Recent Labels' type='Label' version='2' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
-              <b:widget-setting name='display'>LIST</b:widget-setting>
-              <b:widget-setting name='selectedLabelsList'/>
-              <b:widget-setting name='showType'>ALL</b:widget-setting>
-              <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main' var='this'>
-              <div class='sidebar-widget'>
-                <div class='widget-title'><i class='fas fa-folder-open'/> စာရင်းကိုင်များ</div>
-                <div class='widget-content'>
-                  <div class='footer-links'>
-                    <b:loop values='data:labels' var='label'>
-                      <li>
-                        <a expr:href='data:label.url'>
-                          <i class='fas fa-chevron-right'/>
-                          <data:label.name/>
-                          <span style='color:var(--text-muted);font-size:11px;'>(<data:label.count/>)</span>
-                        </a>
-                      </li>
-                    </b:loop>
-                  </div>
+                <!-- Post Body (Synopsis + Info + Download) -->
+                <div class='post-body' style='color:var(--text-secondary);font-size:14px;line-height:1.9;'>
+                  <data:post.body/>
                 </div>
+
+                <!-- Share -->
+                <div class='share-row'>
+                  <span><i class='fas fa-share-alt'/> Share:</span>
+                  <a class='share-btn fb' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-facebook-f'/></a>
+                  <a class='share-btn tw' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-twitter'/></a>
+                  <a class='share-btn tg' expr:href='&quot;https://telegram.me/share/url?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-telegram-plane'/></a>
+                  <a class='share-btn wa' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-whatsapp'/></a>
+                </div>
+
+                <!-- Related Posts -->
+                <div style='margin-top:24px;'>
+                  <div class='section-header'>
+                    <h2><i class='fas fa-film'/> Related Movies</h2>
+                  </div>
+                  <div class='related-grid' id='relatedPosts'></div>
+                </div>
+
+                <!-- Comments -->
+                <div class='comments-section'>
+                  <h3><i class='fas fa-comments'/> Comments</h3>
+                  <b:if cond='data:post.allowComments'>
+                    <div id='comments'>
+                      <b:include data='post' name='comments'/>
+                    </div>
+                  </b:if>
+                </div>
+
               </div>
-            </b:includable>
-          </b:widget>
-        </b:section>
-      </aside>
-    </div>
+            </div>
+          </b:includable>
+
+          <b:includable id='comments' var='post'>
+            <div class='comments-block'>
+              <b:if cond='data:post.embedCommentForm'>
+                <b:include data='post' name='threaded-comment-form'/>
+              </b:if>
+            </div>
+          </b:includable>
+          <b:includable id='threaded-comment-form' var='post'>
+            <div id='comment-editor'/>
+            <script type='text/javascript'>
+              BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+            </script>
+          </b:includable>
+          <b:includable id='postCommentsAndAd' var='post'/>
+          <b:includable id='commentDeleteIcon' var='comment'/>
+          <b:includable id='backlinkDeleteIcon' var='backlink'/>
+          <b:includable id='postQuickEdit' var='post'/>
+          <b:includable id='threadedCommentJs' var='post'/>
+          <b:includable id='backlinks' var='post'/>
+          <b:includable id='feedLinks'/>
+          <b:includable id='feedLinksBody' var='links'/>
+        </b:widget>
+      </b:section>
+    </b:if>
+
   </div>
 </main>
 
 <!-- Footer -->
-<footer class='main-footer'>
+<footer class='site-footer'>
   <div class='container'>
     <div class='footer-grid'>
       <div class='footer-col footer-about'>
-        <h4><i class='fas fa-film'/> <data:blog.title/></h4>
-        <p>ရုပ်ရှင်များကို အပြည့်အစုံ မြင်ရိုးဖို့ ချိုးဆိုမှုရှိသော ရုပ်ရှင်ဘလော့ဂ်တစ်ခုဖြစ်ပါသည်။ နောက်ဆုံးရုပ်ရှင်ကျေးဇူးတင်များ၊ Review များနှင့် သီအိုရီ ရုပ်ရှင်များကို တိုက်ရိုက်မြင်ရန် စက်စပ်နိုင်ပါသည်။</p>
+        <h4><i class='fas fa-play-circle'/> <data:blog.title/></h4>
+        <p>Your ultimate movie streaming blog. Watch the latest movies, TV series and more with Myanmar subtitle.</p>
         <div class='footer-social'>
           <a href='#' title='Facebook'><i class='fab fa-facebook-f'/></a>
           <a href='#' title='Telegram'><i class='fab fa-telegram-plane'/></a>
           <a href='#' title='YouTube'><i class='fab fa-youtube'/></a>
-          <a href='#' title='Instagram'><i class='fab fa-instagram'/></a>
-          <a href='#' title='Twitter'><i class='fab fa-twitter'/></a>
         </div>
       </div>
       <div class='footer-col'>
         <h4><i class='fas fa-link'/> Quick Links</h4>
         <ul class='footer-links'>
-          <li><a expr:href='data:blog.homepageUrl'><i class='fas fa-chevron-right'/> မူလစာမျက်နှာ</a></li>
-          <li><a href='#'><i class='fas fa-chevron-right'/> ကျေးဇူးတင်ချက်</a></li>
-          <li><a href='#'><i class='fas fa-chevron-right'/> ဆက်သွယ်ရန်</a></li>
+          <li><a expr:href='data:blog.homepageUrl'><i class='fas fa-chevron-right'/> Home</a></li>
+          <li><a href='#'><i class='fas fa-chevron-right'/> About</a></li>
+          <li><a href='#'><i class='fas fa-chevron-right'/> Contact</a></li>
           <li><a href='#'><i class='fas fa-chevron-right'/> Privacy Policy</a></li>
-          <li><a href='#'><i class='fas fa-chevron-right'/> Disclaimer</a></li>
           <li><a href='#'><i class='fas fa-chevron-right'/> DMCA</a></li>
         </ul>
       </div>
       <div class='footer-col'>
-        <h4><i class='fas fa-info-circle'/> ဆက်သွယ်ရန်</h4>
+        <h4><i class='fas fa-info-circle'/> Contact</h4>
         <ul class='footer-contact'>
           <li><i class='fas fa-envelope'/> admin@yourblog.com</li>
           <li><i class='fab fa-telegram-plane'/> t.me/yourchannel</li>
           <li><i class='fas fa-globe'/> www.yourblog.com</li>
-          <li><i class='fas fa-map-marker-alt'/> Myanmar</li>
         </ul>
       </div>
     </div>
     <div class='footer-bottom'>
-      <p>&#169; <span id='currentYear'>2025</span> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a> - All Rights Reserved. Cinema Dark Template by Blogger.</p>
+      <p>&#169; <span id='currentYear'>2025</span> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a> - All Rights Reserved.</p>
     </div>
   </div>
 </footer>
@@ -2167,117 +1194,46 @@ ul, ol {
 <!-- JavaScript -->
 <script>
 //<![CDATA[
-
-// Preloader
-window.addEventListener('load', function() {
-  var preloader = document.getElementById('preloader');
-  if (preloader) {
-    preloader.classList.add('hide');
-    setTimeout(function() {
-      preloader.style.display = 'none';
-    }, 500);
-  }
-});
-
-// Mobile Menu Toggle
-var mobileMenuBtn = document.getElementById('mobileMenuBtn');
-var mainNav = document.getElementById('mainNav');
-if (mobileMenuBtn && mainNav) {
-  mobileMenuBtn.addEventListener('click', function() {
-    mainNav.classList.toggle('active');
-  });
-}
-
 // Back to Top
-var backToTop = document.getElementById('backToTop');
-if (backToTop) {
-  window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
+var backToTop=document.getElementById('backToTop');
+if(backToTop){
+  window.addEventListener('scroll',function(){
+    if(window.pageYOffset>300) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
   });
-  backToTop.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  backToTop.addEventListener('click',function(e){
+    e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});
   });
 }
-
-// Current Year
-var yearEl = document.getElementById('currentYear');
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
-
-// Simple Auto Slider
-var slideIndex = 0;
-var sliderWrapper = document.getElementById('sliderWrapper');
-var slides = document.querySelectorAll('.slider-slide');
-
-function showSlides() {
-  if (slides.length > 1 && sliderWrapper) {
-    slideIndex++;
-    if (slideIndex >= slides.length) {
-      slideIndex = 0;
-    }
-    sliderWrapper.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
-  }
-}
-
-if (slides.length > 1) {
-  setInterval(showSlides, 5000);
-}
-
-// Star Rating from post title (customization)
-// If you want to add custom ratings per post, use labels like "Rating-8.5"
-document.querySelectorAll('.movie-card').forEach(function(card) {
-  var labels = card.querySelectorAll('.movie-genre a');
-  labels.forEach(function(label) {
-    if (label.textContent.indexOf('Rating-') !== -1) {
-      var rating = label.textContent.replace('Rating-', '');
-      var badge = card.querySelector('.movie-rating-badge');
-      if (badge) {
-        badge.innerHTML = '<i class="fas fa-star"/> ' + rating;
-      }
-    }
-  });
-});
-
-// Related Posts (simple - load based on labels)
-if (document.getElementById('relatedPosts')) {
-  var labels = document.querySelectorAll('.post-label');
-  if (labels.length > 0) {
-    var firstLabel = labels[0].getAttribute('href');
-    if (firstLabel) {
-      fetch(firstLabel + '?max-results=3&alt=json')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          var container = document.getElementById('relatedPosts');
-          if (data.feed && data.feed.entry) {
-            var html = '';
-            data.feed.entry.forEach(function(entry) {
-              var title = entry.title.$t;
-              var link = '';
-              var img = 'https://via.placeholder.com/400x225/1a2236/10b981?text=Movie';
-              entry.link.forEach(function(l) {
-                if (l.rel === 'alternate') link = l.href;
-              });
-              if (entry.media$thumbnail) {
-                img = entry.media$thumbnail.url.replace('/s72-c/', '/w400-h225-c/');
-              }
-              if (link && title) {
-                html += '<div class="related-card"><div class="related-card-img"><img alt="' + title + '" src="' + img + '"/></div><div class="related-card-info"><h4><a href="' + link + '">' + title + '</a></h4></div></div>';
-              }
-            });
-            container.innerHTML = html;
-          }
-        })
-        .catch(function() {});
+// Mobile Menu
+var mmb=document.getElementById('mobileMenuBtn');
+var sn=document.getElementById('siteNav');
+if(mmb&&sn) mmb.addEventListener('click',function(){sn.classList.toggle('active');});
+// Year
+var ye=document.getElementById('currentYear');
+if(ye) ye.textContent=new Date().getFullYear();
+// Related Posts
+if(document.getElementById('relatedPosts')){
+  var lb=document.querySelectorAll('.pd-label');
+  if(lb.length>0){
+    var furl=lb[0].getAttribute('href');
+    if(furl){
+      fetch(furl+'?max-results=3&alt=json').then(function(r){return r.json();}).then(function(d){
+        var c=document.getElementById('relatedPosts');
+        if(d.feed&&d.feed.entry){
+          var h='';
+          d.feed.entry.forEach(function(e){
+            var t=e.title.$t,l='',img='https://via.placeholder.com/400x225/1c1f2e/22c55e?text=Movie';
+            e.link.forEach(function(k){if(k.rel==='alternate')l=k.href;});
+            if(e.media$thumbnail) img=e.media$thumbnail.url.replace('/s72-c/','/w400-h225-c/');
+            if(l&&t) h+='<div class="related-card"><div class="related-card-img"><img alt="'+t+'" src="'+img+'"/></div><div class="related-card-info"><h4><a href="'+l+'">'+t+'</a></h4></div></div>';
+          });
+          c.innerHTML=h;
+        }
+      }).catch(function(){});
     }
   }
 }
-
 //]]>
 </script>
 
