@@ -159,37 +159,81 @@ ul,ol{list-style:none}
 .label-list a{display:inline-block;padding:4px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
 .label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* ========== POST DETAIL PAGE ========== */
-.post-detail{padding:20px 0}
-.pd-wrap{max-width:850px;margin:0 auto}
-.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+/* ========== POST DETAIL PAGE (ysflix style) ========== */
+.post-detail{padding:16px 0}
+.pd-wrap{max-width:780px;margin:0 auto}
+
+/* Breadcrumb */
+.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .pd-breadcrumb a{color:var(--accent)}
-.pd-top{display:flex;gap:20px;margin-bottom:20px;background:var(--card);border-radius:var(--r3);border:1px solid var(--border);padding:20px}
-.pd-poster{width:200px;min-width:200px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;flex-shrink:0}
+
+/* Hero: Poster + Info */
+.pd-hero{display:flex;gap:16px;margin-bottom:16px;background:var(--card);border-radius:var(--r3);border:1px solid var(--border);padding:16px}
+.pd-poster{width:160px;min-width:160px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;flex-shrink:0}
 .pd-poster img{width:100%;height:100%;object-fit:cover}
-.pd-info{flex:1;display:flex;flex-direction:column;justify-content:center}
-.pd-labels{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-.pd-label{padding:3px 12px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:50px;font-size:11px;font-weight:600;color:var(--accent)}
-.pd-title{font-size:24px;font-weight:800;line-height:1.3;margin-bottom:8px}
-.pd-rating-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.pd-stars{display:flex;align-items:center;gap:2px}
-.pd-stars i{color:var(--star);font-size:13px}
-.pd-rating-num{font-size:17px;font-weight:700;color:var(--star)}
-.pd-meta-items{display:flex;align-items:center;gap:6px;color:var(--txt2);font-size:12px;flex-wrap:wrap}
-.pd-meta-items span{display:flex;align-items:center;gap:4px}
-.pd-meta-items .dot{color:var(--muted)}
-.pd-director{margin-top:8px;font-size:12px;color:var(--txt2)}
-.pd-director strong{color:var(--txt);font-weight:600}
-.post-body{color:var(--txt2);font-size:14px;line-height:1.9}
-.share-row{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
-.share-row span{font-weight:600;font-size:13px}
-.share-btn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;transition:var(--tr)}
-.share-btn:hover{transform:translateY(-2px);opacity:.9}
-.share-btn.fb{background:#1877f2}
-.share-btn.tw{background:#1da1f2}
-.share-btn.tg{background:#0088cc}
-.share-btn.wa{background:#25d366}
-.related-section{margin-top:20px}
+.pd-info{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.pd-title{font-size:22px;font-weight:800;line-height:1.3}
+.pd-rating-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pd-rating-row .star-icon{color:var(--star);font-size:14px}
+.pd-rating-num{font-size:16px;font-weight:700;color:var(--star)}
+.pd-meta-dot{color:var(--muted);font-size:12px}
+.pd-meta-val{color:var(--txt2);font-size:13px}
+.pd-genres{display:flex;gap:6px;flex-wrap:wrap}
+.pd-genre-pill{padding:4px 12px;background:var(--accent);color:#fff;border-radius:20px;font-size:12px;font-weight:600}
+.pd-meta-row{display:flex;gap:8px;font-size:13px}
+.pd-meta-row .meta-label{color:var(--muted)}
+.pd-meta-row .meta-value{color:var(--txt);font-weight:500}
+
+/* Detail Tabs: Synopsis / Cast List */
+.pd-tabs{display:flex;gap:0;margin-bottom:16px;border-radius:var(--r2);overflow:hidden;border:1px solid var(--border)}
+.pd-tab{flex:1;padding:11px 16px;text-align:center;font-size:14px;font-weight:600;color:var(--txt2);background:var(--card);cursor:pointer;border:none;transition:var(--tr)}
+.pd-tab:hover{color:var(--txt)}
+.pd-tab.active{background:var(--accent);color:#fff}
+
+/* Synopsis Section */
+.pd-synopsis{margin-bottom:16px}
+.pd-section-head{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--txt);display:flex;align-items:center;gap:8px}
+.pd-section-head small{font-size:12px;color:var(--muted);font-weight:400}
+.pd-synopsis-text{color:var(--txt2);font-size:14px;line-height:1.85;margin-bottom:16px;text-align:justify}
+
+/* Technical Metadata */
+.pd-tech-meta{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:16px}
+.pd-tech-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.pd-tech-row:last-child{border-bottom:none}
+.pd-tech-row .t-label{color:var(--muted)}
+.pd-tech-row .t-value{color:var(--txt);font-weight:500}
+
+/* Download Links Table */
+.pd-dl-section{margin-bottom:20px}
+.pd-dl-title{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--txt)}
+.pd-dl-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border)}
+.pd-dl-table thead{background:var(--bg2)}
+.pd-dl-table th{padding:10px 12px;font-size:12px;font-weight:600;color:var(--muted);text-align:left;text-transform:uppercase;letter-spacing:.3px;border-bottom:1px solid var(--border)}
+.pd-dl-table td{padding:10px 12px;font-size:13px;color:var(--txt2);border-bottom:1px solid var(--border)}
+.pd-dl-table tr:last-child td{border-bottom:none}
+.pd-dl-table .dl-server{color:var(--accent);font-weight:600}
+.pd-dl-table .dl-server:hover{color:var(--accent2);text-decoration:underline}
+.pd-dl-table .dl-no{color:var(--muted);text-align:center;width:36px}
+
+/* Cast List */
+.pd-cast{margin-bottom:20px}
+.pd-cast-title{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--txt)}
+.pd-cast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pd-cast-item{text-align:center}
+.pd-cast-img{width:80px;height:80px;border-radius:var(--r);overflow:hidden;margin:0 auto 6px;background:var(--card);border:1px solid var(--border)}
+.pd-cast-img img{width:100%;height:100%;object-fit:cover}
+.pd-cast-name{font-size:13px;color:var(--txt);font-weight:500;line-height:1.3}
+
+/* Post body content styling */
+.post-body{color:var(--txt2);font-size:14px;line-height:1.85}
+.post-body table{width:100%;border-collapse:collapse;margin:12px 0}
+.post-body td,.post-body th{padding:8px 12px;border:1px solid var(--border);font-size:13px}
+.post-body a{color:var(--accent)}
+.post-body img{border-radius:var(--r);margin:8px 0}
+.post-body br{display:block;content:'';margin-top:4px}
+
+/* Related Posts */
+.related-section{margin-top:24px}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .related-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:var(--tr)}
 .related-card:hover{border-color:var(--accent);transform:translateY(-3px)}
@@ -199,9 +243,6 @@ ul,ol{list-style:none}
 .related-card-info{padding:8px}
 .related-card-info h4{font-size:11px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .related-card-info h4 a:hover{color:var(--accent)}
-.comments-section{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);padding:18px;margin-top:20px}
-.comments-section h3{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.comments-section h3 i{color:var(--accent)}
 
 /* ========== FOOTER ========== */
 .site-footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 0 0;margin-top:36px}
@@ -287,13 +328,19 @@ body.no-scroll{overflow:hidden}
   .movies-section{padding:10px 0}
   .sidebar{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .pd-top{flex-direction:column;align-items:center;text-align:center}
-  .pd-poster{width:160px;min-width:160px}
+  .pd-hero{flex-direction:column;align-items:center;text-align:center}
+  .pd-poster{width:180px;min-width:180px}
   .pd-rating-row{justify-content:center}
-  .pd-labels{justify-content:center}
+  .pd-genres{justify-content:center}
+  .pd-meta-row{justify-content:center}
+  .pd-cast-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pd-cast-img{width:70px;height:70px}
   .related-grid{grid-template-columns:repeat(2,1fr)}
   .container{padding:0 10px}
-  .pd-title{font-size:18px}
+  .pd-title{font-size:19px}
+  .pd-tab{padding:10px 12px;font-size:13px}
+  .pd-dl-table th,.pd-dl-table td{padding:8px 6px;font-size:11px}
+  .pd-tech-row{font-size:12px}
   body.post-page .sidebar{display:none!important}
   .search-bar{padding:12px 10px}
   .search-bar input{padding:10px 14px;font-size:14px}
@@ -465,10 +512,12 @@ body.no-scroll{overflow:hidden}
               </article>
             </b:includable>
 
-            <!-- ===== POST DETAIL ===== -->
+            <!-- ===== POST DETAIL (ysflix style) ===== -->
             <b:includable id='postDetail' var='post'>
               <div class='post-detail'>
                 <div class='pd-wrap'>
+
+                  <!-- Breadcrumb -->
                   <div class='pd-breadcrumb'>
                     <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a>
                     <i class='fas fa-chevron-right'></i>
@@ -478,51 +527,75 @@ body.no-scroll{overflow:hidden}
                     </b:loop>
                     <span><data:post.title/></span>
                   </div>
-                  <div class='pd-top'>
+
+                  <!-- Hero: Poster + Info -->
+                  <div class='pd-hero'>
                     <b:if cond='data:post.featuredImage'>
                       <div class='pd-poster'><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></div>
                     </b:if>
                     <div class='pd-info'>
-                      <b:if cond='data:post.labels'>
-                        <div class='pd-labels'>
-                          <b:loop values='data:post.labels' var='label'>
-                            <a class='pd-label' expr:href='data:label.url'><data:label.name/></a>
-                          </b:loop>
-                        </div>
-                      </b:if>
                       <h1 class='pd-title'><data:post.title/></h1>
                       <div class='pd-rating-row'>
-                        <div class='pd-stars'>
-                          <i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i><i class='far fa-star'></i>
-                        </div>
+                        <i class='fas fa-star star-icon'></i>
                         <span class='pd-rating-num' id='postRating'>--</span>
-                        <div class='pd-meta-items'>
-                          <span><data:post.date/></span>
-                          <span class='dot'>&#8226;</span>
-                          <span><i class='far fa-clock'></i> 2h 15min</span>
-                        </div>
+                        <span class='pd-meta-dot'>&#8226;</span>
+                        <span class='pd-meta-val' id='postYear'></span>
+                        <span class='pd-meta-dot'>&#8226;</span>
+                        <span class='pd-meta-val'><i class='far fa-clock'></i> <span id='postDuration'>--</span></span>
                       </div>
-                      <div class='pd-director'><strong>Director:</strong> <span id='postDirector'>--</span></div>
+                      <div class='pd-genres' id='pdGenrePills'>
+                        <b:loop values='data:post.labels' var='label'>
+                          <a class='pd-genre-pill' expr:href='data:label.url'><data:label.name/></a>
+                        </b:loop>
+                      </div>
+                      <div class='pd-meta-row'>
+                        <span class='meta-label'>Director:</span>
+                        <span class='meta-value' id='postDirector'>--</span>
+                      </div>
+                      <div class='pd-meta-row'>
+                        <span class='meta-label'>Release Date:</span>
+                        <span class='meta-value'><data:post.date/></span>
+                      </div>
                     </div>
                   </div>
-                  <div class='post-body'><data:post.body/></div>
-                  <div class='share-row'>
-                    <span><i class='fas fa-share-alt'></i> Share:</span>
-                    <a class='share-btn fb' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-facebook-f'></i></a>
-                    <a class='share-btn tw' expr:href='&quot;https://twitter.com/intent/tweet?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-twitter'></i></a>
-                    <a class='share-btn tg' expr:href='&quot;https://telegram.me/share/url?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-telegram-plane'></i></a>
-                    <a class='share-btn wa' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-whatsapp'></i></a>
+
+                  <!-- Synopsis / Cast List Tabs -->
+                  <div class='pd-tabs' id='pdTabs'>
+                    <button class='pd-tab active' data-panel='synopsis'><i class='fas fa-align-left'></i> Synopsis</button>
+                    <button class='pd-tab' data-panel='cast'><i class='fas fa-users'></i> Cast List</button>
                   </div>
+
+                  <!-- Synopsis Panel -->
+                  <div class='pd-panel' id='panelSynopsis'>
+                    <div class='pd-synopsis'>
+                      <div class='pd-section-head'>
+                        Synopsis
+                        <small id='synopsisSub'>(<data:post.title/>)</small>
+                        <small id='synopsisRatingHead'></small>
+                      </div>
+                      <div class='pd-synopsis-text'><data:post.body/></div>
+                    </div>
+                  </div>
+
+                  <!-- Cast Panel (user adds cast in post body with class pd-cast-grid) -->
+                  <div class='pd-panel' id='panelCast' style='display:none'>
+                    <div class='pd-cast'>
+                      <div class='pd-cast-title'>Cast List</div>
+                      <div class='pd-cast-grid' id='castGrid'>
+                        <div class='mc-empty'>
+                          <i class='fas fa-users'></i>
+                          Cast info not available yet.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Related Posts -->
                   <div class='related-section'>
                     <div class='section-header'><h2><i class='fas fa-film'></i> Related</h2></div>
                     <div class='related-grid' id='relatedPosts'></div>
                   </div>
-                  <div class='comments-section'>
-                    <h3><i class='fas fa-comments'></i> Comments</h3>
-                    <b:if cond='data:post.allowComments'>
-                      <div id='comments'><b:include data='post' name='comments'/></div>
-                    </b:if>
-                  </div>
+
                 </div>
               </div>
             </b:includable>
@@ -940,21 +1013,106 @@ function initTabs(){
   switchTab('all');
 }
 
-// Post Detail: Extract rating from labels
+// Post Detail: Extract rating from labels + tabs
 function processPostDetail(){
   var ratingEl = document.getElementById('postRating');
   if(!ratingEl) return;
+
+  // Extract rating from labels
   var labels = [];
-  var labelEls = document.querySelectorAll('.pd-label');
+  var labelEls = document.querySelectorAll('.pd-genre-pill');
   labelEls.forEach(function(el){
     labels.push(el.textContent.trim());
   });
+
   var rating = null;
   labels.forEach(function(l){
     var r = getRatingFromLabel(l);
     if(r) rating = r;
   });
-  ratingEl.textContent = rating || '--';
+
+  if(rating){
+    ratingEl.textContent = rating;
+    var rh = document.getElementById('synopsisRatingHead');
+    if(rh) rh.textContent = ' - IMDb Rating (' + rating + ')';
+  } else {
+    ratingEl.textContent = '--';
+  }
+
+  // Extract year from date
+  var yearEl = document.getElementById('postYear');
+  if(yearEl){
+    var dateStr = document.querySelector('.pd-info .meta-value');
+    if(dateStr){
+      var y = extractYear(dateStr.textContent);
+      if(y) yearEl.textContent = y;
+    }
+  }
+
+  // Move Movie/Series/Rating genre pills - hide them, show only genre pills
+  var skipSet = {};
+  SKIP_LABELS.forEach(function(s){skipSet[s]=true;});
+  document.querySelectorAll('.pd-genre-pill').forEach(function(pill){
+    var txt = pill.textContent.trim();
+    if(skipSet[txt] || txt.indexOf(RATING_PREFIX) === 0){
+      pill.style.display = 'none';
+    }
+  });
+
+  // Synopsis / Cast List tabs
+  var tabs = document.querySelectorAll('.pd-tab');
+  if(tabs.length >= 2){
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){t.classList.remove('active');});
+        tab.classList.add('active');
+        var panel = tab.getAttribute('data-panel');
+        var synPanel = document.getElementById('panelSynopsis');
+        var castPanel = document.getElementById('panelCast');
+        if(panel === 'synopsis'){
+          if(synPanel) synPanel.style.display = '';
+          if(castPanel) castPanel.style.display = 'none';
+        } else {
+          if(synPanel) synPanel.style.display = 'none';
+          if(castPanel) castPanel.style.display = '';
+        }
+      });
+    });
+  }
+
+  // Style post body tables as download tables
+  var tables = document.querySelectorAll('.pd-synopsis-text table');
+  tables.forEach(function(table){
+    // Add download table styling
+    table.classList.add('pd-dl-table');
+    // Style first row as header
+    var firstRow = table.querySelector('tr');
+    if(firstRow){
+      var ths = firstRow.querySelectorAll('td, th');
+      ths.forEach(function(th){
+        th.style.fontWeight = '600';
+        th.style.color = 'var(--muted)';
+        th.style.textTransform = 'uppercase';
+        th.style.fontSize = '12px';
+        th.style.letterSpacing = '0.3px';
+      });
+    }
+    // Style server links (second column usually)
+    var rows = table.querySelectorAll('tr');
+    rows.forEach(function(row){
+      var cells = row.querySelectorAll('td, th');
+      if(cells.length >= 2){
+        var link = cells[1].querySelector('a');
+        if(link){
+          link.classList.add('dl-server');
+        }
+      }
+      // Style first cell as number
+      if(cells.length >= 1){
+        cells[0].classList.add('dl-no');
+      }
+    });
+  });
 }
 
 // Related Posts (JSON feed for post page only)

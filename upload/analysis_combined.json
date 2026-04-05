@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# YSFLIX.COM Movie Detail Page Design Specification\n\n## 1. PAGE STRUCTURE\nThe page is a single continuous scroll with the following vertical flow:\n- Screenshot 1: Hero section (poster + movie info) → Tab navigation → Synopsis section header\n- Screenshot 2: Full synopsis text → Download section (table with 5 server options)\n- Screenshot 3: Cast List section (grid of actors with images and names)\n\n## 2. MOVIE HERO SECTION\n- **Layout**: Side-by-side layout with poster on left, movie info on right\n- **Poster**: Square format (approximately 1:1 aspect ratio), contained in a dark blue card with rounded corners\n- **Info layout**: Vertical stack below the poster with:\n  - Title\n  - Rating/year/duration row\n  - Genre tags\n  - Director info\n  - Release date\n\n## 3. MOVIE INFO DISPLAY\n- **Title**: \"Shogun's Ninja\" - White text, bold, large font size\n- **Rating**: Yellow star icon + \"6.3\" - White text, medium size\n- **Year**: \"2025\" - White text, medium size\n- **Duration**: \"76 min\" - White text, medium size\n- **Genres**: Green pill-shaped tags with white text (\"Action, History\")\n- **Director**: \"Director\" label (gray text) + \"坂本浩一\" (white text)\n- **Release Date**: \"Release Date\" label (gray text) + \"၁၀/၂/၁၀ ဂျ်\" (white text)\n\n## 4. TAB NAVIGATION\n- **Tabs**: Two tabs - \"Synopsis\" (active) and \"Cast List\" (inactive)\n- **Styling**:\n  - Active tab: Green background, white text, rounded corners\n  - Inactive tab: Transparent background, white text\n- **Layout**: Horizontal row with equal width tabs\n\n## 5. SYNOPSIS SECTION\n- **Title**: \"Synopsis\" - White text, bold, medium-large size\n- **Movie info**: \"Shogun's Ninja (2025)\" - White text, medium size\n- **Rating**: \"IMDb Rating (6.4)\" - White text, medium size\n- **Synopsis text**: White text, regular font weight, justified alignment\n- **Metadata**: Technical details in white text (File size, Quality, Format, Genre, Duration, Subtitle)\n\n## 6. DOWNLOAD SECTION\n- **Table structure**: 5 columns - No, Server Name, Size, Quality, Resolution\n- **Headers**: White text, medium size, bold\n- **Rows**: Alternating dark blue/transparent background\n- **Links**: Server names in green text (Yoteshin, Megaup, Usersdrive, Streamsb, Telegram)\n- **Text**: Size, Quality, Resolution in white text\n- **Styling**: Clean table with borders between rows\n\n## 7. CAST LIST SECTION\n- **Layout**: Grid layout (3 columns on desktop, 2-3 on mobile)\n- **Cast members**: Each in a card with:\n  - Square actor photo (consistent size)\n  - Actor name in white text below photo\n- **Image size**: Approximately 80x80px\n- **Spacing**: Equal spacing between cast member cards\n\n## 8. COLOR PALETTE\n- **Background**: #1a2332 (dark blue-gray)\n- **Card background**: #1e2a3a (slightly lighter blue-gray)\n- **Text**: #ffffff (white)\n- **Accent/Links**: #4ade80 (green)\n- **Rating star**: #fbbf24 (yellow)\n- **Genre tags**: #4ade80 (green) background with #ffffff (white) text\n- **Table headers**: #ffffff (white)\n- **Table rows**: Alternating #1e2a3a and transparent\n\n## 9. SPACING SYSTEM\n- **Container padding**: 16px (all sides)\n- **Section spacing**: 24px between sections\n- **Element spacing**: 12px between elements within sections\n- **Grid spacing**: 16px gap between cast member cards\n- **Table padding**: 12px cell padding\n- **Button padding**: 12px vertical, 24px horizontal\n\n## 10. TYPOGRAPHY\n- **Font family**: Sans-serif (likely system font)\n- **Title**: 28px, bold\n- **Section headers**: 20px, bold\n- **Movie info**: 16px, regular\n- **Synopsis text**: 14px, regular\n- **Table text**: 14px, regular\n- **Cast names**: 14px, regular\n- **Metadata labels**: 12px, regular, gray\n- **Tab text**: 14px, regular\n\nThis specification captures all visual elements and their precise styling as shown in the three consecutive screenshots.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1775415319,
+  "id": "20260406025429924d84a1c30e4591",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260406025429924d84a1c30e4591",
+  "usage": {
+    "completion_tokens": 1047,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 4743,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 5790
+  }
+}
