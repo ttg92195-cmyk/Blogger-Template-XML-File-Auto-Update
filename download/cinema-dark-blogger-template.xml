@@ -569,6 +569,12 @@ body:not(.post-page) .main-blog-section .widget > *:not(.home-cards-area){displa
               <div class='sidebar-ad'><i class='fas fa-ad'></i><p>Ad Space - 300x250</p></div>
             </b:includable>
           </b:widget>
+          <b:widget id='HTML2' locked='false' title='Add CSS' type='HTML' version='2' visible='true'>
+            <b:widget-settings><b:widget-setting name='content'>/* Put your custom CSS here */</b:widget-setting></b:widget-settings>
+            <b:includable id='main'>
+              <div class='custom-css-storage hidden-el'><data:content/></div>
+            </b:includable>
+          </b:widget>
         </b:section>
       </aside>
     </div>
@@ -617,6 +623,34 @@ body:not(.post-page) .main-blog-section .widget > *:not(.home-cards-area){displa
 //<![CDATA[
 var SKIP_LABELS = ['Movie', 'Movies', 'Series'];
 var RATING_PREFIX = 'Rating-';
+
+// ===== Add CSS Widget - Inject custom CSS from gadget =====
+(function(){
+  function injectCustomCSS(){
+    var cssStorage = document.querySelector('.custom-css-storage');
+    if(cssStorage){
+      var cssText = cssStorage.textContent || cssStorage.innerText || '';
+      cssText = cssText.trim();
+      if(cssText && cssText.indexOf('Put your custom CSS here') === -1){
+        var existingStyle = document.getElementById('custom-injected-css');
+        if(existingStyle){
+          existingStyle.textContent = cssText;
+        } else {
+          var style = document.createElement('style');
+          style.id = 'custom-injected-css';
+          style.textContent = cssText;
+          document.head.appendChild(style);
+        }
+      }
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', injectCustomCSS);
+  } else {
+    injectCustomCSS();
+  }
+  setTimeout(injectCustomCSS, 1000);
+})();
 
 // ===== NUCLEAR: Remove ALL Blogger default content from homepage =====
 (function(){
