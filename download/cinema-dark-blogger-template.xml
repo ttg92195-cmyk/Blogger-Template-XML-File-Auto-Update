@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='4.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='5.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
@@ -13,9 +13,10 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V4 - Native Blog Widget
-  No JSON Feed API - Fully Reliable
-  Version: 4.0
+  CINEMA DARK V5 - Fixed Homepage Cards
+  Homepage: ONLY card grid (no post body)
+  Post Page: Full detail with body
+  Version: 5.0
 =======================================*/
 :root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:8px;--r2:12px;--r3:16px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1100px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -65,8 +66,6 @@ ul,ol{list-style:none}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .section-header h2{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
 .section-header h2 i{color:var(--accent);font-size:16px}
-.section-header a{font-size:13px;font-weight:600;color:var(--accent);background:rgba(34,197,94,.1);padding:6px 16px;border-radius:50px;border:1px solid rgba(34,197,94,.3)}
-.section-header a:hover{background:var(--accent);color:#fff}
 
 /* Movie Grid */
 .movies-section{padding:20px 0}
@@ -102,12 +101,6 @@ ul,ol{list-style:none}
 .pagination a{display:flex;align-items:center;justify-content:center;min-width:38px;height:38px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500}
 .pagination a:hover,.pagination a.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* Genre Pills */
-.genre-section{padding:20px 0 0}
-.genre-list{display:flex;flex-wrap:wrap;gap:8px}
-.genre-pill{display:inline-block;padding:7px 16px;background:var(--card);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:12px;font-weight:500;transition:var(--tr)}
-.genre-pill:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-
 /* Sidebar */
 .main-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;padding:24px 0}
 .sidebar{display:flex;flex-direction:column;gap:20px}
@@ -127,13 +120,11 @@ ul,ol{list-style:none}
 .sidebar-ad{background:var(--bg2);border:1px dashed var(--border);border-radius:var(--r2);padding:20px;text-align:center}
 .sidebar-ad i{font-size:28px;color:var(--muted);margin-bottom:8px}
 .sidebar-ad p{color:var(--muted);font-size:12px}
-
-/* Label list (Genre sidebar) */
 .label-list{display:flex;flex-wrap:wrap;gap:6px}
 .label-list a{display:inline-block;padding:5px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
 .label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* POST DETAIL */
+/* POST DETAIL PAGE */
 .post-detail{padding:24px 0}
 .pd-wrap{max-width:850px;margin:0 auto}
 .pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:20px;font-size:12px;color:var(--muted);flex-wrap:wrap}
@@ -200,19 +191,37 @@ ul,ol{list-style:none}
 .back-top.visible{opacity:1;visibility:visible}
 .back-top:hover{background:var(--accent2);transform:translateY(-3px)}
 
-/* Post page: hide sidebar, full width */
+/* ============================================
+   CRITICAL: Hide Blogger default on homepage
+   Show ONLY our custom movie cards
+   ============================================ */
+
+/* Post page: full width, hide sidebar */
 body.post-page .main-layout{grid-template-columns:1fr}
 body.post-page .sidebar{display:none}
-body.post-page .main-content{max-width:100%}
 
-/* Blogger Overrides */
-.post-outer,.post{background:none!important;border:none!important;padding:0!important;margin:0!important}
-.post-body img{background:none;border:none;padding:0;border-radius:var(--r)}
-#comments{background:none}
-.widget ul{list-style:none}
-.blog-posts .post-outer-container{margin-bottom:0}
+/* Homepage: Hide ALL Blogger default post rendering */
+body:not(.post-page) .blog-posts{display:none!important}
+body:not(.post-page) .post-outer{display:none!important}
+body:not(.post-page) .post{display:none!important}
+body:not(.post-page) .blog-pager{display:none!important}
+body:not(.post-page) .post-body{display:none!important}
+body:not(.post-page) .post-footer{display:none!important}
+body:not(.post-page) .post-share-buttons{display:none!important}
+body:not(.post-page) .post-comment-link{display:none!important}
+body:not(.post-page) .post-outer-container{display:none!important}
+body:not(.post-page) .post-timestamp{display:none!important}
+body:not(.post-page) .post-title{display:none!important}
+
+/* BUT show our custom movie grid on homepage */
+body:not(.post-page) .home-cards-area{display:block!important}
+
+/* Status message */
 .status-msg-wrap{margin:12px 0;padding:10px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--r);color:var(--accent);font-size:13px}
-.blog-pager{margin:0}
+
+/* Generic Blogger cleanup */
+.widget ul{list-style:none}
+#comments{background:none}
 
 /* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -235,7 +244,7 @@ body.post-page .main-content{max-width:100%}
 </head>
 
 <body>
-<b:class cond='data:view.isPost' name='post-page'/>
+<b:class cond='data:blog.pageType == &quot;item&quot;' name='post-page'/>
 
 <a class='back-top' href='#' id='backTop' title='Back to Top'><i class='fas fa-chevron-up'></i></a>
 
@@ -282,43 +291,58 @@ body.post-page .main-content{max-width:100%}
     <div class='main-layout'>
       <div class='main-content'>
 
-        <!-- BLOG WIDGET: Renders cards on homepage, detail on post page -->
+        <!-- BLOG WIDGET -->
         <b:section class='main-blog-section' id='main' name='Main Blog Posts' showaddelement='yes'>
           <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
             <b:includable id='main' var='this'>
-              <b:if cond='data:view.isPost'>
-                <!-- ===== POST DETAIL PAGE ===== -->
+
+              <!-- ========== POST DETAIL PAGE ========== -->
+              <b:if cond='data:blog.pageType == &quot;item&quot;'>
                 <b:loop values='data:posts' var='post'>
                   <b:include data='post' name='postDetail'/>
                 </b:loop>
-              <b:else/>
-                <!-- ===== HOMEPAGE / LABEL SEARCH ===== -->
-                <div class='content-tabs' id='contentTabs'>
-                  <button class='tab-btn active' data-tab='movies' id='tabMovies'><i class='fas fa-film'></i> Movies</button>
-                  <button class='tab-btn' data-tab='series' id='tabSeries'><i class='fas fa-tv'></i> Series</button>
-                </div>
-                <div class='movies-section'>
-                  <div class='movie-grid' id='movieGrid'>
-                    <b:loop values='data:posts' var='post'>
-                      <b:include data='post' name='movieCard'/>
-                    </b:loop>
+              </b:if>
+
+              <!-- ========== HOMEPAGE / LABEL / SEARCH ========== -->
+              <b:if cond='data:blog.pageType != &quot;item&quot;'>
+
+                <!-- Movies/Series Tabs + Card Grid -->
+                <div class='home-cards-area'>
+                  <div class='content-tabs' id='contentTabs'>
+                    <button class='tab-btn active' data-tab='movies' id='tabMovies'><i class='fas fa-film'></i> Movies</button>
+                    <button class='tab-btn' data-tab='series' id='tabSeries'><i class='fas fa-tv'></i> Series</button>
                   </div>
-                  <b:if cond='data:posts.empty'>
-                    <div class='mc-empty'>
-                      <i class='fas fa-film'></i>
-                      No posts yet.
-                      <br/><small>Create posts with Movie or Series label.</small>
+
+                  <div class='movies-section'>
+                    <div class='movie-grid' id='movieGrid'>
+                      <b:loop values='data:posts' var='post'>
+                        <b:include data='post' name='movieCard'/>
+                      </b:loop>
                     </div>
-                  </b:if>
+                    <b:if cond='data:posts.empty'>
+                      <div class='mc-empty'>
+                        <i class='fas fa-film'></i>
+                        No posts yet.
+                        <br/><small>Create posts with Movie or Series label.</small>
+                      </div>
+                    </b:if>
+                  </div>
+
+                  <!-- Pagination -->
+                    <b:if cond='data:newerPageUrl'>
+                      <div class='pagination'>
+                        <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
+                        <b:if cond='data:olderPageUrl'>
+                          <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
+                        </b:if>
+                      </div>
+                    </b:if>
                 </div>
-                <!-- Pagination -->
-                <div class='blog-pager'>
-                  <b:include name='nextprev'/>
-                </div>
+
               </b:if>
             </b:includable>
 
-            <!-- ===== MOVIE CARD (Homepage) ===== -->
+            <!-- ===== MOVIE CARD (Homepage Only) ===== -->
             <b:includable id='movieCard' var='post'>
               <article class='movie-card'>
                 <!-- Hidden label data for JS filtering -->
@@ -345,11 +369,10 @@ body.post-page .main-content{max-width:100%}
               </article>
             </b:includable>
 
-            <!-- ===== POST DETAIL (Single Post) ===== -->
+            <!-- ===== POST DETAIL ===== -->
             <b:includable id='postDetail' var='post'>
               <div class='post-detail'>
                 <div class='pd-wrap'>
-                  <!-- Breadcrumb -->
                   <div class='pd-breadcrumb'>
                     <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a>
                     <i class='fas fa-chevron-right'></i>
@@ -359,7 +382,6 @@ body.post-page .main-content{max-width:100%}
                     </b:loop>
                     <span><data:post.title/></span>
                   </div>
-                  <!-- Top: Poster + Info -->
                   <div class='pd-top'>
                     <b:if cond='data:post.featuredImage'>
                       <div class='pd-poster'><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></div>
@@ -387,9 +409,7 @@ body.post-page .main-content{max-width:100%}
                       <div class='pd-director'><strong>Director:</strong> <span id='postDirector'>--</span></div>
                     </div>
                   </div>
-                  <!-- Post Body -->
                   <div class='post-body'><data:post.body/></div>
-                  <!-- Share -->
                   <div class='share-row'>
                     <span><i class='fas fa-share-alt'></i> Share:</span>
                     <a class='share-btn fb' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-facebook-f'></i></a>
@@ -397,12 +417,10 @@ body.post-page .main-content{max-width:100%}
                     <a class='share-btn tg' expr:href='&quot;https://telegram.me/share/url?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-telegram-plane'></i></a>
                     <a class='share-btn wa' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-whatsapp'></i></a>
                   </div>
-                  <!-- Related Posts -->
                   <div class='related-section'>
                     <div class='section-header'><h2><i class='fas fa-film'></i> Related</h2></div>
                     <div class='related-grid' id='relatedPosts'></div>
                   </div>
-                  <!-- Comments -->
                   <div class='comments-section'>
                     <h3><i class='fas fa-comments'></i> Comments</h3>
                     <b:if cond='data:post.allowComments'>
@@ -410,18 +428,6 @@ body.post-page .main-content{max-width:100%}
                     </b:if>
                   </div>
                 </div>
-              </div>
-            </b:includable>
-
-            <!-- Next/Prev Pagination -->
-            <b:includable id='nextprev'>
-              <div class='pagination'>
-                <b:if cond='data:newerPageUrl'>
-                  <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
-                </b:if>
-                <b:if cond='data:olderPageUrl'>
-                  <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
-                </b:if>
               </div>
             </b:includable>
 
@@ -445,6 +451,16 @@ body.post-page .main-content{max-width:100%}
             <b:includable id='backlinks' var='post'></b:includable>
             <b:includable id='feedLinks'></b:includable>
             <b:includable id='feedLinksBody' var='links'></b:includable>
+            <b:includable id='nextprev'>
+              <div class='pagination'>
+                <b:if cond='data:newerPageUrl'>
+                  <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
+                </b:if>
+              </div>
+            </b:includable>
           </b:widget>
         </b:section>
 
@@ -483,7 +499,7 @@ body.post-page .main-content{max-width:100%}
             <b:widget-settings>
               <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
               <b:widget-setting name='display'>LIST</b:widget-setting>
-              <b:widget-setting name='selectedLabelsList'/>
+              <b:widget-setting name='selectedLabelsList'></b:widget-setting>
               <b:widget-setting name='showType'>ALL</b:widget-setting>
               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
             </b:widget-settings>
@@ -606,9 +622,11 @@ function isGenreLabel(name){
   return true;
 }
 
-// Process all movie cards
+// Process all movie cards - add year, rating badge, genre tags
 function processCards(){
   var cards = document.querySelectorAll('.movie-card');
+  if(cards.length === 0) return;
+
   cards.forEach(function(card){
     // Extract labels from hidden spans
     var labels = [];
@@ -625,7 +643,7 @@ function processCards(){
       if(year) yearEl.textContent = year;
     }
 
-    // Extract and display rating badge
+    // Extract and display rating badge on poster
     var rating = null;
     labels.forEach(function(l){
       var r = getRatingFromLabel(l);
@@ -653,7 +671,7 @@ function processCards(){
   });
 }
 
-// Tab Switching
+// Tab Switching for Movies / Series
 function initTabs(){
   var tabMovies = document.getElementById('tabMovies');
   var tabSeries = document.getElementById('tabSeries');
@@ -667,6 +685,7 @@ function initTabs(){
     tabMovies.classList.toggle('active', isMovie);
     tabSeries.classList.toggle('active', !isMovie);
 
+    var visibleCount = 0;
     cards.forEach(function(card){
       var labels = [];
       var labelEls = card.querySelectorAll('.label-data');
@@ -679,16 +698,34 @@ function initTabs(){
 
       if(isMovie){
         card.style.display = hasMovie ? '' : 'none';
+        if(hasMovie) visibleCount++;
       } else {
         card.style.display = hasSeries ? '' : 'none';
+        if(hasSeries) visibleCount++;
       }
     });
+
+    // Show empty message if no cards visible
+    var grid = document.getElementById('movieGrid');
+    var emptyMsg = grid ? grid.querySelector('.mc-empty') : null;
+    if(visibleCount === 0 && grid){
+      if(!emptyMsg){
+        var empty = document.createElement('div');
+        empty.className = 'mc-empty';
+        empty.innerHTML = '<i class="fas fa-film"></i>No ' + (isMovie ? 'movies' : 'series') + ' found.<br/><small>Create posts with "' + (isMovie ? 'Movie' : 'Series') + '" label.</small>';
+        grid.appendChild(empty);
+      } else {
+        emptyMsg.style.display = 'block';
+      }
+    } else if(emptyMsg){
+      emptyMsg.style.display = 'none';
+    }
   }
 
   tabMovies.addEventListener('click',function(){switchTab('movies');});
   tabSeries.addEventListener('click',function(){switchTab('series');});
 
-  // Auto-activate first matching tab
+  // Start with Movies tab
   switchTab('movies');
 }
 
@@ -712,7 +749,7 @@ function processPostDetail(){
   ratingEl.textContent = rating || '--';
 }
 
-// Related Posts
+// Related Posts (JSON feed for post page only)
 (function(){
   if(!document.getElementById('relatedPosts')) return;
   var labels = document.querySelectorAll('.pd-label');
@@ -736,12 +773,12 @@ function processPostDetail(){
   }
 })();
 
-// Initialize on DOM ready
-(function(){
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', function(){
   processCards();
   initTabs();
   processPostDetail();
-})();
+});
 //]]>
 </script>
 
