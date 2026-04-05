@@ -270,18 +270,18 @@ body.no-scroll{overflow:hidden}
 @media(max-width:1024px){
   .main-layout{grid-template-columns:1fr}
   .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
-  .movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .movie-grid{grid-template-columns:repeat(3,1fr);gap:8px}
   .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  .movie-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .movie-grid{grid-template-columns:repeat(3,1fr);gap:6px}
   .mc-poster{aspect-ratio:2/3}
-  .mc-info{padding:6px}
-  .mc-title{font-size:11px;margin-bottom:3px}
-  .mc-year{font-size:10px;margin-bottom:1px}
-  .mc-genres{font-size:9px}
-  .mc-rating{top:4px;right:4px;padding:2px 5px;font-size:10px;border-radius:3px}
-  .mc-play{width:32px;height:32px;font-size:13px}
+  .mc-info{padding:5px}
+  .mc-title{font-size:10px;margin-bottom:2px;-webkit-line-clamp:1}
+  .mc-year{font-size:9px;margin-bottom:1px}
+  .mc-genres{font-size:8px}
+  .mc-rating{top:3px;right:3px;padding:2px 4px;font-size:9px;border-radius:3px}
+  .mc-play{width:28px;height:28px;font-size:11px}
   .tab-btn{padding:9px 14px;font-size:12px}
   .content-tabs{margin:12px 0 0}
   .movies-section{padding:10px 0}
@@ -299,11 +299,11 @@ body.no-scroll{overflow:hidden}
   .search-bar input{padding:10px 14px;font-size:14px}
 }
 @media(max-width:480px){
-  .movie-grid{grid-template-columns:repeat(2,1fr);gap:6px}
-  .mc-info{padding:5px}
-  .mc-title{font-size:10px}
-  .mc-genres{font-size:8px}
-  .mc-year{font-size:9px}
+  .movie-grid{grid-template-columns:repeat(3,1fr);gap:4px}
+  .mc-info{padding:4px}
+  .mc-title{font-size:9px;-webkit-line-clamp:1}
+  .mc-genres{font-size:7px}
+  .mc-year{font-size:8px}
   .related-grid{grid-template-columns:1fr}
   .logo a{font-size:16px}
   .logo a i{font-size:18px}
