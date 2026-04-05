@@ -202,21 +202,22 @@ ul,ol{list-style:none}
 body.post-page .main-layout{grid-template-columns:1fr}
 body.post-page .sidebar{display:none}
 
-/* NUCLEAR: Hide entire Blog widget, then show only our custom areas */
-body:not(.post-page) .main-blog-section .widget{max-height:0;overflow:hidden}
-body:not(.post-page) .main-blog-section .widget > *:not(.home-cards-area){display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important}
-
-/* Global nuclear hide for ALL Blogger default content elements */
-.blog-posts,.blog-posts *,.post-outer,.post-outer *,.post,.post *,.post-body,.post-footer,.post-share-buttons,.post-comment-link,.post-outer-container,.post-timestamp,.post-title,.post-header,.post-header *,.entry-content,.post-snippet,.post-summary,.post-comment-link,.comment-link,.blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important;opacity:0!important}
-
-/* Nuclear hide for Blogger status message (ALL variants) */
-.status-msg-wrap,.status-msg-body,.status-msg-border,.status-msg-wrap *,.status-msg-body *{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important}
-
-/* BUT show our custom areas with extreme priority */
-.home-cards-area{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important;margin:0!important;padding:0!important;position:relative!important}
-.movie-grid{display:grid!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
-.movie-card{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
-.post-detail{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
+/* TARGETED hide: Only Blogger default elements, NOT our custom content */
+.blog-posts{display:none!important}
+.blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important}
+.status-msg-wrap,.status-msg-body,.status-msg-border{display:none!important}
+body:not(.post-page) .post-outer-container{display:none!important}
+body:not(.post-page) .post-footer{display:none!important}
+body:not(.post-page) .post-share-buttons{display:none!important}
+body:not(.post-page) .post-comment-link{display:none!important}
+body:not(.post-page) .post-timestamp{display:none!important}
+body:not(.post-page) .post-title{display:none!important}
+body:not(.post-page) .post-body{display:none!important}
+body:not(.post-page) .post-header{display:none!important}
+body:not(.post-page) .entry-content{display:none!important}
+body:not(.post-page) .post-snippet{display:none!important}
+body:not(.post-page) .post-summary{display:none!important}
+body:not(.post-page) .comment-link{display:none!important}
 
 /* Generic Blogger cleanup */
 .widget ul{list-style:none}
@@ -652,73 +653,27 @@ var RATING_PREFIX = 'Rating-';
   setTimeout(injectCustomCSS, 1000);
 })();
 
-// ===== NUCLEAR: Remove ALL Blogger default content from homepage =====
+// ===== TARGETED: Remove only Blogger default elements, keep our cards =====
 (function(){
   function cleanBlogger(){
-    // 1. Remove status messages
-    var selectors = ['.status-msg-wrap','.status-msg-body','.status-msg-border','.blog-pager','.feed-links','.blog-feeds'];
-    for(var s = 0; s < selectors.length; s++){
-      var els = document.querySelectorAll(selectors[s]);
-      for(var i = 0; i < els.length; i++){
-        try{els[i].parentNode.removeChild(els[i]);}catch(e){els[i].style.display='none';}
+    // Only remove specific Blogger default elements
+    var hideSelectors = ['.status-msg-wrap','.blog-posts','.blog-pager','.feed-links','.blog-feeds'];
+    for(var i = 0; i < hideSelectors.length; i++){
+      var els = document.querySelectorAll(hideSelectors[i]);
+      for(var j = 0; j < els.length; j++){
+        try{els[j].style.display='none';}catch(e){}
       }
-    }
-    // 2. Remove all post-outer, post-body, post-footer elements
-    var postSelectors = ['.post-outer','.post-body','.post-footer','.post-share-buttons','.post-comment-link','.post-timestamp','.post-title','.post-header','.entry-content','.post-snippet','.post-summary','.comment-link'];
-    for(var p = 0; p < postSelectors.length; p++){
-      var postEls = document.querySelectorAll(postSelectors[p]);
-      for(var j = 0; j < postEls.length; j++){
-        postEls[j].style.display = 'none';
-        postEls[j].style.height = '0';
-        postEls[j].style.overflow = 'hidden';
-        postEls[j].style.margin = '0';
-        postEls[j].style.padding = '0';
-        postEls[j].style.visibility = 'hidden';
-        postEls[j].style.opacity = '0';
-        try{postEls[j].parentNode.removeChild(postEls[j]);}catch(e){}
-      }
-    }
-    // 3. Find the Blog1 widget and remove everything except our custom areas
-    var widget = document.getElementById('Blog1');
-    if(widget){
-      var children = widget.children;
-      for(var c = 0; c < children.length; c++){
-        var child = children[c];
-        if(!child.classList.contains('home-cards-area') && !child.querySelector('.post-detail')){
-          var hasCustom = child.querySelector('.home-cards-area') || child.querySelector('.post-detail');
-          if(!hasCustom){
-            child.style.display = 'none';
-            child.style.height = '0';
-            child.style.overflow = 'hidden';
-            child.style.visibility = 'hidden';
-            child.style.opacity = '0';
-          }
-        }
-      }
-    }
-    // 4. Remove any div inside blog-posts that is NOT our grid
-    var blogPosts = document.querySelectorAll('.blog-posts');
-    for(var b = 0; b < blogPosts.length; b++){
-      var bp = blogPosts[b];
-      while(bp.firstChild){
-        bp.removeChild(bp.firstChild);
-      }
-      bp.style.display = 'none';
-      bp.style.height = '0';
     }
   }
-  // Run multiple times to catch late-rendered content
-  cleanBlogger();
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', function(){cleanBlogger();setTimeout(cleanBlogger,300);setTimeout(cleanBlogger,1000);});
+    document.addEventListener('DOMContentLoaded', function(){
+      cleanBlogger();
+      setTimeout(cleanBlogger, 500);
+    });
   } else {
-    setTimeout(cleanBlogger, 100);
+    cleanBlogger();
     setTimeout(cleanBlogger, 500);
-    setTimeout(cleanBlogger, 1500);
   }
-  // Also run on window load (after all resources)
-  window.addEventListener('load', cleanBlogger);
-  setTimeout(cleanBlogger, 3000);
 })();
 
 // Back to Top
