@@ -202,37 +202,21 @@ ul,ol{list-style:none}
 body.post-page .main-layout{grid-template-columns:1fr}
 body.post-page .sidebar{display:none}
 
-/* Nuclear hide for Blogger Blog widget default content */
-.blog-posts{display:none!important}
-.blog-posts .post-outer{display:none!important}
-.blog-posts .post{display:none!important}
-.blog-posts .post-body{display:none!important}
-.blog-posts .post-footer{display:none!important}
-.blog-posts .post-share-buttons{display:none!important}
-.blog-posts .post-comment-link{display:none!important}
-.blog-posts .post-outer-container{display:none!important}
-.blog-posts .post-timestamp{display:none!important}
-.blog-posts .post-title{display:none!important}
-.blog-pager{display:none!important}
-.widget .blog-pager{display:none!important}
-.post-outer{display:none!important}
-.post-footer{display:none!important}
-.post-share-buttons{display:none!important}
-.post-comment-link{display:none!important}
-.post-outer-container{display:none!important}
-.post-timestamp{display:none!important}
-.post-title{display:none!important}
+/* NUCLEAR: Hide entire Blog widget, then show only our custom areas */
+body:not(.post-page) .main-blog-section .widget{max-height:0;overflow:hidden}
+body:not(.post-page) .main-blog-section .widget > *:not(.home-cards-area){display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important}
+
+/* Global nuclear hide for ALL Blogger default content elements */
+.blog-posts,.blog-posts *,.post-outer,.post-outer *,.post,.post *,.post-body,.post-footer,.post-share-buttons,.post-comment-link,.post-outer-container,.post-timestamp,.post-title,.post-header,.post-header *,.entry-content,.post-snippet,.post-summary,.post-comment-link,.comment-link,.blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important;opacity:0!important}
 
 /* Nuclear hide for Blogger status message (ALL variants) */
-.status-msg-wrap{display:none!important}
-.status-msg-body{display:none!important}
-.status-msg-border{display:none!important}
-div[style*="status"]{display:none!important}
-.blog-posts div:first-child{display:none!important}
+.status-msg-wrap,.status-msg-body,.status-msg-border,.status-msg-wrap *,.status-msg-body *{display:none!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:none!important;visibility:hidden!important}
 
-/* BUT show our custom movie grid on homepage */
-.home-cards-area{display:block!important}
-.movie-grid{display:grid!important}
+/* BUT show our custom areas with extreme priority */
+.home-cards-area{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important;margin:0!important;padding:0!important;position:relative!important}
+.movie-grid{display:grid!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
+.movie-card{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
+.post-detail{display:block!important;height:auto!important;overflow:visible!important;visibility:visible!important;opacity:1!important}
 
 /* Generic Blogger cleanup */
 .widget ul{list-style:none}
@@ -634,42 +618,73 @@ div[style*="status"]{display:none!important}
 var SKIP_LABELS = ['Movie', 'Movies', 'Series'];
 var RATING_PREFIX = 'Rating-';
 
-// ===== NUCLEAR: Remove Blogger status message and default posts =====
+// ===== NUCLEAR: Remove ALL Blogger default content from homepage =====
 (function(){
   function cleanBlogger(){
-    // Remove status message elements
-    var msgs = document.querySelectorAll('.status-msg-wrap, .status-msg-body, .status-msg-border');
-    for(var i = 0; i < msgs.length; i++){
-      msgs[i].style.display = 'none';
-      msgs[i].parentNode.removeChild(msgs[i]);
+    // 1. Remove status messages
+    var selectors = ['.status-msg-wrap','.status-msg-body','.status-msg-border','.blog-pager','.feed-links','.blog-feeds'];
+    for(var s = 0; s < selectors.length; s++){
+      var els = document.querySelectorAll(selectors[s]);
+      for(var i = 0; i < els.length; i++){
+        try{els[i].parentNode.removeChild(els[i]);}catch(e){els[i].style.display='none';}
+      }
     }
-    // Remove any "Showing posts with label" or "Showing all posts" text
-    var allDivs = document.querySelectorAll('.blog-posts > div');
-    for(var j = 0; j < allDivs.length; j++){
-      var txt = allDivs[j].textContent || '';
-      if(txt.indexOf('Showing posts') !== -1 || txt.indexOf('Showing all') !== -1 || txt.indexOf('label') !== -1){
-        if(!allDivs[j].querySelector('.movie-grid') && !allDivs[j].querySelector('.home-cards-area')){
-          allDivs[j].style.display = 'none';
+    // 2. Remove all post-outer, post-body, post-footer elements
+    var postSelectors = ['.post-outer','.post-body','.post-footer','.post-share-buttons','.post-comment-link','.post-timestamp','.post-title','.post-header','.entry-content','.post-snippet','.post-summary','.comment-link'];
+    for(var p = 0; p < postSelectors.length; p++){
+      var postEls = document.querySelectorAll(postSelectors[p]);
+      for(var j = 0; j < postEls.length; j++){
+        postEls[j].style.display = 'none';
+        postEls[j].style.height = '0';
+        postEls[j].style.overflow = 'hidden';
+        postEls[j].style.margin = '0';
+        postEls[j].style.padding = '0';
+        postEls[j].style.visibility = 'hidden';
+        postEls[j].style.opacity = '0';
+        try{postEls[j].parentNode.removeChild(postEls[j]);}catch(e){}
+      }
+    }
+    // 3. Find the Blog1 widget and remove everything except our custom areas
+    var widget = document.getElementById('Blog1');
+    if(widget){
+      var children = widget.children;
+      for(var c = 0; c < children.length; c++){
+        var child = children[c];
+        if(!child.classList.contains('home-cards-area') && !child.querySelector('.post-detail')){
+          var hasCustom = child.querySelector('.home-cards-area') || child.querySelector('.post-detail');
+          if(!hasCustom){
+            child.style.display = 'none';
+            child.style.height = '0';
+            child.style.overflow = 'hidden';
+            child.style.visibility = 'hidden';
+            child.style.opacity = '0';
+          }
         }
       }
     }
-    // Hide any remaining post-outer elements
-    var postOuters = document.querySelectorAll('.post-outer, .blog-posts .post');
-    for(var k = 0; k < postOuters.length; k++){
-      postOuters[k].style.display = 'none';
+    // 4. Remove any div inside blog-posts that is NOT our grid
+    var blogPosts = document.querySelectorAll('.blog-posts');
+    for(var b = 0; b < blogPosts.length; b++){
+      var bp = blogPosts[b];
+      while(bp.firstChild){
+        bp.removeChild(bp.firstChild);
+      }
+      bp.style.display = 'none';
+      bp.style.height = '0';
     }
   }
-  // Run immediately
+  // Run multiple times to catch late-rendered content
   cleanBlogger();
-  // Run again after DOM loaded
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', cleanBlogger);
+    document.addEventListener('DOMContentLoaded', function(){cleanBlogger();setTimeout(cleanBlogger,300);setTimeout(cleanBlogger,1000);});
   } else {
-    cleanBlogger();
+    setTimeout(cleanBlogger, 100);
+    setTimeout(cleanBlogger, 500);
+    setTimeout(cleanBlogger, 1500);
   }
-  // Run again after a short delay (for slow-rendered content)
-  setTimeout(cleanBlogger, 500);
-  setTimeout(cleanBlogger, 1500);
+  // Also run on window load (after all resources)
+  window.addEventListener('load', cleanBlogger);
+  setTimeout(cleanBlogger, 3000);
 })();
 
 // Back to Top
