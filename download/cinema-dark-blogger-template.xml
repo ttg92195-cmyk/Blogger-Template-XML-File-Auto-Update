@@ -1080,12 +1080,109 @@ function processPostDetail(){
     });
   }
 
+  // Auto-detect label-value pairs and convert to tech metadata table
+  var techLabels = ['File size','File Size','Quality','Format','Genre','Duration','Subtitle','Resolution','Language','Audio','Director','Release Date','IMDb Rating','IMDB Rating','IMDb','Rating','Year','Size','Codec'];
+  var techEl = document.querySelector('.pd-synopsis-text');
+  if(techEl){
+    // Get all top-level children
+    var children = techEl.childNodes;
+    var pairs = [];
+    var i = 0;
+
+    // Collect text blocks (elements + text nodes)
+    var blocks = [];
+    for(var ci = 0; ci < children.length; ci++){
+      var node = children[ci];
+      if(node.nodeType === 3){
+        var t = node.textContent.trim();
+        if(t) blocks.push({type:'text', text:t, node:node});
+      } else if(node.nodeType === 1 && node.tagName !== 'TABLE' && node.tagName !== 'DIV' && node.tagName !== 'IMG'){
+        var t = node.textContent.trim();
+        if(t) blocks.push({type:'elem', text:t, node:node});
+      }
+    }
+
+    // Find label-value pairs
+    var usedIndices = {};
+    var metaPairs = [];
+    for(var bi = 0; bi < blocks.length; bi++){
+      if(usedIndices[bi]) continue;
+      var bText = blocks[bi].text;
+      var isLabel = false;
+      for(var li = 0; li < techLabels.length; li++){
+        if(bText.toLowerCase() === techLabels[li].toLowerCase()){
+          isLabel = true;
+          break;
+        }
+      }
+      // Also detect lines ending with colon
+      if(!isLabel && bText.indexOf(':') === bText.length - 1 && bText.length < 30){
+        isLabel = true;
+      }
+      if(isLabel && bi + 1 < blocks.length && !usedIndices[bi + 1]){
+        metaPairs.push({
+          label: bText.replace(/:$/, ''),
+          value: blocks[bi + 1].text,
+          labelNode: blocks[bi].node,
+          valueNode: blocks[bi + 1].node,
+          labelBlock: blocks[bi],
+          valueBlock: blocks[bi + 1]
+        });
+        usedIndices[bi] = true;
+        usedIndices[bi + 1] = true;
+      }
+    }
+
+    // Build tech meta section if we found pairs
+    if(metaPairs.length >= 2){
+      var metaHtml = '<div class="pd-tech-meta">';
+      for(var pi = 0; pi < metaPairs.length; pi++){
+        var label = metaPairs[pi].label;
+        var value = metaPairs[pi].value;
+        var valStyle = '';
+        if(label.toLowerCase().indexOf('genre') !== -1){
+          valStyle = ' style="color:var(--accent)"';
+        }
+        metaHtml += '<div class="pd-tech-row"><span class="t-label">' + label + '</span><span class="t-value"' + valStyle + '>' + value + '</span></div>';
+      }
+      metaHtml += '</div>';
+
+      // Insert meta section before first remaining content or at beginning
+      // Remove the paired nodes from DOM
+      for(var pi = 0; pi < metaPairs.length; pi++){
+        try{
+          if(metaPairs[pi].labelBlock.type === 'elem'){
+            metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode);
+          } else {
+            metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode);
+          }
+        }catch(e){}
+        try{
+          if(metaPairs[pi].valueBlock.type === 'elem'){
+            metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode);
+          } else {
+            metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode);
+          }
+        }catch(e){}
+      }
+
+      // Clean up empty elements left behind
+      var emptyPs = techEl.querySelectorAll('p, div, span, br');
+      for(var ep = 0; ep < emptyPs.length; ep++){
+        if(emptyPs[ep].textContent.trim() === '' && emptyPs[ep].children.length === 0){
+          emptyPs[ep].parentNode.removeChild(emptyPs[ep]);
+        }
+      }
+
+      // Insert meta table at the beginning
+      techEl.insertAdjacentHTML('afterbegin', metaHtml);
+    }
+  }
+
   // Style post body tables as download tables
   var tables = document.querySelectorAll('.pd-synopsis-text table');
   tables.forEach(function(table){
-    // Add download table styling
     table.classList.add('pd-dl-table');
-    // Style first row as header
     var firstRow = table.querySelector('tr');
     if(firstRow){
       var ths = firstRow.querySelectorAll('td, th');
@@ -1097,20 +1194,14 @@ function processPostDetail(){
         th.style.letterSpacing = '0.3px';
       });
     }
-    // Style server links (second column usually)
     var rows = table.querySelectorAll('tr');
     rows.forEach(function(row){
       var cells = row.querySelectorAll('td, th');
       if(cells.length >= 2){
         var link = cells[1].querySelector('a');
-        if(link){
-          link.classList.add('dl-server');
-        }
+        if(link) link.classList.add('dl-server');
       }
-      // Style first cell as number
-      if(cells.length >= 1){
-        cells[0].classList.add('dl-no');
-      }
+      if(cells.length >= 1) cells[0].classList.add('dl-no');
     });
   });
 }
