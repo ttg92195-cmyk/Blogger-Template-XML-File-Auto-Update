@@ -13,13 +13,15 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V8 - App Menu + Toggle Search
+  CINEMA DARK V9 - CineMM Post Detail
   - App-style slide-out drawer menu
   - Toggle expandable search bar
   - Movies/Series tabs on homepage
-  - Compact small poster cards
-  - Desktop: 3 col, Mobile: 2 col
-  Version: 8.0
+  - CineMM-style Post Detail page
+  - Centered poster + metadata pills
+  - Download source cards
+  - Desktop: 3 col, Mobile: 3 col
+  Version: 9.0
 =======================================*/
 :root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:6px;--r2:8px;--r3:12px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1200px;--drawer-w:280px;--header-h:56px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -159,70 +161,70 @@ ul,ol{list-style:none}
 .label-list a{display:inline-block;padding:4px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
 .label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* ========== POST DETAIL PAGE (ysflix style) ========== */
-.post-detail{padding:16px 0}
-.pd-wrap{max-width:780px;margin:0 auto}
+/* ========== POST DETAIL PAGE (CineMM Style) ========== */
+.post-detail{padding:20px 0}
+.pd-wrap{max-width:620px;margin:0 auto}
 
 /* Breadcrumb */
-.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
 .pd-breadcrumb a{color:var(--accent)}
 
-/* Hero: Poster + Info */
-.pd-hero{display:flex;gap:16px;margin-bottom:16px;background:var(--card);border-radius:var(--r3);border:1px solid var(--border);padding:16px}
-.pd-poster{width:160px;min-width:160px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;flex-shrink:0}
-.pd-poster img{width:100%;height:100%;object-fit:cover}
-.pd-info{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px}
-.pd-title{font-size:22px;font-weight:800;line-height:1.3}
-.pd-rating-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pd-rating-row .star-icon{color:var(--star);font-size:14px}
-.pd-rating-num{font-size:16px;font-weight:700;color:var(--star)}
-.pd-meta-dot{color:var(--muted);font-size:12px}
-.pd-meta-val{color:var(--txt2);font-size:13px}
-.pd-genres{display:flex;gap:6px;flex-wrap:wrap}
-.pd-genre-pill{padding:4px 12px;background:var(--accent);color:#fff;border-radius:20px;font-size:12px;font-weight:600}
-.pd-meta-row{display:flex;gap:8px;font-size:13px}
-.pd-meta-row .meta-label{color:var(--muted)}
-.pd-meta-row .meta-value{color:var(--txt);font-weight:500}
+/* Centered Poster */
+.pd-poster-wrap{text-align:center;margin-bottom:20px}
+.pd-poster{width:220px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.08)}
+.pd-poster img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* Detail Tabs: Synopsis / Cast List */
-.pd-tabs{display:flex;gap:0;margin-bottom:16px;border-radius:var(--r2);overflow:hidden;border:1px solid var(--border)}
-.pd-tab{flex:1;padding:11px 16px;text-align:center;font-size:14px;font-weight:600;color:var(--txt2);background:var(--card);cursor:pointer;border:none;transition:var(--tr)}
-.pd-tab:hover{color:var(--txt)}
-.pd-tab.active{background:var(--accent);color:#fff}
+/* Centered Title */
+.pd-title{text-align:center;font-size:20px;font-weight:800;line-height:1.35;margin-bottom:14px;padding:0 10px}
 
-/* Synopsis Section */
-.pd-synopsis{margin-bottom:16px}
-.pd-section-head{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--txt);display:flex;align-items:center;gap:8px}
-.pd-section-head small{font-size:12px;color:var(--muted);font-weight:400}
-.pd-synopsis-text{color:var(--txt2);font-size:14px;line-height:1.85;margin-bottom:16px;text-align:justify}
+/* Rating + Year Row */
+.pd-rating-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pd-rating-row .star-icon{color:var(--star);font-size:13px}
+.pd-rating-num{font-size:15px;font-weight:700;color:var(--star)}
+.pd-meta-dot{color:var(--muted);font-size:11px}
+.pd-meta-val{color:var(--txt2);font-size:12px}
 
-/* Technical Metadata */
-.pd-tech-meta{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px;margin-bottom:16px}
-.pd-tech-row{display:flex;align-items:baseline;gap:8px;padding:10px 0;font-size:13px}
-.pd-tech-row+.pd-tech-row{border-top:1px solid var(--border)}
-.pd-tech-row .t-label{color:var(--muted);min-width:100px;flex-shrink:0}
-.pd-tech-row .t-value{color:var(--txt);font-weight:500}
+/* Metadata Pills */
+.pd-pills{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.pd-pill{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+.pd-pill-year{background:rgba(255,255,255,.1);color:var(--txt)}
+.pd-pill-type{background:var(--accent);color:#fff}
+.pd-pill-sub{background:#00b894;color:#fff}
+.pd-pill-info{background:rgba(255,255,255,.07);color:var(--txt2)}
+.pd-pill-rating{background:rgba(251,191,36,.15);color:var(--star)}
 
-/* Download Links Table */
-.pd-dl-section{margin-bottom:20px}
-.pd-dl-title{font-size:16px;font-weight:700;margin-bottom:10px;color:var(--txt)}
-.pd-dl-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border)}
-.pd-dl-table thead{background:var(--bg2)}
-.pd-dl-table th{padding:10px 12px;font-size:12px;font-weight:600;color:var(--muted);text-align:left;text-transform:uppercase;letter-spacing:.3px;border-bottom:1px solid var(--border)}
-.pd-dl-table td{padding:10px 12px;font-size:13px;color:var(--txt2);border-bottom:1px solid var(--border)}
-.pd-dl-table tr:last-child td{border-bottom:none}
-.pd-dl-table .dl-server{color:var(--accent);font-weight:600}
-.pd-dl-table .dl-server:hover{color:var(--accent2);text-decoration:underline}
-.pd-dl-table .dl-no{color:var(--muted);text-align:center;width:36px}
+/* Description / Synopsis */
+.pd-description{color:var(--txt2);font-size:13.5px;line-height:1.85;margin-bottom:16px;text-align:left}
+.pd-description p{margin-bottom:10px}
 
-/* Cast List */
-.pd-cast{margin-bottom:20px}
-.pd-cast-title{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--txt)}
-.pd-cast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.pd-cast-item{text-align:center}
-.pd-cast-img{width:80px;height:80px;border-radius:var(--r);overflow:hidden;margin:0 auto 6px;background:var(--card);border:1px solid var(--border)}
-.pd-cast-img img{width:100%;height:100%;object-fit:cover}
-.pd-cast-name{font-size:13px;color:var(--txt);font-weight:500;line-height:1.3}
+/* Technical Metadata (inline in text) */
+.pd-tech-meta{margin-bottom:16px}
+.pd-tech-row{display:flex;align-items:baseline;gap:6px;font-size:13px;padding:4px 0;color:var(--txt2)}
+.pd-tech-row .t-label{color:var(--muted);font-weight:500;white-space:nowrap}
+.pd-tech-row .t-value{color:var(--txt2);font-weight:400}
+.pd-tech-row.genre-val .t-value{color:var(--accent)}
+
+/* Download Sources Section */
+.pd-sources{margin-bottom:24px}
+.pd-sources-head{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px}
+.pd-sources-head i{font-size:13px;color:var(--accent)}
+.pd-source-card{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);margin-bottom:8px;transition:var(--tr)}
+.pd-source-card:last-child{margin-bottom:0}
+.pd-source-card:hover{border-color:rgba(34,197,94,.3);background:var(--card-h)}
+.pd-source-dot{width:8px;height:8px;border-radius:50%;background:#7c3aed;flex-shrink:0}
+.pd-source-info{flex:1;min-width:0}
+.pd-source-name{font-size:14px;font-weight:600;color:var(--txt);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-source-meta{font-size:11px;color:var(--muted)}
+.pd-source-size{font-size:12px;color:var(--txt2);font-weight:500;flex-shrink:0;margin-right:4px}
+.pd-source-dl{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,.08);color:var(--accent);border-radius:50%;font-size:14px;flex-shrink:0;transition:var(--tr)}
+.pd-source-card:hover .pd-source-dl{background:var(--accent);color:#fff}
+
+/* Legacy table fallback */
+.pd-dl-table{display:none}
+
+/* Related Posts */
+.related-section{margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 
 /* Post body content styling */
 .post-body{color:var(--txt2);font-size:14px;line-height:1.85}
@@ -232,9 +234,7 @@ ul,ol{list-style:none}
 .post-body img{border-radius:var(--r);margin:8px 0}
 .post-body br{display:block;content:'';margin-top:4px}
 
-/* Related Posts */
-.related-section{margin-top:24px}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+/* Related Cards */
 .related-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:var(--tr)}
 .related-card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .related-card-img{aspect-ratio:16/9;overflow:hidden}
@@ -328,20 +328,16 @@ body.no-scroll{overflow:hidden}
   .movies-section{padding:10px 0}
   .sidebar{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .pd-hero{flex-direction:column;align-items:center;text-align:center}
+  .pd-hero,.pd-info,.pd-tabs,.pd-tab,.pd-synopsis,.pd-cast,.pd-cast-grid,.pd-cast-img,.pd-cast-name,.pd-cast-title,.pd-section-head,.pd-synopsis-text,.pd-genres,.pd-genre-pill,.pd-meta-row{display:none!important}
   .pd-poster{width:180px;min-width:180px}
-  .pd-rating-row{justify-content:center}
-  .pd-genres{justify-content:center}
-  .pd-meta-row{justify-content:center}
-  .pd-cast-grid{grid-template-columns:repeat(3,1fr);gap:8px}
-  .pd-cast-img{width:70px;height:70px}
+  .pd-title{font-size:18px}
+  .pd-pills{gap:6px}
+  .pd-pill{padding:4px 10px;font-size:10px}
+  .pd-source-card{padding:12px 14px}
+  .pd-source-name{font-size:13px}
+  .pd-description{font-size:13px}
   .related-grid{grid-template-columns:repeat(2,1fr)}
   .container{padding:0 10px}
-  .pd-title{font-size:19px}
-  .pd-tab{padding:10px 12px;font-size:13px}
-  .pd-dl-table th,.pd-dl-table td{padding:8px 6px;font-size:11px}
-  .pd-tech-row{font-size:12px;gap:6px}
-  .pd-tech-row .t-label{min-width:80px}
   body.post-page .sidebar{display:none!important}
   .search-bar{padding:12px 10px}
   .search-bar input{padding:10px 14px;font-size:14px}
@@ -513,7 +509,7 @@ body.no-scroll{overflow:hidden}
               </article>
             </b:includable>
 
-            <!-- ===== POST DETAIL (ysflix style) ===== -->
+            <!-- ===== POST DETAIL (CineMM Style) ===== -->
             <b:includable id='postDetail' var='post'>
               <div class='post-detail'>
                 <div class='pd-wrap'>
@@ -522,74 +518,39 @@ body.no-scroll{overflow:hidden}
                   <div class='pd-breadcrumb'>
                     <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a>
                     <i class='fas fa-chevron-right'></i>
-                    <b:loop values='data:post.labels' var='label'>
-                      <a expr:href='data:label.url'><data:label.name/></a>
-                      <i class='fas fa-chevron-right'></i>
-                    </b:loop>
                     <span><data:post.title/></span>
                   </div>
 
-                  <!-- Hero: Poster + Info -->
-                  <div class='pd-hero'>
+                  <!-- Centered Poster -->
+                  <div class='pd-poster-wrap'>
                     <b:if cond='data:post.featuredImage'>
                       <div class='pd-poster'><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></div>
                     </b:if>
-                    <div class='pd-info'>
-                      <h1 class='pd-title'><data:post.title/></h1>
-                      <div class='pd-rating-row'>
-                        <i class='fas fa-star star-icon'></i>
-                        <span class='pd-rating-num' id='postRating'>--</span>
-                        <span class='pd-meta-dot'>&#8226;</span>
-                        <span class='pd-meta-val' id='postYear'></span>
-                        <span class='pd-meta-dot'>&#8226;</span>
-                        <span class='pd-meta-val'><i class='far fa-clock'></i> <span id='postDuration'>--</span></span>
-                      </div>
-                      <div class='pd-genres' id='pdGenrePills'>
-                        <b:loop values='data:post.labels' var='label'>
-                          <a class='pd-genre-pill' expr:href='data:label.url'><data:label.name/></a>
-                        </b:loop>
-                      </div>
-                      <div class='pd-meta-row'>
-                        <span class='meta-label'>Director:</span>
-                        <span class='meta-value' id='postDirector'>--</span>
-                      </div>
-                      <div class='pd-meta-row'>
-                        <span class='meta-label'>Release Date:</span>
-                        <span class='meta-value'><data:post.date/></span>
-                      </div>
-                    </div>
                   </div>
 
-                  <!-- Synopsis / Cast List Tabs -->
-                  <div class='pd-tabs' id='pdTabs'>
-                    <button class='pd-tab active' data-panel='synopsis'><i class='fas fa-align-left'></i> Synopsis</button>
-                    <button class='pd-tab' data-panel='cast'><i class='fas fa-users'></i> Cast List</button>
+                  <!-- Centered Title -->
+                  <h1 class='pd-title'><data:post.title/></h1>
+
+                  <!-- Rating + Year -->
+                  <div class='pd-rating-row'>
+                    <i class='fas fa-star star-icon'></i>
+                    <span class='pd-rating-num' id='postRating'>--</span>
+                    <span class='pd-meta-dot'>&#8226;</span>
+                    <span class='pd-meta-val' id='postYear'></span>
+                    <span class='pd-meta-dot'>&#8226;</span>
+                    <span class='pd-meta-val'><i class='far fa-clock'></i> <span id='postDuration'>--</span></span>
                   </div>
 
-                  <!-- Synopsis Panel -->
-                  <div class='pd-panel' id='panelSynopsis'>
-                    <div class='pd-synopsis'>
-                      <div class='pd-section-head'>
-                        Synopsis
-                        <small id='synopsisSub'>(<data:post.title/>)</small>
-                        <small id='synopsisRatingHead'></small>
-                      </div>
-                      <div class='pd-synopsis-text'><data:post.body/></div>
-                    </div>
+                  <!-- Metadata Pills -->
+                  <div class='pd-pills' id='pdPills'>
+                    <span class='pd-pill pd-pill-year' id='pillYear'></span>
+                    <b:loop values='data:post.labels' var='label'>
+                      <span class='pd-pill hidden-el label-data' expr:data-name='data:label.name'><data:label.name/></span>
+                    </b:loop>
                   </div>
 
-                  <!-- Cast Panel (user adds cast in post body with class pd-cast-grid) -->
-                  <div class='pd-panel' id='panelCast' style='display:none'>
-                    <div class='pd-cast'>
-                      <div class='pd-cast-title'>Cast List</div>
-                      <div class='pd-cast-grid' id='castGrid'>
-                        <div class='mc-empty'>
-                          <i class='fas fa-users'></i>
-                          Cast info not available yet.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <!-- Description (post body) -->
+                  <div class='pd-description' id='pdDescription'><data:post.body/></div>
 
                   <!-- Related Posts -->
                   <div class='related-section'>
@@ -1019,203 +980,226 @@ function processPostDetail(){
   var ratingEl = document.getElementById('postRating');
   if(!ratingEl) return;
 
-  // Extract rating from labels
+  // Collect all labels from hidden label-data spans
   var labels = [];
-  var labelEls = document.querySelectorAll('.pd-genre-pill');
+  var labelEls = document.querySelectorAll('#pdPills .label-data');
   labelEls.forEach(function(el){
-    labels.push(el.textContent.trim());
+    labels.push(el.getAttribute('data-name') || el.textContent.trim());
   });
 
+  // Extract rating from labels
   var rating = null;
   labels.forEach(function(l){
     var r = getRatingFromLabel(l);
     if(r) rating = r;
   });
-
   if(rating){
     ratingEl.textContent = rating;
-    var rh = document.getElementById('synopsisRatingHead');
-    if(rh) rh.textContent = ' - IMDb Rating (' + rating + ')';
   } else {
     ratingEl.textContent = '--';
   }
 
-  // Extract year from date
+  // Extract year from post date
   var yearEl = document.getElementById('postYear');
-  if(yearEl){
-    var dateStr = document.querySelector('.pd-info .meta-value');
-    if(dateStr){
-      var y = extractYear(dateStr.textContent);
-      if(y) yearEl.textContent = y;
+  var pillYear = document.getElementById('pillYear');
+  var dateEl = document.querySelector('.pd-rating-row .pd-meta-val');
+  if(dateEl){
+    var y = extractYear(dateEl.textContent);
+    if(y){
+      if(yearEl) yearEl.textContent = y;
+      if(pillYear) pillYear.textContent = y;
     }
   }
 
-  // Move Movie/Series/Rating genre pills - hide them, show only genre pills
+  // Build metadata pills from labels
   var skipSet = {};
   SKIP_LABELS.forEach(function(s){skipSet[s]=true;});
-  document.querySelectorAll('.pd-genre-pill').forEach(function(pill){
-    var txt = pill.textContent.trim();
-    if(skipSet[txt] || txt.indexOf(RATING_PREFIX) === 0){
-      pill.style.display = 'none';
+  var genreLabels = [];
+  var postType = 'Movie';
+  labels.forEach(function(l){
+    if(skipSet[l]) return;
+    if(l.indexOf(RATING_PREFIX) === 0) return;
+    if(l === 'Movie' || l === 'Movies' || l === 'Series'){
+      postType = l === 'Series' ? 'Series' : 'Movie';
+      return;
     }
+    genreLabels.push(l);
   });
 
-  // Synopsis / Cast List tabs
-  var tabs = document.querySelectorAll('.pd-tab');
-  if(tabs.length >= 2){
-    tabs.forEach(function(tab){
-      tab.addEventListener('click', function(){
-        tabs.forEach(function(t){t.classList.remove('active');});
-        tab.classList.add('active');
-        var panel = tab.getAttribute('data-panel');
-        var synPanel = document.getElementById('panelSynopsis');
-        var castPanel = document.getElementById('panelCast');
-        if(panel === 'synopsis'){
-          if(synPanel) synPanel.style.display = '';
-          if(castPanel) castPanel.style.display = 'none';
-        } else {
-          if(synPanel) synPanel.style.display = 'none';
-          if(castPanel) castPanel.style.display = '';
-        }
-      });
+  // Create pills: Type pill + Genre pills
+  var pillsContainer = document.getElementById('pdPills');
+  if(pillsContainer){
+    // Type pill (Movie/Series)
+    var typePill = document.createElement('span');
+    typePill.className = 'pd-pill pd-pill-type';
+    typePill.textContent = postType;
+    pillsContainer.appendChild(typePill);
+
+    // Genre pills
+    genreLabels.forEach(function(g){
+      var gp = document.createElement('span');
+      gp.className = 'pd-pill pd-pill-info';
+      gp.textContent = g;
+      pillsContainer.appendChild(gp);
     });
+
+    // Rating pill
+    if(rating){
+      var rp = document.createElement('span');
+      rp.className = 'pd-pill pd-pill-rating';
+      rp.innerHTML = '<i class="fas fa-star"></i> ' + rating;
+      pillsContainer.appendChild(rp);
+    }
+
+    // Remove hidden label data spans
+    labelEls.forEach(function(el){ el.parentNode.removeChild(el); });
   }
 
-  // Auto-detect label-value pairs and convert to tech metadata table
+  // Process description: extract tech metadata + convert download tables to source cards
+  var descEl = document.getElementById('pdDescription');
+  if(!descEl) return;
+
+  // Auto-detect label-value pairs and convert to inline tech metadata
   var techLabels = ['File size','File Size','Quality','Format','Genre','Duration','Subtitle','Resolution','Language','Audio','Director','Release Date','IMDb Rating','IMDB Rating','IMDb','Rating','Year','Size','Codec'];
-  var techEl = document.querySelector('.pd-synopsis-text');
-  if(techEl){
-    // Get all top-level children
-    var children = techEl.childNodes;
-    var pairs = [];
-    var i = 0;
-
-    // Collect text blocks (elements + text nodes)
-    var blocks = [];
-    for(var ci = 0; ci < children.length; ci++){
-      var node = children[ci];
-      if(node.nodeType === 3){
-        var t = node.textContent.trim();
-        if(t) blocks.push({type:'text', text:t, node:node});
-      } else if(node.nodeType === 1 && node.tagName !== 'TABLE' && node.tagName !== 'DIV' && node.tagName !== 'IMG'){
-        var t = node.textContent.trim();
-        if(t) blocks.push({type:'elem', text:t, node:node});
-      }
-    }
-
-    // Find label-value pairs
-    var usedIndices = {};
-    var metaPairs = [];
-    for(var bi = 0; bi < blocks.length; bi++){
-      if(usedIndices[bi]) continue;
-      var bText = blocks[bi].text;
-      var isLabel = false;
-      for(var li = 0; li < techLabels.length; li++){
-        if(bText.toLowerCase() === techLabels[li].toLowerCase()){
-          isLabel = true;
-          break;
-        }
-      }
-      // Also detect lines ending with colon
-      if(!isLabel && bText.indexOf(':') === bText.length - 1 && bText.length < 30){
-        isLabel = true;
-      }
-      if(isLabel && bi + 1 < blocks.length && !usedIndices[bi + 1]){
-        metaPairs.push({
-          label: bText.replace(/:$/, ''),
-          value: blocks[bi + 1].text,
-          labelNode: blocks[bi].node,
-          valueNode: blocks[bi + 1].node,
-          labelBlock: blocks[bi],
-          valueBlock: blocks[bi + 1]
-        });
-        usedIndices[bi] = true;
-        usedIndices[bi + 1] = true;
-      }
-    }
-
-    // Build tech meta section if we found pairs
-    if(metaPairs.length >= 2){
-      var metaHtml = '<div class="pd-tech-meta">';
-      for(var pi = 0; pi < metaPairs.length; pi++){
-        var label = metaPairs[pi].label;
-        var value = metaPairs[pi].value;
-        var valStyle = '';
-        if(label.toLowerCase().indexOf('genre') !== -1){
-          valStyle = ' style="color:var(--accent)"';
-        }
-        metaHtml += '<div class="pd-tech-row"><span class="t-label">' + label + ':</span><span class="t-value"' + valStyle + '>' + value + '</span></div>';
-      }
-      metaHtml += '</div>';
-
-      // Insert meta section before first remaining content or at beginning
-      // Remove the paired nodes from DOM
-      for(var pi = 0; pi < metaPairs.length; pi++){
-        try{
-          if(metaPairs[pi].labelBlock.type === 'elem'){
-            metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode);
-          } else {
-            metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode);
-          }
-        }catch(e){}
-        try{
-          if(metaPairs[pi].valueBlock.type === 'elem'){
-            metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode);
-          } else {
-            metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode);
-          }
-        }catch(e){}
-      }
-
-      // Clean up empty elements left behind
-      var emptyPs = techEl.querySelectorAll('p, div, span, br');
-      for(var ep = 0; ep < emptyPs.length; ep++){
-        if(emptyPs[ep].textContent.trim() === '' && emptyPs[ep].children.length === 0){
-          emptyPs[ep].parentNode.removeChild(emptyPs[ep]);
-        }
-      }
-
-      // Insert meta table at the beginning
-      techEl.insertAdjacentHTML('afterbegin', metaHtml);
+  var children = descEl.childNodes;
+  var blocks = [];
+  for(var ci = 0; ci < children.length; ci++){
+    var node = children[ci];
+    if(node.nodeType === 3){
+      var t = node.textContent.trim();
+      if(t) blocks.push({type:'text', text:t, node:node});
+    } else if(node.nodeType === 1 && node.tagName !== 'TABLE' && node.tagName !== 'DIV' && node.tagName !== 'IMG'){
+      var t = node.textContent.trim();
+      if(t) blocks.push({type:'elem', text:t, node:node});
     }
   }
 
-  // Style post body tables as download tables
-  var tables = document.querySelectorAll('.pd-synopsis-text table');
+  var usedIndices = {};
+  var metaPairs = [];
+  for(var bi = 0; bi < blocks.length; bi++){
+    if(usedIndices[bi]) continue;
+    var bText = blocks[bi].text;
+    var isLabel = false;
+    for(var li = 0; li < techLabels.length; li++){
+      if(bText.toLowerCase() === techLabels[li].toLowerCase()){
+        isLabel = true;
+        break;
+      }
+    }
+    if(!isLabel && bText.indexOf(':') === bText.length - 1 && bText.length < 30){
+      isLabel = true;
+    }
+    if(isLabel && bi + 1 < blocks.length && !usedIndices[bi + 1]){
+      metaPairs.push({
+        label: bText.replace(/:$/, ''),
+        value: blocks[bi + 1].text,
+        labelNode: blocks[bi].node,
+        valueNode: blocks[bi + 1].node,
+        labelBlock: blocks[bi],
+        valueBlock: blocks[bi + 1]
+      });
+      usedIndices[bi] = true;
+      usedIndices[bi + 1] = true;
+    }
+  }
+
+  // Build inline tech metadata
+  if(metaPairs.length >= 2){
+    var metaHtml = '<div class="pd-tech-meta">';
+    for(var pi = 0; pi < metaPairs.length; pi++){
+      var label = metaPairs[pi].label;
+      var value = metaPairs[pi].value;
+      var rowClass = 'pd-tech-row';
+      if(label.toLowerCase().indexOf('genre') !== -1) rowClass += ' genre-val';
+      metaHtml += '<div class="' + rowClass + '"><span class="t-label">' + label + ':</span> <span class="t-value">' + value + '</span></div>';
+    }
+    metaHtml += '</div>';
+
+    // Remove paired nodes from DOM
+    for(var pi = 0; pi < metaPairs.length; pi++){
+      try{ metaPairs[pi].labelNode.parentNode.removeChild(metaPairs[pi].labelNode); }catch(e){}
+      try{ metaPairs[pi].valueNode.parentNode.removeChild(metaPairs[pi].valueNode); }catch(e){}
+    }
+
+    // Clean up empty elements
+    var emptyPs = descEl.querySelectorAll('p, div, span, br');
+    for(var ep = 0; ep < emptyPs.length; ep++){
+      if(emptyPs[ep].textContent.trim() === '' && emptyPs[ep].children.length === 0){
+        emptyPs[ep].parentNode.removeChild(emptyPs[ep]);
+      }
+    }
+
+    // Insert tech meta at the beginning of description
+    descEl.insertAdjacentHTML('afterbegin', metaHtml);
+  }
+
+  // Convert post body tables to CineMM-style source cards
+  var tables = descEl.querySelectorAll('table');
   tables.forEach(function(table){
-    table.classList.add('pd-dl-table');
-    var firstRow = table.querySelector('tr');
-    if(firstRow){
-      var ths = firstRow.querySelectorAll('td, th');
-      ths.forEach(function(th){
-        th.style.fontWeight = '600';
-        th.style.color = 'var(--muted)';
-        th.style.textTransform = 'uppercase';
-        th.style.fontSize = '12px';
-        th.style.letterSpacing = '0.3px';
+    var rows = table.querySelectorAll('tr');
+    if(rows.length < 2) return;
+
+    var sourceCards = [];
+    var startIndex = 1; // skip header row
+    for(var ri = startIndex; ri < rows.length; ri++){
+      var cells = rows[ri].querySelectorAll('td, th');
+      if(cells.length < 2) continue;
+
+      var serverName = cells[0] ? cells[0].textContent.trim() : '';
+      var serverInfo = cells.length > 2 && cells[1] ? cells[1].textContent.trim() : '';
+      var fileSize = cells.length > 2 && cells[2] ? cells[2].textContent.trim() : (cells[1] ? cells[1].textContent.trim() : '');
+      var link = cells.length > 2 && cells[2] ? cells[2].querySelector('a') : (cells[1] ? cells[1].querySelector('a') : null);
+      var linkHref = link ? link.getAttribute('href') : '#';
+
+      // Try to detect if second cell is the link (2-column table)
+      if(cells.length === 2){
+        link = cells[1].querySelector('a');
+        linkHref = link ? link.getAttribute('href') : '#';
+        fileSize = '';
+        serverInfo = '';
+      }
+
+      sourceCards.push({
+        name: serverName,
+        meta: serverInfo,
+        size: fileSize,
+        href: linkHref
       });
     }
-    var rows = table.querySelectorAll('tr');
-    rows.forEach(function(row){
-      var cells = row.querySelectorAll('td, th');
-      if(cells.length >= 2){
-        var link = cells[1].querySelector('a');
-        if(link) link.classList.add('dl-server');
+
+    if(sourceCards.length > 0){
+      var sourcesHtml = '<div class="pd-sources">';
+      sourcesHtml += '<div class="pd-sources-head"><i class="fas fa-download"></i> ' + sourceCards.length + ' Sources Available</div>';
+      for(var si = 0; si < sourceCards.length; si++){
+        var s = sourceCards[si];
+        sourcesHtml += '<a class="pd-source-card" href="' + s.href + '" target="_blank" rel="noopener">';
+        sourcesHtml += '<div class="pd-source-dot"></div>';
+        sourcesHtml += '<div class="pd-source-info">';
+        sourcesHtml += '<div class="pd-source-name">' + s.name + '</div>';
+        if(s.meta) sourcesHtml += '<div class="pd-source-meta">' + s.meta + '</div>';
+        sourcesHtml += '</div>';
+        if(s.size) sourcesHtml += '<span class="pd-source-size">' + s.size + '</span>';
+        sourcesHtml += '<div class="pd-source-dl"><i class="fas fa-download"></i></div>';
+        sourcesHtml += '</a>';
       }
-      if(cells.length >= 1) cells[0].classList.add('dl-no');
-    });
+      sourcesHtml += '</div>';
+
+      // Replace table with source cards
+      var wrapper = document.createElement('div');
+      wrapper.innerHTML = sourcesHtml;
+      table.parentNode.replaceChild(wrapper.firstElementChild, table);
+    }
   });
 }
 
 // Related Posts (JSON feed for post page only)
 (function(){
   if(!document.getElementById('relatedPosts')) return;
-  var labels = document.querySelectorAll('.pd-label');
-  if(labels.length > 0){
-    var url = labels[0].getAttribute('href');
-    if(url){
-      fetch(url + '?max-results=3&alt=json').then(function(r){return r.json();}).then(function(d){
-        var c = document.getElementById('relatedPosts');
+  var labelEls = document.querySelectorAll('.label-data');
+  var feedLabel = labelEls.length > 0 ? (labelEls[0].getAttribute('data-name') || labelEls[0].textContent.trim()) : '';
+  if(feedLabel){
+    var feedUrl = window.location.origin + '/feeds/posts/default/-/' + encodeURIComponent(feedLabel) + '?max-results=3&alt=json';
+    fetch(feedUrl).then(function(r){return r.json();}).then(function(d){
         if(d.feed && d.feed.entry){
           var h = '';
           d.feed.entry.forEach(function(e){
