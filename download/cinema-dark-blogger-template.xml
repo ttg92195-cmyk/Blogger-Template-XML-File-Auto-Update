@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='3.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
@@ -13,758 +13,209 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V2 - Blogger Template
-  ysflix-inspired Movie Theme
-  Version: 2.0
+  CINEMA DARK V3 - Blogger Template
+  Movies &amp; Series Tabs + JSON Cards
+  Version: 3.0
 =======================================*/
-
 :root {
-  --bg-primary: #0f1117;
-  --bg-secondary: #161922;
-  --bg-card: #1c1f2e;
-  --bg-card-hover: #252940;
-  --bg-header: #0f1117;
-  --bg-input: #1c1f2e;
-  --text-primary: #ffffff;
-  --text-secondary: #8b92a5;
-  --text-muted: #5a6178;
-  --accent: #22c55e;
-  --accent-hover: #16a34a;
-  --star: #fbbf24;
-  --border: #2a2d3e;
-  --radius: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --shadow: 0 4px 15px rgba(0,0,0,0.3);
-  --transition: all 0.25s ease;
-  --max-width: 1100px;
+  --bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;
+  --input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;
+  --accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;
+  --border:#2a2d3e;--r:8px;--r2:12px;--r3:16px;
+  --shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;
+  --max-w:1100px;
 }
-
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:var(--bg-primary);
-  color:var(--text-primary);
-  line-height:1.6;
-  overflow-x:hidden;
-}
-a { text-decoration:none; color:inherit; transition:var(--transition); }
-a:hover { color:var(--accent); }
-img { max-width:100%; height:auto; display:block; }
-ul,ol { list-style:none; }
-::selection { background:var(--accent); color:#fff; }
-::-webkit-scrollbar { width:6px; }
-::-webkit-scrollbar-track { background:var(--bg-primary); }
-::-webkit-scrollbar-thumb { background:var(--bg-card); border-radius:3px; }
-::-webkit-scrollbar-thumb:hover { background:var(--accent); }
-
-.container { max-width:var(--max-width); margin:0 auto; padding:0 16px; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit;transition:var(--tr)}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--card);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 16px}
 
 /* === Header === */
-.site-header {
-  background:var(--bg-header);
-  border-bottom:1px solid var(--border);
-  padding:14px 0;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-.header-inner {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.logo a {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:22px;
-  font-weight:800;
-  color:var(--accent);
-  letter-spacing:-0.5px;
-}
-.logo a i { font-size:24px; }
-.header-search {
-  flex:1;
-  max-width:420px;
-}
-.search-box {
-  display:flex;
-  align-items:center;
-  background:var(--bg-input);
-  border:1px solid var(--border);
-  border-radius:50px;
-  overflow:hidden;
-}
-.search-box:focus-within { border-color:var(--accent); }
-.search-box input {
-  flex:1;
-  background:transparent;
-  border:none;
-  padding:10px 18px;
-  color:var(--text-primary);
-  font-family:inherit;
-  font-size:13px;
-  outline:none;
-}
-.search-box input::placeholder { color:var(--text-muted); }
-.search-box button {
-  background:var(--accent);
-  border:none;
-  padding:10px 16px;
-  color:#fff;
-  cursor:pointer;
-  font-size:13px;
-}
-.search-box button:hover { background:var(--accent-hover); }
-.header-right {
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.header-right a,.header-right button {
-  color:var(--text-secondary);
-  font-size:18px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  transition:var(--transition);
-}
-.header-right a:hover,.header-right button:hover { color:var(--accent); }
-.mobile-menu-btn { display:none; }
+.site-header{background:var(--bg);border-bottom:1px solid var(--border);padding:14px 0;position:sticky;top:0;z-index:1000}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo a{display:flex;align-items:center;gap:8px;font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
+.logo a i{font-size:24px}
+.header-search{flex:1;max-width:420px}
+.search-box{display:flex;align-items:center;background:var(--input);border:1px solid var(--border);border-radius:50px;overflow:hidden}
+.search-box:focus-within{border-color:var(--accent)}
+.search-box input{flex:1;background:0 0;border:none;padding:10px 18px;color:var(--txt);font-family:inherit;font-size:13px;outline:none}
+.search-box input::placeholder{color:var(--muted)}
+.search-box button{background:var(--accent);border:none;padding:10px 16px;color:#fff;cursor:pointer;font-size:13px}
+.search-box button:hover{background:var(--accent2)}
+.header-right{display:flex;align-items:center;gap:14px}
+.header-right a,.header-right button{color:var(--txt2);font-size:18px;background:none;border:none;cursor:pointer}
+.header-right a:hover,.header-right button:hover{color:var(--accent)}
+.mobile-menu-btn{display:none}
 
 /* === Navigation === */
-.site-nav {
-  background:var(--bg-secondary);
-  border-bottom:1px solid var(--border);
-  overflow-x:auto;
-}
-.site-nav::-webkit-scrollbar { height:0; }
-.nav-list { display:flex; align-items:center; }
-.nav-list li a {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  padding:12px 16px;
-  color:var(--text-secondary);
-  font-size:13px;
-  font-weight:500;
-  white-space:nowrap;
-  border-bottom:2px solid transparent;
-  transition:var(--transition);
-}
-.nav-list li a:hover,
-.nav-list li a.active {
-  color:var(--accent);
-  border-bottom-color:var(--accent);
-}
-.nav-list li a i { font-size:12px; }
+.site-nav{background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto}
+.site-nav::-webkit-scrollbar{height:0}
+.nav-list{display:flex;align-items:center}
+.nav-list li a{display:flex;align-items:center;gap:6px;padding:12px 16px;color:var(--txt2);font-size:13px;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-list li a:hover,.nav-list li a.active{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-list li a i{font-size:12px}
+
+/* === Content Tabs (Movies / Series) === */
+.content-tabs{display:flex;align-items:center;gap:0;margin:24px 0 0;border-bottom:2px solid var(--border)}
+.tab-btn{padding:12px 24px;font-size:14px;font-weight:600;color:var(--txt2);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:var(--tr);display:flex;align-items:center;gap:8px}
+.tab-btn:hover{color:var(--txt)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn i{font-size:13px}
 
 /* === Section Header === */
-.section-header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:18px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--border);
-}
-.section-header h2 {
-  font-size:18px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.section-header h2 i { color:var(--accent); font-size:16px; }
-.section-header a {
-  font-size:13px;
-  font-weight:600;
-  color:var(--accent);
-  background:rgba(34,197,94,0.1);
-  padding:6px 16px;
-  border-radius:50px;
-  border:1px solid rgba(34,197,94,0.3);
-}
-.section-header a:hover { background:var(--accent); color:#fff; }
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.section-header h2{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.section-header h2 i{color:var(--accent);font-size:16px}
+.section-header a{font-size:13px;font-weight:600;color:var(--accent);background:rgba(34,197,94,.1);padding:6px 16px;border-radius:50px;border:1px solid rgba(34,197,94,.3)}
+.section-header a:hover{background:var(--accent);color:#fff}
 
-/* === Movie Grid Cards (ysflix style) === */
-.movies-section { padding:24px 0; }
-.movie-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.movie-card {
-  background:var(--bg-card);
-  border-radius:var(--radius-lg);
-  overflow:hidden;
-  border:1px solid var(--border);
-  transition:var(--transition);
-  cursor:pointer;
-}
-.movie-card:hover {
-  transform:translateY(-6px);
-  box-shadow:var(--shadow);
-  border-color:var(--accent);
-}
-.movie-card:hover .mc-poster img { transform:scale(1.06); }
-.mc-poster {
-  position:relative;
-  aspect-ratio:2/3;
-  overflow:hidden;
-  background:var(--bg-secondary);
-}
-.mc-poster img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform 0.4s ease;
-}
-.mc-rating {
-  position:absolute;
-  top:8px;
-  right:8px;
-  background:rgba(0,0,0,0.75);
-  backdrop-filter:blur(6px);
-  display:flex;
-  align-items:center;
-  gap:4px;
-  padding:4px 9px;
-  border-radius:6px;
-  font-size:12px;
-  font-weight:700;
-}
-.mc-rating i { color:var(--star); font-size:10px; }
-.mc-quality {
-  position:absolute;
-  top:8px;
-  left:8px;
-  background:var(--accent);
-  color:#fff;
-  padding:2px 8px;
-  border-radius:4px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:0.3px;
-}
-.mc-info { padding:12px; }
-.mc-title {
-  font-size:14px;
-  font-weight:600;
-  line-height:1.35;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-  margin-bottom:6px;
-}
-.mc-title a:hover { color:var(--accent); }
-.mc-meta {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.mc-year {
-  font-size:12px;
-  color:var(--text-primary);
-  font-weight:500;
-}
-.mc-genre {
-  font-size:11px;
-  color:var(--text-muted);
-}
-.mc-genre a { color:var(--text-muted); }
-.mc-genre a:hover { color:var(--accent); }
-.mc-overlay {
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  transition:var(--transition);
-}
-.movie-card:hover .mc-overlay { opacity:1; }
-.mc-play {
-  width:48px;
-  height:48px;
-  background:var(--accent);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:18px;
-  box-shadow:0 0 20px rgba(34,197,94,0.4);
-}
+/* === Movie Grid === */
+.movies-section{padding:20px 0}
+.movie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.movie-card{background:var(--card);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.movie-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--accent)}
+.movie-card:hover .mc-poster img{transform:scale(1.06)}
+.mc-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg2)}
+.mc-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.mc-rating{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:700}
+.mc-rating i{color:var(--star);font-size:10px}
+.mc-quality{position:absolute;top:8px;left:8px;background:var(--accent);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.mc-quality.hd{background:#3b82f6}
+.mc-quality.uhd{background:#8b5cf6}
+.mc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--tr)}
+.movie-card:hover .mc-overlay{opacity:1}
+.mc-play{width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;box-shadow:0 0 20px rgba(34,197,94,.4)}
+.mc-info{padding:12px}
+.mc-title{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:6px}
+.mc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mc-year{font-size:12px;color:var(--txt);font-weight:500}
+.mc-genres{font-size:11px;color:var(--muted);display:flex;flex-wrap:wrap;gap:0}
+.mc-genres span::after{content:", ";color:var(--muted)}
+.mc-genres span:last-child::after{content:""}
+.mc-loading{text-align:center;padding:60px 20px;color:var(--txt2);font-size:14px}
+.mc-loading i{font-size:32px;color:var(--accent);margin-bottom:12px;display:block;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* === Pagination === */
-.pagination {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  padding:30px 0;
-}
-.pagination a {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-width:38px;
-  height:38px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  color:var(--text-secondary);
-  font-size:13px;
-  font-weight:500;
-}
-.pagination a:hover,.pagination a.active {
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-}
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;padding:30px 0}
+.pagination a{display:flex;align-items:center;justify-content:center;min-width:38px;height:38px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500}
+.pagination a:hover,.pagination a.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* === Genre Tags Section === */
-.genre-section { padding:20px 0; }
-.genre-list {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.genre-pill {
-  display:inline-block;
-  padding:7px 16px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:50px;
-  color:var(--text-secondary);
-  font-size:12px;
-  font-weight:500;
-  transition:var(--transition);
-}
-.genre-pill:hover {
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-}
+/* === Genre Tags === */
+.genre-section{padding:20px 0 0}
+.genre-list{display:flex;flex-wrap:wrap;gap:8px}
+.genre-pill{display:inline-block;padding:7px 16px;background:var(--card);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:12px;font-weight:500;transition:var(--tr)}
+.genre-pill:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* === Sidebar === */
-.main-layout {
-  display:grid;
-  grid-template-columns:1fr 300px;
-  gap:24px;
-  padding:24px 0;
-}
-.sidebar { display:flex; flex-direction:column; gap:20px; }
-.sidebar-widget {
-  background:var(--bg-card);
-  border-radius:var(--radius-lg);
-  border:1px solid var(--border);
-  overflow:hidden;
-}
-.sw-title {
-  padding:14px 16px;
-  font-size:14px;
-  font-weight:700;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.sw-title i { color:var(--accent); }
-.sw-content { padding:14px; }
-.popular-list { display:flex; flex-direction:column; gap:10px; }
-.popular-item {
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-.popular-num {
-  width:26px;
-  height:26px;
-  background:var(--bg-secondary);
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:700;
-  color:var(--accent);
-  flex-shrink:0;
-}
-.popular-item:nth-child(1) .popular-num { background:var(--accent); color:#fff; }
-.popular-item:nth-child(2) .popular-num { background:#3b82f6; color:#fff; }
-.popular-item:nth-child(3) .popular-num { background:var(--star); color:#000; }
-.popular-text h4 {
-  font-size:12px;
-  font-weight:500;
-  line-height:1.4;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-  margin-bottom:2px;
-}
-.popular-text h4 a:hover { color:var(--accent); }
-.popular-text span { font-size:11px; color:var(--text-muted); }
-.sidebar-ad {
-  background:var(--bg-secondary);
-  border:1px dashed var(--border);
-  border-radius:var(--radius-lg);
-  padding:20px;
-  text-align:center;
-}
-.sidebar-ad i { font-size:28px; color:var(--text-muted); margin-bottom:8px; }
-.sidebar-ad p { color:var(--text-muted); font-size:12px; }
+.main-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;padding:24px 0}
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.sidebar-widget{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);overflow:hidden}
+.sw-title{padding:14px 16px;font-size:14px;font-weight:700;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sw-title i{color:var(--accent)}
+.sw-content{padding:14px}
+.popular-list{display:flex;flex-direction:column;gap:10px}
+.popular-item{display:flex;gap:10px;align-items:flex-start}
+.popular-num{width:26px;height:26px;background:var(--bg2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0}
+.popular-item:nth-child(1) .popular-num{background:var(--accent);color:#fff}
+.popular-item:nth-child(2) .popular-num{background:#3b82f6;color:#fff}
+.popular-item:nth-child(3) .popular-num{background:var(--star);color:#000}
+.popular-text h4{font-size:12px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
+.popular-text h4 a:hover{color:var(--accent)}
+.popular-text span{font-size:11px;color:var(--muted)}
+.sidebar-ad{background:var(--bg2);border:1px dashed var(--border);border-radius:var(--r2);padding:20px;text-align:center}
+.sidebar-ad i{font-size:28px;color:var(--muted);margin-bottom:8px}
+.sidebar-ad p{color:var(--muted);font-size:12px}
 
-/* === POST DETAIL PAGE (ysflix style) === */
-.post-detail { padding:24px 0; }
-.pd-wrap { max-width:850px; margin:0 auto; }
-
-/* Breadcrumb */
-.pd-breadcrumb {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-bottom:20px;
-  font-size:12px;
-  color:var(--text-muted);
-  flex-wrap:wrap;
-}
-.pd-breadcrumb a { color:var(--accent); }
-.pd-breadcrumb i { font-size:8px; }
-
-/* Movie Top Section */
-.pd-top {
-  display:flex;
-  gap:24px;
-  margin-bottom:24px;
-  background:var(--bg-card);
-  border-radius:var(--radius-xl);
-  border:1px solid var(--border);
-  padding:24px;
-}
-.pd-poster {
-  width:220px;
-  min-width:220px;
-  aspect-ratio:2/3;
-  border-radius:var(--radius);
-  overflow:hidden;
-  flex-shrink:0;
-}
-.pd-poster img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.pd-info {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.pd-labels {
-  display:flex;
-  gap:8px;
-  margin-bottom:12px;
-  flex-wrap:wrap;
-}
-.pd-label {
-  padding:4px 14px;
-  background:rgba(34,197,94,0.1);
-  border:1px solid rgba(34,197,94,0.3);
-  border-radius:50px;
-  font-size:11px;
-  font-weight:600;
-  color:var(--accent);
-}
-.pd-title {
-  font-size:26px;
-  font-weight:800;
-  line-height:1.3;
-  margin-bottom:10px;
-}
-.pd-rating-row {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:14px;
-  flex-wrap:wrap;
-}
-.pd-stars {
-  display:flex;
-  align-items:center;
-  gap:3px;
-}
-.pd-stars i { color:var(--star); font-size:14px; }
-.pd-rating-num {
-  font-size:18px;
-  font-weight:700;
-  color:var(--star);
-}
-.pd-meta-items {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:var(--text-secondary);
-  font-size:13px;
-  flex-wrap:wrap;
-}
-.pd-meta-items span { display:flex; align-items:center; gap:4px; }
-.pd-meta-items .dot { color:var(--text-muted); }
-.pd-meta-items i { color:var(--accent); font-size:12px; }
-.pd-director {
-  margin-top:10px;
-  font-size:13px;
-  color:var(--text-secondary);
-}
-.pd-director strong { color:var(--text-primary); font-weight:600; }
-
-/* Synopsis Section */
-.pd-section {
-  background:var(--bg-card);
-  border-radius:var(--radius-xl);
-  border:1px solid var(--border);
-  padding:24px;
-  margin-bottom:20px;
-}
-.pd-section-title {
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:16px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-}
-.pd-section-title i { color:var(--accent); }
-.pd-section-title .imdb-badge {
-  margin-left:auto;
-  font-size:12px;
-  font-weight:600;
-  color:var(--star);
-  background:rgba(251,191,36,0.1);
-  padding:3px 12px;
-  border-radius:50px;
-}
-.synopsis-text {
-  font-size:14px;
-  line-height:1.9;
-  color:var(--text-secondary);
-}
-.synopsis-text p { margin-bottom:14px; }
-
-/* Technical Info */
-.tech-info {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:16px;
-  padding-top:16px;
-  border-top:1px solid var(--border);
-}
-.tech-row {
-  display:flex;
-  gap:8px;
-  font-size:13px;
-}
-.tech-row .tl { color:var(--text-muted); min-width:85px; }
-.tech-row .tv { color:var(--text-primary); font-weight:500; }
-
-/* Download Table (ysflix style) */
-.dl-table-wrap {
-  overflow-x:auto;
-}
-.dl-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
-}
-.dl-table thead th {
-  background:var(--bg-secondary);
-  padding:10px 14px;
-  text-align:left;
-  font-weight:600;
-  color:var(--text-primary);
-  border-bottom:2px solid var(--accent);
-  white-space:nowrap;
-}
-.dl-table tbody td {
-  padding:10px 14px;
-  border-bottom:1px solid var(--border);
-  color:var(--text-secondary);
-  white-space:nowrap;
-}
-.dl-table tbody tr:hover { background:rgba(34,197,94,0.03); }
-.dl-table .server-link {
-  color:var(--accent);
-  font-weight:600;
-}
-.dl-table .server-link:hover { text-decoration:underline; }
-
-/* Share Buttons */
-.share-row {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:20px;
-  padding-top:16px;
-  border-top:1px solid var(--border);
-}
-.share-row span { font-weight:600; font-size:13px; }
-.share-btn {
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:13px;
-  transition:var(--transition);
-}
-.share-btn:hover { transform:translateY(-2px); opacity:0.9; }
-.share-btn.fb { background:#1877f2; }
-.share-btn.tw { background:#1da1f2; }
-.share-btn.tg { background:#0088cc; }
-.share-btn.wa { background:#25d366; }
-
-/* Related Posts */
-.related-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:14px;
-}
-.related-card {
-  background:var(--bg-card);
-  border-radius:var(--radius);
-  overflow:hidden;
-  border:1px solid var(--border);
-  transition:var(--transition);
-}
-.related-card:hover { border-color:var(--accent); transform:translateY(-3px); }
-.related-card-img { aspect-ratio:16/9; overflow:hidden; }
-.related-card-img img { width:100%; height:100%; object-fit:cover; transition:var(--transition); }
-.related-card:hover .related-card-img img { transform:scale(1.05); }
-.related-card-info { padding:10px; }
-.related-card-info h4 {
-  font-size:12px;
-  font-weight:500;
-  line-height:1.4;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
-.related-card-info h4 a:hover { color:var(--accent); }
-
-/* === Comments === */
-.comments-section {
-  background:var(--bg-card);
-  border-radius:var(--radius-lg);
-  border:1px solid var(--border);
-  padding:20px;
-  margin-top:24px;
-}
-.comments-section h3 {
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:16px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.comments-section h3 i { color:var(--accent); }
+/* === POST DETAIL === */
+.post-detail{padding:24px 0}
+.pd-wrap{max-width:850px;margin:0 auto}
+.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:20px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.pd-breadcrumb a{color:var(--accent)}
+.pd-breadcrumb i{font-size:8px}
+.pd-top{display:flex;gap:24px;margin-bottom:24px;background:var(--card);border-radius:var(--r3);border:1px solid var(--border);padding:24px}
+.pd-poster{width:220px;min-width:220px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;flex-shrink:0}
+.pd-poster img{width:100%;height:100%;object-fit:cover}
+.pd-info{flex:1;display:flex;flex-direction:column;justify-content:center}
+.pd-labels{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.pd-label{padding:4px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:50px;font-size:11px;font-weight:600;color:var(--accent)}
+.pd-title{font-size:26px;font-weight:800;line-height:1.3;margin-bottom:10px}
+.pd-rating-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.pd-stars{display:flex;align-items:center;gap:3px}
+.pd-stars i{color:var(--star);font-size:14px}
+.pd-rating-num{font-size:18px;font-weight:700;color:var(--star)}
+.pd-meta-items{display:flex;align-items:center;gap:6px;color:var(--txt2);font-size:13px;flex-wrap:wrap}
+.pd-meta-items span{display:flex;align-items:center;gap:4px}
+.pd-meta-items .dot{color:var(--muted)}
+.pd-meta-items i{color:var(--accent);font-size:12px}
+.pd-director{margin-top:10px;font-size:13px;color:var(--txt2)}
+.pd-director strong{color:var(--txt);font-weight:600}
+.post-body{color:var(--txt2);font-size:14px;line-height:1.9}
+.share-row{display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.share-row span{font-weight:600;font-size:13px}
+.share-btn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;transition:var(--tr)}
+.share-btn:hover{transform:translateY(-2px);opacity:.9}
+.share-btn.fb{background:#1877f2}
+.share-btn.tw{background:#1da1f2}
+.share-btn.tg{background:#0088cc}
+.share-btn.wa{background:#25d366}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.related-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:var(--tr)}
+.related-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.related-card-img{aspect-ratio:16/9;overflow:hidden}
+.related-card-img img{width:100%;height:100%;object-fit:cover;transition:var(--tr)}
+.related-card:hover .related-card-img img{transform:scale(1.05)}
+.related-card-info{padding:10px}
+.related-card-info h4{font-size:12px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.related-card-info h4 a:hover{color:var(--accent)}
+.comments-section{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);padding:20px;margin-top:24px}
+.comments-section h3{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.comments-section h3 i{color:var(--accent)}
 
 /* === Footer === */
-.site-footer {
-  background:var(--bg-secondary);
-  border-top:1px solid var(--border);
-  padding:30px 0 0;
-  margin-top:40px;
-}
-.footer-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  padding-bottom:24px;
-}
-.footer-col h4 {
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:14px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.footer-col h4 i { color:var(--accent); font-size:13px; }
-.footer-about p { color:var(--text-secondary); font-size:12px; line-height:1.8; margin-bottom:12px; }
-.footer-social { display:flex; gap:8px; }
-.footer-social a {
-  width:32px; height:32px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:var(--text-secondary);
-  font-size:12px;
-}
-.footer-social a:hover { background:var(--accent); border-color:var(--accent); color:#fff; }
-.footer-links li { margin-bottom:6px; }
-.footer-links li a {
-  color:var(--text-secondary); font-size:12px;
-  display:flex; align-items:center; gap:6px;
-}
-.footer-links li a:hover { color:var(--accent); padding-left:4px; }
-.footer-links li a i { font-size:6px; color:var(--accent); }
-.footer-contact li {
-  display:flex; align-items:flex-start; gap:8px;
-  margin-bottom:8px; color:var(--text-secondary); font-size:12px;
-}
-.footer-contact li i { color:var(--accent); margin-top:2px; }
-.footer-bottom {
-  border-top:1px solid var(--border);
-  padding:14px 0;
-  text-align:center;
-}
-.footer-bottom p { color:var(--text-muted); font-size:11px; }
-.footer-bottom a { color:var(--accent); font-weight:500; }
+.site-footer{background:var(--bg2);border-top:1px solid var(--border);padding:30px 0 0;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-bottom:24px}
+.footer-col h4{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.footer-col h4 i{color:var(--accent);font-size:13px}
+.footer-about p{color:var(--txt2);font-size:12px;line-height:1.8;margin-bottom:12px}
+.footer-social{display:flex;gap:8px}
+.footer-social a{width:32px;height:32px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:12px}
+.footer-social a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.footer-links li{margin-bottom:6px}
+.footer-links li a{color:var(--txt2);font-size:12px;display:flex;align-items:center;gap:6px}
+.footer-links li a:hover{color:var(--accent);padding-left:4px}
+.footer-links li a i{font-size:6px;color:var(--accent)}
+.footer-contact li{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;color:var(--txt2);font-size:12px}
+.footer-contact li i{color:var(--accent);margin-top:2px}
+.footer-bottom{border-top:1px solid var(--border);padding:14px 0;text-align:center}
+.footer-bottom p{color:var(--muted);font-size:11px}
+.footer-bottom a{color:var(--accent);font-weight:500}
 
-/* === Back to Top === */
-.back-top {
-  position:fixed; bottom:24px; right:24px;
-  width:40px; height:40px;
-  background:var(--accent);
-  border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:#fff; font-size:14px;
-  cursor:pointer;
-  opacity:0; visibility:hidden;
-  transition:var(--transition);
-  z-index:999;
-}
-.back-top.visible { opacity:1; visibility:visible; }
-.back-top:hover { background:var(--accent-hover); transform:translateY(-3px); }
+/* Back to Top */
+.back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;cursor:pointer;opacity:0;visibility:hidden;transition:var(--tr);z-index:999}
+.back-top.visible{opacity:1;visibility:visible}
+.back-top:hover{background:var(--accent2);transform:translateY(-3px)}
 
-/* === Blogger Overrides === */
-.post-outer,.post { background:none!important; border:none!important; padding:0!important; }
-.post-body img { background:none; border:none; padding:0; border-radius:var(--radius); }
-#comments { background:none; }
-.widget ul { list-style:none; }
-.blog-posts .post-outer-container { margin-bottom:0; }
-.status-msg-wrap { margin:12px 0; padding:10px 14px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius); color:var(--accent); font-size:13px; }
+/* Blogger Overrides */
+.post-outer,.post{background:none!important;border:none!important;padding:0!important}
+.post-body img{background:none;border:none;padding:0;border-radius:var(--r)}
+#comments{background:none}
+.widget ul{list-style:none}
+.blog-posts .post-outer-container{margin-bottom:0}
+.status-msg-wrap{margin:12px 0;padding:10px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--r);color:var(--accent);font-size:13px}
 
-/* === Animations === */
-@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.movie-card { animation:fadeUp 0.4s ease forwards; }
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.movie-card{animation:fadeUp .4s ease forwards}
 .movie-card:nth-child(2){animation-delay:.05s}
 .movie-card:nth-child(3){animation-delay:.1s}
 .movie-card:nth-child(4){animation-delay:.15s}
@@ -774,72 +225,31 @@ ul,ol { list-style:none; }
 .movie-card:nth-child(8){animation-delay:.35s}
 .movie-card:nth-child(9){animation-delay:.4s}
 
-/* === Responsive === */
-@media(max-width:1024px){
-  .main-layout{grid-template-columns:1fr}
-  .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
-  .movie-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:768px){
-  .mobile-menu-btn{display:block}
-  .header-search{order:3;max-width:100%;width:100%;margin-top:10px}
-  .header-inner{flex-wrap:wrap}
-  .site-nav{display:none}
-  .site-nav.active{display:block}
-  .nav-list{flex-direction:column}
-  .nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:11px 16px}
-  .movie-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .sidebar{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .pd-top{flex-direction:column;align-items:center;text-align:center}
-  .pd-poster{width:180px;min-width:180px}
-  .pd-rating-row{justify-content:center}
-  .pd-labels{justify-content:center}
-  .pd-director{justify-content:center}
-  .tech-info{grid-template-columns:1fr}
-  .related-grid{grid-template-columns:repeat(2,1fr)}
-  .container{padding:0 12px}
-  .pd-title{font-size:20px}
-}
-@media(max-width:480px){
-  .movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .mc-info{padding:10px}
-  .mc-title{font-size:12px}
-  .mc-genre{font-size:10px}
-  .related-grid{grid-template-columns:1fr}
-  .dl-table{font-size:11px}
-  .dl-table thead th,.dl-table tbody td{padding:8px 10px}
-}
+/* Responsive */
+@media(max-width:1024px){.main-layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,1fr)}.movie-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.mobile-menu-btn{display:block}.header-search{order:3;max-width:100%;width:100%;margin-top:10px}.header-inner{flex-wrap:wrap}.site-nav{display:none}.site-nav.active{display:block}.nav-list{flex-direction:column}.nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:11px 16px}.movie-grid{grid-template-columns:repeat(2,1fr);gap:12px}.sidebar{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.pd-top{flex-direction:column;align-items:center;text-align:center}.pd-poster{width:180px;min-width:180px}.pd-rating-row{justify-content:center}.pd-labels{justify-content:center}.related-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 12px}.pd-title{font-size:20px}.tab-btn{padding:10px 16px;font-size:13px}}
+@media(max-width:480px){.movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}.mc-info{padding:10px}.mc-title{font-size:12px}.mc-genres{font-size:10px}.related-grid{grid-template-columns:1fr}}
 ]]></b:skin>
 </head>
 <body>
 
-<!-- Back to Top -->
-<a class='back-top' href='#' id='backTop' title='Back to Top'>
-  <i class='fas fa-chevron-up'/>
-</a>
+<a class='back-top' href='#' id='backTop' title='Back to Top'><i class='fas fa-chevron-up'/></a>
 
 <!-- Header -->
 <header class='site-header'>
   <div class='container'>
     <div class='header-inner'>
       <div class='logo'>
-        <a expr:href='data:blog.homepageUrl'>
-          <i class='fas fa-play-circle'/>
-          <span><data:blog.title/></span>
-        </a>
+        <a expr:href='data:blog.homepageUrl'><i class='fas fa-play-circle'/><span><data:blog.title/></span></a>
       </div>
       <div class='header-search'>
         <form class='search-box' expr:action='data:blog.searchUrl' method='get'>
-          <input autocomplete='off' name='q' placeholder='Search movies...' type='text'/>
+          <input autocomplete='off' name='q' placeholder='Search movies, series...' type='text'/>
           <button type='submit'><i class='fas fa-search'/></button>
         </form>
       </div>
       <div class='header-right'>
-        <button aria-label='Menu' class='mobile-menu-btn' id='mobileMenuBtn'>
-          <i class='fas fa-bars'/>
-        </button>
+        <button aria-label='Menu' class='mobile-menu-btn' id='mobileMenuBtn'><i class='fas fa-bars'/></button>
         <a expr:href='data:blog.homepageUrl + &quot;feeds/posts/default&quot;' title='RSS'><i class='fas fa-rss'/></a>
       </div>
     </div>
@@ -851,148 +261,84 @@ ul,ol { list-style:none; }
   <div class='container'>
     <ul class='nav-list'>
       <li><a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> Home</a></li>
+      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'><i class='fas fa-film'/> Movies</a></li>
+      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'><i class='fas fa-tv'/> Series</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Action&quot;'><i class='fas fa-fist-raised'/> Action</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Drama&quot;'><i class='fas fa-theater-masks'/> Drama</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Comedy&quot;'><i class='fas fa-laugh'/> Comedy</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Horror&quot;'><i class='fas fa-ghost'/> Horror</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Romance&quot;'><i class='fas fa-heart'/> Romance</a></li>
       <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Sci-Fi&quot;'><i class='fas fa-rocket'/> Sci-Fi</a></li>
-      <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Thriller&quot;'><i class='fas fa-skull-crossbones'/> Thriller</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- Main Content -->
+<!-- Main -->
 <main>
   <div class='container'>
 
-    <!-- Homepage / Label / Search -->
+    <!-- ===== HOMEPAGE / LABEL SEARCH ===== -->
     <b:if cond='data:view.isHomepage or data:view.isLabelSearch or data:view.isSearch'>
-
       <div class='main-layout'>
-        <!-- Main Content -->
         <div class='main-content'>
-          <b:section class='main-posts' id='main-posts' name='Main Blog Posts' maxwidgets='1' showaddelement='yes'>
-            <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
-              <b:includable id='main' var='this'>
-                <div class='movies-section'>
-                  <div class='section-header'>
-                    <h2><i class='fas fa-film'/> Movies</h2>
-                    <b:if cond='data:view.isLabelSearch'>
-                      <a expr:href='data:blog.homepageUrl'>View All</a>
-                    </b:if>
-                  </div>
-                  <div class='movie-grid'>
-                    <b:loop values='data:posts' var='post'>
-                      <b:include data='post' name='post'/>
-                    </b:loop>
-                  </div>
-                </div>
-                <b:include name='pagination'/>
-              </b:includable>
 
-              <b:includable id='post' var='post'>
-                <div class='movie-card'>
-                  <b:if cond='data:post.featuredImage'>
-                    <div class='mc-poster'>
-                      <a expr:href='data:post.url'>
-                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage resize 400'/>
-                      </a>
-                      <div class='mc-rating'><i class='fas fa-star'/> 7.8</div>
-                      <div class='mc-quality'>HD</div>
-                      <div class='mc-overlay'>
-                        <a class='mc-play' expr:href='data:post.url'><i class='fas fa-play'/></a>
-                      </div>
-                    </div>
-                  </b:if>
-                  <div class='mc-info'>
-                    <h3 class='mc-title'>
-                      <a expr:href='data:post.url'><data:post.title/></a>
-                    </h3>
-                    <div class='mc-meta'>
-                      <span class='mc-year'>2025</span>
-                      <span class='mc-genre'>
-                        <b:loop values='data:post.labels' var='label'>
-                          <a expr:href='data:label.url'><data:label.name/></a>
-                          <b:if cond='!data:label.isLast'>, </b:if>
-                        </b:loop>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </b:includable>
+          <!-- Movies / Series Tabs -->
+          <div class='content-tabs' id='contentTabs'>
+            <button class='tab-btn active' data-tab='movies' id='tabMovies' onclick='switchTab(&quot;movies&quot;)'><i class='fas fa-film'/> Movies</button>
+            <button class='tab-btn' data-tab='series' id='tabSeries' onclick='switchTab(&quot;series&quot;)'><i class='fas fa-tv'/> Series</button>
+          </div>
 
-              <b:includable id='pagination'>
-                <div class='pagination'>
-                  <b:if cond='data:newerPageUrl'>
-                    <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'/></a>
-                  </b:if>
-                  <b:if cond='data:olderPageUrl'>
-                    <a class='active' expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'/></a>
-                  </b:if>
-                </div>
-              </b:includable>
+          <!-- Movies Section -->
+          <div class='movies-section' id='moviesSection'>
+            <div class='section-header'>
+              <h2><i class='fas fa-film'/> Movies</h2>
+              <a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'>View All</a>
+            </div>
+            <div class='movie-grid' id='moviesGrid'>
+              <div class='mc-loading'><i class='fas fa-spinner'/><br/>Loading movies...</div>
+            </div>
+          </div>
 
-              <b:includable id='comments' var='post'>
-                <div class='comments-block'>
-                  <b:if cond='data:post.embedCommentForm'>
-                    <b:include data='post' name='threaded-comment-form'/>
-                  </b:if>
-                </div>
-              </b:includable>
-              <b:includable id='threaded-comment-form' var='post'>
-                <div id='comment-editor'/>
-                <script type='text/javascript'>
-                  BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
-                </script>
-              </b:includable>
-              <b:includable id='postCommentsAndAd' var='post'/>
-              <b:includable id='commentDeleteIcon' var='comment'/>
-              <b:includable id='backlinkDeleteIcon' var='backlink'/>
-              <b:includable id='postQuickEdit' var='post'/>
-              <b:includable id='threadedCommentJs' var='post'/>
-              <b:includable id='backlinks' var='post'/>
-              <b:includable id='feedLinks'/>
-              <b:includable id='feedLinksBody' var='links'/>
-            </b:widget>
-          </b:section>
+          <!-- Series Section (hidden by default) -->
+          <div class='movies-section' id='seriesSection' style='display:none'>
+            <div class='section-header'>
+              <h2><i class='fas fa-tv'/> Series</h2>
+              <a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'>View All</a>
+            </div>
+            <div class='movie-grid' id='seriesGrid'>
+              <div class='mc-loading'><i class='fas fa-spinner'/><br/>Loading series...</div>
+            </div>
+          </div>
+
+          <!-- Genre Tags -->
+          <div class='genre-section' id='genreSection'>
+            <div class='section-header'><h2><i class='fas fa-tags'/> Genre / Category</h2></div>
+            <div class='genre-list' id='genreList'>
+              <div class='mc-loading' style='padding:20px"><i class='fas fa-spinner' style='font-size:18px"/><br/>Loading genres...</div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <b:if cond='data:olderPageUrl'>
+            <div class='pagination'>
+              <a class='active' expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'/></a>
+            </div>
+          </b:if>
+
         </div>
 
         <!-- Sidebar -->
         <aside class='sidebar'>
           <b:section class='sidebar-widgets' id='sidebar' name='Sidebar Widgets' showaddelement='yes'>
-            <b:widget id='Label1' locked='false' title='Genre / Category' type='Label' version='2' visible='true'>
+            <b:widget id='PopularPosts1' locked='false' title='Popular' type='PopularPosts' version='2' visible='true'>
               <b:widget-settings>
-                <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
-                <b:widget-setting name='display'>CLOUD</b:widget-setting>
-                <b:widget-setting name='selectedLabelsList'/>
-                <b:widget-setting name='showType'>ALL</b:widget-setting>
-                <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
-              </b:widget-settings>
-              <b:includable id='main' var='this'>
-                <div class='sidebar-widget'>
-                  <div class='sw-title'><i class='fas fa-tags'/> Genre / Category</div>
-                  <div class='sw-content'>
-                    <div class='genre-list'>
-                      <b:loop values='data:labels' var='label'>
-                        <a class='genre-pill' expr:href='data:label.url'><data:label.name/></a>
-                      </b:loop>
-                    </div>
-                  </div>
-                </div>
-              </b:includable>
-            </b:widget>
-
-            <b:widget id='PopularPosts1' locked='false' title='Popular Movies' type='PopularPosts' version='2' visible='true'>
-              <b:widget-settings>
-                <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+                <b:widget-setting name='numItemsToShow'>6</b:widget-setting>
                 <b:widget-setting name='showThumbnails'>true</b:widget-setting>
                 <b:widget-setting name='showSnippets'>false</b:widget-setting>
                 <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main' var='this'>
                 <div class='sidebar-widget'>
-                  <div class='sw-title'><i class='fas fa-fire'/> Popular Movies</div>
+                  <div class='sw-title'><i class='fas fa-fire'/> Popular</div>
                   <div class='sw-content'>
                     <div class='popular-list'>
                       <b:loop index='i' values='data:posts' var='post'>
@@ -1009,39 +355,29 @@ ul,ol { list-style:none; }
                 </div>
               </b:includable>
             </b:widget>
-
             <b:widget id='HTML1' locked='false' title='Ad Space' type='HTML' version='2' visible='true'>
-              <b:widget-settings>
-                <b:widget-setting name='content'/>
-              </b:widget-settings>
+              <b:widget-settings><b:widget-setting name='content'/></b:widget-settings>
               <b:includable id='main'>
-                <div class='sidebar-ad'>
-                  <i class='fas fa-ad'/>
-                  <p>Ad Space - 300x250</p>
-                </div>
+                <div class='sidebar-ad'><i class='fas fa-ad'/><p>Ad Space - 300x250</p></div>
               </b:includable>
             </b:widget>
           </b:section>
         </aside>
       </div>
-
     </b:if>
 
-    <!-- Post Detail Page -->
+    <!-- ===== POST DETAIL PAGE ===== -->
     <b:if cond='data:view.isPost'>
       <b:section class='post-detail-section' id='post-detail-section' name='Post Detail' maxwidgets='1' showaddelement='yes'>
-        <b:widget id='Blog2' locked='true' title='Post Detail' type='Blog' version='2' visible='true'>
+        <b:widget id='Blog1' locked='true' title='Post Detail' type='Blog' version='2' visible='true'>
           <b:includable id='main' var='this'>
             <b:loop values='data:posts' var='post'>
               <b:include data='post' name='post'/>
             </b:loop>
           </b:includable>
-
           <b:includable id='post' var='post'>
             <div class='post-detail'>
               <div class='pd-wrap'>
-
-                <!-- Breadcrumb -->
                 <div class='pd-breadcrumb'>
                   <a expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> Home</a>
                   <i class='fas fa-chevron-right'/>
@@ -1051,13 +387,9 @@ ul,ol { list-style:none; }
                   </b:loop>
                   <span><data:post.title/></span>
                 </div>
-
-                <!-- Movie Top Section -->
                 <div class='pd-top'>
                   <b:if cond='data:post.featuredImage'>
-                    <div class='pd-poster'>
-                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
-                    </div>
+                    <div class='pd-poster'><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></div>
                   </b:if>
                   <div class='pd-info'>
                     <b:if cond='data:post.labels'>
@@ -1069,32 +401,18 @@ ul,ol { list-style:none; }
                     </b:if>
                     <h1 class='pd-title'><data:post.title/></h1>
                     <div class='pd-rating-row'>
-                      <div class='pd-stars'>
-                        <i class='fas fa-star'/>
-                        <i class='fas fa-star'/>
-                        <i class='fas fa-star'/>
-                        <i class='fas fa-star-half-alt'/>
-                        <i class='far fa-star'/>
-                      </div>
-                      <span class='pd-rating-num'>7.8</span>
+                      <div class='pd-stars'><i class='fas fa-star'/><i class='fas fa-star'/><i class='fas fa-star'/><i class='fas fa-star-half-alt'/><i class='far fa-star'/></div>
+                      <span class='pd-rating-num' id='postRating'>--</span>
                       <div class='pd-meta-items'>
                         <span><data:post.date/></span>
-                        <span class='dot'>•</span>
+                        <span class='dot'>&#8226;</span>
                         <span><i class='far fa-clock'/> 2h 15min</span>
                       </div>
                     </div>
-                    <div class='pd-director'>
-                      <strong>Director:</strong> Christopher Nolan
-                    </div>
+                    <div class='pd-director'><strong>Director:</strong> <span id='postDirector'>--</span></div>
                   </div>
                 </div>
-
-                <!-- Post Body (Synopsis + Info + Download) -->
-                <div class='post-body' style='color:var(--text-secondary);font-size:14px;line-height:1.9;'>
-                  <data:post.body/>
-                </div>
-
-                <!-- Share -->
+                <div class='post-body'><data:post.body/></div>
                 <div class='share-row'>
                   <span><i class='fas fa-share-alt'/> Share:</span>
                   <a class='share-btn fb' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-facebook-f'/></a>
@@ -1102,42 +420,19 @@ ul,ol { list-style:none; }
                   <a class='share-btn tg' expr:href='&quot;https://telegram.me/share/url?url=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-telegram-plane'/></a>
                   <a class='share-btn wa' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.url' rel='nofollow noopener' target='_blank'><i class='fab fa-whatsapp'/></a>
                 </div>
-
-                <!-- Related Posts -->
-                <div style='margin-top:24px;'>
-                  <div class='section-header'>
-                    <h2><i class='fas fa-film'/> Related Movies</h2>
-                  </div>
-                  <div class='related-grid' id='relatedPosts'></div>
+                <div style='margin-top:24px'>
+                  <div class='section-header'><h2><i class='fas fa-film'/> Related</h2></div>
+                  <div class='related-grid' id='relatedPosts'/>
                 </div>
-
-                <!-- Comments -->
                 <div class='comments-section'>
                   <h3><i class='fas fa-comments'/> Comments</h3>
-                  <b:if cond='data:post.allowComments'>
-                    <div id='comments'>
-                      <b:include data='post' name='comments'/>
-                    </div>
-                  </b:if>
+                  <b:if cond='data:post.allowComments'><div id='comments'><b:include data='post' name='comments'/></div></b:if>
                 </div>
-
               </div>
             </div>
           </b:includable>
-
-          <b:includable id='comments' var='post'>
-            <div class='comments-block'>
-              <b:if cond='data:post.embedCommentForm'>
-                <b:include data='post' name='threaded-comment-form'/>
-              </b:if>
-            </div>
-          </b:includable>
-          <b:includable id='threaded-comment-form' var='post'>
-            <div id='comment-editor'/>
-            <script type='text/javascript'>
-              BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
-            </script>
-          </b:includable>
+          <b:includable id='comments' var='post'><div class='comments-block'><b:if cond='data:post.embedCommentForm'><b:include data='post' name='threaded-comment-form'/></b:if></div></b:includable>
+          <b:includable id='threaded-comment-form' var='post'><div id='comment-editor'/><script type='text/javascript'>BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);</script></b:includable>
           <b:includable id='postCommentsAndAd' var='post'/>
           <b:includable id='commentDeleteIcon' var='comment'/>
           <b:includable id='backlinkDeleteIcon' var='backlink'/>
@@ -1159,19 +454,19 @@ ul,ol { list-style:none; }
     <div class='footer-grid'>
       <div class='footer-col footer-about'>
         <h4><i class='fas fa-play-circle'/> <data:blog.title/></h4>
-        <p>Your ultimate movie streaming blog. Watch the latest movies, TV series and more with Myanmar subtitle.</p>
+        <p>Watch the latest movies and series with Myanmar subtitle. Your ultimate movie streaming blog.</p>
         <div class='footer-social'>
-          <a href='#' title='Facebook'><i class='fab fa-facebook-f'/></a>
-          <a href='#' title='Telegram'><i class='fab fa-telegram-plane'/></a>
-          <a href='#' title='YouTube'><i class='fab fa-youtube'/></a>
+          <a href='#'><i class='fab fa-facebook-f'/></a>
+          <a href='#'><i class='fab fa-telegram-plane'/></a>
+          <a href='#'><i class='fab fa-youtube'/></a>
         </div>
       </div>
       <div class='footer-col'>
         <h4><i class='fas fa-link'/> Quick Links</h4>
         <ul class='footer-links'>
           <li><a expr:href='data:blog.homepageUrl'><i class='fas fa-chevron-right'/> Home</a></li>
-          <li><a href='#'><i class='fas fa-chevron-right'/> About</a></li>
-          <li><a href='#'><i class='fas fa-chevron-right'/> Contact</a></li>
+          <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'><i class='fas fa-chevron-right'/> Movies</a></li>
+          <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'><i class='fas fa-chevron-right'/> Series</a></li>
           <li><a href='#'><i class='fas fa-chevron-right'/> Privacy Policy</a></li>
           <li><a href='#'><i class='fas fa-chevron-right'/> DMCA</a></li>
         </ul>
@@ -1181,7 +476,6 @@ ul,ol { list-style:none; }
         <ul class='footer-contact'>
           <li><i class='fas fa-envelope'/> admin@yourblog.com</li>
           <li><i class='fab fa-telegram-plane'/> t.me/yourchannel</li>
-          <li><i class='fas fa-globe'/> www.yourblog.com</li>
         </ul>
       </div>
     </div>
@@ -1194,46 +488,212 @@ ul,ol { list-style:none; }
 <!-- JavaScript -->
 <script>
 //<![CDATA[
+var BLOG_URL = '<data:blog.homepageUrl/>';
+var SKIP_LABELS = ['Movie','Series'];
+var RATING_PREFIX = 'Rating-';
+
 // Back to Top
-var backToTop=document.getElementById('backToTop');
-if(backToTop){
-  window.addEventListener('scroll',function(){
-    if(window.pageYOffset>300) backToTop.classList.add('visible');
-    else backToTop.classList.remove('visible');
-  });
-  backToTop.addEventListener('click',function(e){
-    e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});
+(function(){
+  var bt=document.getElementById('backTop');
+  if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('visible',window.pageYOffset>300);});bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});}
+})();
+
+// Mobile Menu
+(function(){
+  var m=document.getElementById('mobileMenuBtn'),n=document.getElementById('siteNav');
+  if(m&&n)m.addEventListener('click',function(){n.classList.toggle('active');});
+})();
+
+// Year
+(function(){var y=document.getElementById('currentYear');if(y)y.textContent=new Date().getFullYear();})();
+
+// Extract rating from labels
+function getRating(labels){
+  for(var i=0;i<labels.length;i++){
+    if(labels[i].indexOf(RATING_PREFIX)===0) return labels[i].replace(RATING_PREFIX,'');
+  }
+  return null;
+}
+
+// Filter genre labels (remove Movie, Series, Rating-X.X)
+function getGenres(labels){
+  return labels.filter(function(l){
+    return SKIP_LABELS.indexOf(l)===-1 && l.indexOf(RATING_PREFIX)!==0;
   });
 }
-// Mobile Menu
-var mmb=document.getElementById('mobileMenuBtn');
-var sn=document.getElementById('siteNav');
-if(mmb&&sn) mmb.addEventListener('click',function(){sn.classList.toggle('active');});
-// Year
-var ye=document.getElementById('currentYear');
-if(ye) ye.textContent=new Date().getFullYear();
+
+// Get year from date string
+function getYear(dateStr){
+  if(!dateStr) return '';
+  var d=new Date(dateStr);
+  return d.getFullYear();
+}
+
+// Build movie card HTML
+function buildCard(entry, rating){
+  var title = entry.title.$t;
+  var link = '';
+  var img = 'https://via.placeholder.com/400x600/1c1f2e/22c55e?text=No+Poster';
+  var labels = [];
+  var year = '';
+
+  entry.link.forEach(function(l){if(l.rel==='alternate')link=l.href;});
+  if(entry.media$thumbnail) img = entry.media$thumbnail.url.replace('/s72-c/','/w400-h600-c/');
+  if(entry.published$dt) year = getYear(entry.published$dt.$t);
+  if(entry.category) entry.category.forEach(function(c){labels.push(c.term);});
+
+  var ratingVal = rating || getRating(labels);
+  var genres = getGenres(labels);
+
+  var ratingBadge = ratingVal
+    ? '<div class="mc-rating"><i class="fas fa-star"/> '+ratingVal+'</div>'
+    : '';
+
+  var genreTags = genres.length > 0
+    ? '<div class="mc-genres">'+genres.map(function(g){return '<span>'+g+'</span>';}).join('')+'</div>'
+    : '';
+
+  return '<div class="movie-card">'
+    +'<a href="'+link+'">'
+    +'<div class="mc-poster">'
+    +'<img alt="'+title+'" src="'+img+'"/>'
+    +ratingBadge
+    +'<div class="mc-quality">HD</div>'
+    +'<div class="mc-overlay"><div class="mc-play"><i class="fas fa-play"/></div></div>'
+    +'</div>'
+    +'</a>'
+    +'<div class="mc-info">'
+    +'<h3 class="mc-title"><a href="'+link+'">'+title+'</a></h3>'
+    +'<div class="mc-meta">'
+    +(year ? '<span class="mc-year">'+year+'</span>' : '')
+    +genreTags
+    +'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+// Load posts by label via JSON API
+function loadPosts(label, containerId, maxResults) {
+  maxResults = maxResults || 9;
+  var container = document.getElementById(containerId);
+  if(!container) return;
+
+  var url = BLOG_URL + 'feeds/posts/default/-/' + encodeURIComponent(label)
+    + '?alt=json&max-results=' + maxResults;
+
+  fetch(url)
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data.feed && data.feed.entry && data.feed.entry.length > 0){
+        var html = '';
+        data.feed.entry.forEach(function(e){html += buildCard(e);});
+        container.innerHTML = html;
+
+        // Collect unique genres for genre section
+        if(label === 'Movie') collectGenres(data.feed.entry);
+      } else {
+        container.innerHTML = '<div class="mc-loading" style="padding:40px"><i class="fas fa-film" style="font-size:32px;color:var(--muted)"></i><br/>No ' + label + ' found.<br/><span style="font-size:12px;color:var(--muted)">Create posts with "'+label+'" label.</span></div>';
+      }
+    })
+    .catch(function(err){
+      container.innerHTML = '<div class="mc-loading" style="padding:40px"><i class="fas fa-exclamation-triangle" style="font-size:32px;color:var(--accent)"></i><br/>Failed to load.</div>';
+    });
+}
+
+// Collect genres from all movie posts
+var allGenres = [];
+function collectGenres(entries){
+  var genreSet = {};
+  entries.forEach(function(e){
+    if(e.category){
+      e.category.forEach(function(c){
+        var t = c.term;
+        if(SKIP_LABELS.indexOf(t)===-1 && t.indexOf(RATING_PREFIX)!==0 && !genreSet[t]){
+          genreSet[t] = true;
+          allGenres.push(t);
+        }
+      });
+    }
+  });
+  allGenres.sort();
+  renderGenres();
+}
+
+function renderGenres(){
+  var container = document.getElementById('genreList');
+  if(!container || allGenres.length === 0) return;
+  var html = '';
+  allGenres.forEach(function(g){
+    html += '<a class="genre-pill" href="'+BLOG_URL+'search/label/'+encodeURIComponent(g)+'">'+g+'</a>';
+  });
+  container.innerHTML = html;
+}
+
+// Tab Switching
+function switchTab(tab){
+  var moviesSection = document.getElementById('moviesSection');
+  var seriesSection = document.getElementById('seriesSection');
+  var tabMovies = document.getElementById('tabMovies');
+  var tabSeries = document.getElementById('tabSeries');
+
+  if(tab === 'movies'){
+    moviesSection.style.display = 'block';
+    seriesSection.style.display = 'none';
+    tabMovies.classList.add('active');
+    tabSeries.classList.remove('active');
+  } else {
+    moviesSection.style.display = 'none';
+    seriesSection.style.display = 'block';
+    tabMovies.classList.remove('active');
+    tabSeries.classList.add('active');
+  }
+}
+
+// Post Detail: Extract rating from page labels
+(function(){
+  if(document.getElementById('postRating')){
+    var labels = [];
+    document.querySelectorAll('.pd-label').forEach(function(el){
+      labels.push(el.textContent.trim());
+    });
+    var r = getRating(labels);
+    if(r) document.getElementById('postRating').textContent = r;
+    else document.getElementById('postRating').textContent = '--';
+  }
+})();
+
 // Related Posts
-if(document.getElementById('relatedPosts')){
-  var lb=document.querySelectorAll('.pd-label');
-  if(lb.length>0){
-    var furl=lb[0].getAttribute('href');
-    if(furl){
-      fetch(furl+'?max-results=3&alt=json').then(function(r){return r.json();}).then(function(d){
+(function(){
+  if(!document.getElementById('relatedPosts')) return;
+  var labels = document.querySelectorAll('.pd-label');
+  if(labels.length > 0){
+    var url = labels[0].getAttribute('href');
+    if(url){
+      fetch(url+'?max-results=3&alt=json').then(function(r){return r.json();}).then(function(d){
         var c=document.getElementById('relatedPosts');
         if(d.feed&&d.feed.entry){
           var h='';
           d.feed.entry.forEach(function(e){
             var t=e.title.$t,l='',img='https://via.placeholder.com/400x225/1c1f2e/22c55e?text=Movie';
             e.link.forEach(function(k){if(k.rel==='alternate')l=k.href;});
-            if(e.media$thumbnail) img=e.media$thumbnail.url.replace('/s72-c/','/w400-h225-c/');
-            if(l&&t) h+='<div class="related-card"><div class="related-card-img"><img alt="'+t+'" src="'+img+'"/></div><div class="related-card-info"><h4><a href="'+l+'">'+t+'</a></h4></div></div>';
+            if(e.media$thumbnail)img=e.media$thumbnail.url.replace('/s72-c/','/w400-h225-c/');
+            if(l&&t)h+='<div class="related-card"><div class="related-card-img"><img alt="'+t+'" src="'+img+'"/></div><div class="related-card-info"><h4><a href="'+l+'">'+t+'</a></h4></div></div>';
           });
           c.innerHTML=h;
         }
       }).catch(function(){});
     }
   }
-}
+})();
+
+// Load movies and series on homepage
+(function(){
+  var isHome = document.getElementById('moviesGrid');
+  if(isHome){
+    loadPosts('Movie', 'moviesGrid', 9);
+    loadPosts('Series', 'seriesGrid', 9);
+  }
+})();
 //]]>
 </script>
 
