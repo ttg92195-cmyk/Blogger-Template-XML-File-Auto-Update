@@ -13,10 +13,10 @@
 
 <b:skin><![CDATA[
 /*=======================================
-  CINEMA DARK V5 - Fixed Homepage Cards
-  Homepage: ONLY card grid (no post body)
+  CINEMA DARK V6 - Clean Homepage Grid
+  No tabs, no excerpts, just poster cards
   Post Page: Full detail with body
-  Version: 5.0
+  Version: 6.0
 =======================================*/
 :root{--bg:#0f1117;--bg2:#161922;--card:#1c1f2e;--card-h:#252940;--input:#1c1f2e;--txt:#fff;--txt2:#8b92a5;--muted:#5a6178;--accent:#22c55e;--accent2:#16a34a;--star:#fbbf24;--border:#2a2d3e;--r:8px;--r2:12px;--r3:16px;--shadow:0 4px 15px rgba(0,0,0,.3);--tr:.25s ease;--max-w:1100px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -55,12 +55,6 @@ ul,ol{list-style:none}
 .nav-list{display:flex;align-items:center}
 .nav-list li a{display:flex;align-items:center;gap:6px;padding:12px 16px;color:var(--txt2);font-size:13px;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent}
 .nav-list li a:hover,.nav-list li a.active{color:var(--accent);border-bottom-color:var(--accent)}
-
-/* Content Tabs */
-.content-tabs{display:flex;align-items:center;gap:0;margin:24px 0 0;border-bottom:2px solid var(--border)}
-.tab-btn{padding:12px 24px;font-size:14px;font-weight:600;color:var(--txt2);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:var(--tr);display:flex;align-items:center;gap:8px}
-.tab-btn:hover{color:var(--txt)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* Section Header */
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
@@ -201,23 +195,25 @@ body.post-page .main-layout{grid-template-columns:1fr}
 body.post-page .sidebar{display:none}
 
 /* Homepage: Hide ALL Blogger default post rendering */
-body:not(.post-page) .blog-posts{display:none!important}
-body:not(.post-page) .post-outer{display:none!important}
-body:not(.post-page) .post{display:none!important}
-body:not(.post-page) .blog-pager{display:none!important}
-body:not(.post-page) .post-body{display:none!important}
-body:not(.post-page) .post-footer{display:none!important}
-body:not(.post-page) .post-share-buttons{display:none!important}
-body:not(.post-page) .post-comment-link{display:none!important}
-body:not(.post-page) .post-outer-container{display:none!important}
-body:not(.post-page) .post-timestamp{display:none!important}
-body:not(.post-page) .post-title{display:none!important}
+.blog-posts .post-outer{display:none!important}
+.blog-posts .post{display:none!important}
+.blog-posts .post-body{display:none!important}
+.blog-posts .post-footer{display:none!important}
+.blog-posts .post-share-buttons{display:none!important}
+.blog-posts .post-comment-link{display:none!important}
+.blog-posts .post-outer-container{display:none!important}
+.blog-posts .post-timestamp{display:none!important}
+.blog-posts .post-title{display:none!important}
+.blog-pager{display:none!important}
+.widget .blog-pager{display:none!important}
 
 /* BUT show our custom movie grid on homepage */
-body:not(.post-page) .home-cards-area{display:block!important}
+.home-cards-area{display:block!important}
 
-/* Status message */
-.status-msg-wrap{margin:12px 0;padding:10px 14px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--r);color:var(--accent);font-size:13px}
+/* Hide Blogger status message (Home > Movie > All breadcrumb) on ALL pages */
+.status-msg-wrap{display:none!important}
+.status-msg-body{display:none!important}
+.status-msg-border{display:none!important}
 
 /* Generic Blogger cleanup */
 .widget ul{list-style:none}
@@ -238,7 +234,7 @@ body:not(.post-page) .home-cards-area{display:block!important}
 
 /* Responsive */
 @media(max-width:1024px){.main-layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,1fr)}.movie-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.mobile-menu-btn{display:block}.header-search{order:3;max-width:100%;width:100%;margin-top:10px}.header-inner{flex-wrap:wrap}.site-nav{display:none}.site-nav.active{display:block}.nav-list{flex-direction:column}.nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:11px 16px}.movie-grid{grid-template-columns:repeat(2,1fr);gap:12px}.sidebar{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.pd-top{flex-direction:column;align-items:center;text-align:center}.pd-poster{width:180px;min-width:180px}.pd-rating-row{justify-content:center}.pd-labels{justify-content:center}.related-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 12px}.pd-title{font-size:20px}.tab-btn{padding:10px 16px;font-size:13px}body.post-page .sidebar{display:none!important}}
+@media(max-width:768px){.mobile-menu-btn{display:block}.header-search{order:3;max-width:100%;width:100%;margin-top:10px}.header-inner{flex-wrap:wrap}.site-nav{display:none}.site-nav.active{display:block}.nav-list{flex-direction:column}.nav-list li a{border-bottom:1px solid var(--border);width:100%;padding:11px 16px}.movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}.mc-poster{aspect-ratio:2/3}.mc-info{padding:8px}.mc-title{font-size:12px}.mc-year{font-size:11px}.mc-genres{font-size:10px}.sidebar{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.pd-top{flex-direction:column;align-items:center;text-align:center}.pd-poster{width:180px;min-width:180px}.pd-rating-row{justify-content:center}.pd-labels{justify-content:center}.related-grid{grid-template-columns:repeat(2,1fr)}.container{padding:0 10px}.pd-title{font-size:20px}body.post-page .sidebar{display:none!important}}
 @media(max-width:480px){.movie-grid{grid-template-columns:repeat(2,1fr);gap:10px}.mc-info{padding:10px}.mc-title{font-size:12px}.mc-genres{font-size:10px}.related-grid{grid-template-columns:1fr}}
 ]]></b:skin>
 </head>
@@ -306,13 +302,8 @@ body:not(.post-page) .home-cards-area{display:block!important}
               <!-- ========== HOMEPAGE / LABEL / SEARCH ========== -->
               <b:if cond='data:blog.pageType != &quot;item&quot;'>
 
-                <!-- Movies/Series Tabs + Card Grid -->
+                <!-- Card Grid - No Tabs -->
                 <div class='home-cards-area'>
-                  <div class='content-tabs' id='contentTabs'>
-                    <button class='tab-btn active' data-tab='movies' id='tabMovies'><i class='fas fa-film'></i> Movies</button>
-                    <button class='tab-btn' data-tab='series' id='tabSeries'><i class='fas fa-tv'></i> Series</button>
-                  </div>
-
                   <div class='movies-section'>
                     <div class='movie-grid' id='movieGrid'>
                       <b:loop values='data:posts' var='post'>
@@ -430,6 +421,9 @@ body:not(.post-page) .home-cards-area{display:block!important}
                 </div>
               </div>
             </b:includable>
+
+            <!-- Empty post includable to prevent default Blogger rendering -->
+            <b:includable id='post' var='post'></b:includable>
 
             <!-- Required empty includables -->
             <b:includable id='comments' var='post'>
@@ -671,64 +665,6 @@ function processCards(){
   });
 }
 
-// Tab Switching for Movies / Series
-function initTabs(){
-  var tabMovies = document.getElementById('tabMovies');
-  var tabSeries = document.getElementById('tabSeries');
-  if(!tabMovies || !tabSeries) return;
-
-  var cards = document.querySelectorAll('.movie-card');
-  if(cards.length === 0) return;
-
-  function switchTab(tab){
-    var isMovie = (tab === 'movies');
-    tabMovies.classList.toggle('active', isMovie);
-    tabSeries.classList.toggle('active', !isMovie);
-
-    var visibleCount = 0;
-    cards.forEach(function(card){
-      var labels = [];
-      var labelEls = card.querySelectorAll('.label-data');
-      labelEls.forEach(function(el){
-        labels.push(el.getAttribute('data-name'));
-      });
-
-      var hasMovie = labels.indexOf('Movie') !== -1;
-      var hasSeries = labels.indexOf('Series') !== -1;
-
-      if(isMovie){
-        card.style.display = hasMovie ? '' : 'none';
-        if(hasMovie) visibleCount++;
-      } else {
-        card.style.display = hasSeries ? '' : 'none';
-        if(hasSeries) visibleCount++;
-      }
-    });
-
-    // Show empty message if no cards visible
-    var grid = document.getElementById('movieGrid');
-    var emptyMsg = grid ? grid.querySelector('.mc-empty') : null;
-    if(visibleCount === 0 && grid){
-      if(!emptyMsg){
-        var empty = document.createElement('div');
-        empty.className = 'mc-empty';
-        empty.innerHTML = '<i class="fas fa-film"></i>No ' + (isMovie ? 'movies' : 'series') + ' found.<br/><small>Create posts with "' + (isMovie ? 'Movie' : 'Series') + '" label.</small>';
-        grid.appendChild(empty);
-      } else {
-        emptyMsg.style.display = 'block';
-      }
-    } else if(emptyMsg){
-      emptyMsg.style.display = 'none';
-    }
-  }
-
-  tabMovies.addEventListener('click',function(){switchTab('movies');});
-  tabSeries.addEventListener('click',function(){switchTab('series');});
-
-  // Start with Movies tab
-  switchTab('movies');
-}
-
 // Post Detail: Extract rating from labels
 function processPostDetail(){
   var ratingEl = document.getElementById('postRating');
@@ -776,7 +712,6 @@ function processPostDetail(){
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function(){
   processCards();
-  initTabs();
   processPostDetail();
 });
 //]]>
