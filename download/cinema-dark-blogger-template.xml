@@ -174,6 +174,11 @@ ul,ol{list-style:none}
 .pd-poster{width:200px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.08)}
 .pd-poster img{width:100%;height:100%;object-fit:cover;display:block}
 
+/* Hero Banner (Cover Image) */
+.pd-hero{position:relative;width:100%;height:220px;border-radius:var(--r3);overflow:hidden;margin-bottom:20px}
+.pd-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat}
+.pd-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.7))}
+
 /* Centered Title */
 .pd-title{text-align:center;font-size:20px;font-weight:800;line-height:1.35;margin-bottom:14px;padding:0 10px}
 
@@ -503,6 +508,8 @@ body.no-scroll{overflow:hidden}
                 <b:loop values='data:post.labels' var='label'>
                   <span class='hidden-el label-data' expr:data-name='data:label.name'><data:label.name/></span>
                 </b:loop>
+                <!-- Hidden post body for poster extraction -->
+                <span class='hidden-el card-body-data'><data:post.body/></span>
                 <!-- Poster -->
                 <a expr:href='data:post.url'>
                   <div class='mc-poster'>
@@ -535,11 +542,20 @@ body.no-scroll{overflow:hidden}
                     <span><data:post.title/></span>
                   </div>
 
-                  <!-- Centered Poster -->
+                  <!-- Hero Banner (Cover Image from post body) -->
+                  <div class='pd-hero' id='pdHero' style='display:none'>
+                    <div class='pd-hero-bg' id='pdHeroBg'></div>
+                    <div class='pd-hero-overlay'></div>
+                  </div>
+                  <!-- Centered Poster (Poster Image from post body) -->
                   <div class='pd-poster-wrap'>
-                    <b:if cond='data:post.featuredImage'>
-                      <div class='pd-poster'><img expr:alt='data:post.title' expr:src='data:post.featuredImage'/></div>
-                    </b:if>
+                    <div class='pd-poster' id='pdPosterWrap'>
+                      <b:if cond='data:post.featuredImage'>
+                        <img id='pdPosterImg' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                      <b:else/>
+                        <img id='pdPosterImg' alt='Poster' src='https://via.placeholder.com/400x600/1c1f2e/22c55e?text=No+Poster'/>
+                      </b:if>
+                    </div>
                   </div>
 
                   <!-- Centered Title -->
@@ -878,6 +894,17 @@ function isGenreLabel(name){
   return true;
 }
 
+// Extract Cover & Poster URLs from post body HTML
+// Format: <h2>Cover</h2><img src="URL" alt="cover"/> / <h2>Poster</h2><img src="URL" alt="poster"/>
+function extractCoverPoster(html){
+  var cover='', poster='';
+  var c = html.match(/<h2[^>]*>\s*Cover\s*<\/h2>\s*<img[^>]+src=["']([^"']+)["']/i);
+  if(c) cover = c[1];
+  var p = html.match(/<h2[^>]*>\s*Poster\s*<\/h2>\s*<img[^>]+src=["']([^"']+)["']/i);
+  if(p) poster = p[1];
+  return {cover:cover, poster:poster};
+}
+
 // Process all movie cards - add year, rating badge, genre tags
 function processCards(){
   var cards = document.querySelectorAll('.movie-card');
@@ -889,6 +916,17 @@ function processCards(){
     labelEls.forEach(function(el){
       labels.push(el.getAttribute('data-name'));
     });
+
+    // Extract poster from post body (replaces featuredImage)
+    var bodyData = card.querySelector('.card-body-data');
+    if(bodyData){
+      var bodyHtml = bodyData.innerHTML;
+      var imgs = extractCoverPoster(bodyHtml);
+      if(imgs.poster){
+        var cardImg = card.querySelector('.mc-poster img');
+        if(cardImg) cardImg.src = imgs.poster;
+      }
+    }
 
     // Year
     var yearEl = card.querySelector('.mc-year');
@@ -1069,9 +1107,42 @@ function processPostDetail(){
     labelEls.forEach(function(el){ el.parentNode.removeChild(el); });
   }
 
-  // Post body renders as-is (card-style HTML from sample-movie-posts.html)
-  // No tech metadata extraction or table conversion needed
-  // The post body HTML contains styled cards (Synopsis, Download, Trailer)
+  // Extract Cover & Poster from post body
+  var pdBody = document.getElementById('pdBody');
+  if(pdBody){
+    var bodyHtml = pdBody.innerHTML;
+    var cp = extractCoverPoster(bodyHtml);
+
+    // Apply poster to poster card
+    if(cp.poster){
+      var posterImg = document.getElementById('pdPosterImg');
+      if(posterImg) posterImg.src = cp.poster;
+    }
+
+    // Apply cover to hero banner
+    if(cp.cover){
+      var hero = document.getElementById('pdHero');
+      var heroBg = document.getElementById('pdHeroBg');
+      if(hero && heroBg){
+        heroBg.style.backgroundImage = 'url(' + cp.cover + ')';
+        hero.style.display = 'block';
+      }
+    }
+
+    // Hide Cover/Poster h2 sections from post body (already displayed above)
+    var h2s = pdBody.querySelectorAll('h2');
+    for(var i = 0; i < h2s.length; i++){
+      var htxt = h2s[i].textContent.trim().toLowerCase();
+      if(htxt === 'cover' || htxt === 'poster'){
+        h2s[i].style.display = 'none';
+        // Hide the next <img> sibling
+        var sib = h2s[i].nextElementSibling;
+        if(sib && sib.tagName === 'IMG'){
+          sib.style.display = 'none';
+        }
+      }
+    }
+  }
 }
 
 // Related Posts (JSON feed for post page only)
@@ -1095,7 +1166,6 @@ function processPostDetail(){
         }
       }).catch(function(){});
     }
-  }
 })();
 
 // Initialize everything when DOM is ready
