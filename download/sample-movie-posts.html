@@ -30,9 +30,20 @@
   <h2>Poster</h2>
   <img src="POSTER_IMAGE_URL" alt="poster"/>
 
-  Cover = ပေါ်မှာ Landscape Banner (16:9)
-  Poster = အောက်က Portrait Poster (2:3)
+  Cover = ပေါ်မှာ Landscape Banner (16:9) → Hero Banner
+  Poster = အောက်က Portrait Poster (2:3) → Poster Card + Homepage Card
   Cover/Poster မပါလျှင် → Featured Image ကို သုံးပါမည်
+
+===========================================
+  Post Body ကုဒ် အစုံ:
+===========================================
+
+  <h2>Cover</h2>      → Hero Banner အဖြစ် ပြပါမည် (JS ဖွင့်သွားမည်)
+  <h2>Poster</h2>     → Poster Card အဖြစ် ပြပါမည် (JS ဖွင့်သွားမည်)
+  <h2>Synopsis</h2>   → ခေါင်းးလံဖွင့်စဉ်း အတိုင်
+  <h2>Information</h2> → အချက်အလက် ကိုယ်ရေး grid
+  <h2>Server 1</h2>   → Download server ၁
+  <h2>Server 2</h2>   → Download server ၂
 
 ===========================================
   Labels နမူနာ ဥပမာ:
@@ -55,34 +66,50 @@
 <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg" alt="cover"/>
 
 <h2>Poster</h2>
-<img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg" alt="poster"/>
+<img src="https://m.media-amazon.com/images/M/MV5BYTJmNzY1MjMtZjdkOC00MDI0LWFjMjAtYzU3NGM3NjI2ZjJlXkEyXkFqcGc@._V1_.jpg" alt="poster"/>
 
-<h2>Synopsis</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-film"></i> Synopsis</div>
 <p><strong>Inception</strong> (၂၀၁၀) သည် <strong>Christopher Nolan</strong> ရေးသားခဲ့သော နွယ်မြူမှုဆန်အရောင်ရှင်ပွဲရုပ်ရှင်ဖြစ်ပါသည်။ အဓိကရုပ်ရှင်သုံးသော် တကယ်လမ်းညွှန်သူများဖြစ်သော <strong>Leonardo DiCaprio</strong>, <strong>Joseph Gordon-Levitt</strong>, <strong>Elliot Page</strong> နှင့် <strong>Tom Hardy</strong> တို့ အဓိကပါဝင်ကြသည်။</p>
 <p>Dom Cobb (Leonardo DiCaprio) သည် အရည်အသွေးမြင့်သော စားမှုန်ဝါသနာရှင်တစ်ယောက်ဖြစ်ပြီး လူသားများ၏ အုပ်စုတွင်းဝါသနာများကို ဖြတ်သန်းပေးနိုင်သော အရည်အသွေးဆုံးပိုင်ဆိုင်သူဖြစ်သည်။ တစ်နေ့ကြား Inception လုပ်ငန်းကို လုပ်ဆောင်ရန် ကြိုးစားပြီး အုပ်စုတွင်းထဲတွင် Limbo ဟုခေါ်သော မနက်ရှူမှုအရပ်တွင် ပိုက်စီးနေခြင်းတို့သည် ရုပ်ရှင်၏ အဓိကဇာတ်လမ်းလမ်းကြောင်းများဖြစ်သည်။</p>
+</div>
 
-<h2>Information</h2>
-<table>
-<tr><td>Quality</td><td>BluRay 1080p</td></tr>
-<tr><td>Format</td><td>mp4 / mkv</td></tr>
-<tr><td>Genre</td><td>Action, Sci-Fi, Thriller</td></tr>
-<tr><td>Duration</td><td>02:28:00</td></tr>
-<tr><td>Subtitle</td><td>Myanmar Subtitle (Hardsub)</td></tr>
-<tr><td>Director</td><td>Christopher Nolan</td></tr>
-</table>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-info-circle"></i> Information</div>
+<div class="pd-meta-grid">
+<div class="pd-meta-item"><span class="pm-label">Quality</span><span class="pm-value">BluRay 1080p</span></div>
+<div class="pd-meta-item"><span class="pm-label">Format</span><span class="pm-value">mp4 / mkv</span></div>
+<div class="pd-meta-item genre-v"><span class="pm-label">Genre</span><span class="pm-value">Action, Sci-Fi, Thriller</span></div>
+<div class="pd-meta-item"><span class="pm-label">Duration</span><span class="pm-value">02:28:00</span></div>
+<div class="pd-meta-item"><span class="pm-label">Subtitle</span><span class="pm-value">Myanmar Subtitle (Hardsub)</span></div>
+<div class="pd-meta-item"><span class="pm-label">Director</span><span class="pm-value">Christopher Nolan</span></div>
+<div class="pd-meta-item"><span class="pm-label">Release</span><span class="pm-value">2010</span></div>
+<div class="pd-meta-item"><span class="pm-label">Rating</span><span class="pm-value">⭐ 8.8 / 10</span></div>
+</div>
+</div>
 
-<h2>Server 1</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-download"></i> Server 1</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>BluRay 1080p</td><td><a href="#">Google Drive - 1.2 GB</a></td></tr>
 <tr><td>BluRay 1080p</td><td><a href="#">Mega.nz - 1.2 GB</a></td></tr>
 <tr><td>WEB-DL 720p</td><td><a href="#">Yoteshin - 950 MB</a></td></tr>
+<tr><td>WEB-DL 480p</td><td><a href="#">Telegram - 600 MB</a></td></tr>
 </table>
+</div>
+</div>
 
-<h2>Server 2</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-server"></i> Server 2</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>BluRay 1080p</td><td><a href="#">Megaup - 1.2 GB</a></td></tr>
 <tr><td>WEB-DL 720p</td><td><a href="#">Mediafire - 950 MB</a></td></tr>
+<tr><td>WEB-DL 480p</td><td><a href="#">StreamSB - 600 MB</a></td></tr>
 </table>
+</div>
+</div>
 
 <!-- ===== POST 1 END ===== -->
 
@@ -102,32 +129,48 @@
 <h2>Poster</h2>
 <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg" alt="poster"/>
 
-<h2>Synopsis</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-film"></i> Synopsis</div>
 <p><strong>The Dark Knight</strong> (၂၀၀၈) သည် <strong>Christopher Nolan</strong> ရေးသား၍ <strong>Christian Bale</strong> က Batman အဖြစ် သုံးဆောင်ထားသော စက်ပြဲရှင်ရုပ်ရှင်ဖြစ်သည်။ အဓိကဇာတ်နမ်း The Joker အဖြစ် <strong>Heath Ledger</strong> သုံးဆောင်ခဲ့ပြီး Best Supporting Actor ဂျပန်း ရရှိခဲ့သည်။</p>
-<p>Gotham မြို့တွင် Batman သည် ဒေါ်လာဒီချ် Harvey Dent နှင့် ပူးပေါင်းပြီး မြို့ကွင်းကို ကျန်ရှူရန် ကြိုးစားနေသော် The Joker ကနေ ခေါ်ဆိုလာပြီး နှစ်သက်သော Chaos ကို အသုံးပြုကာ Gotham မြို့ကို ဖြတ်သန်းလိုက်သည်။ Heath Ledger ၏ The Joker သုံးဆောင်မှုသည် ရုပ်ရှင်များတွင် အကြီးမားဆုံးဇာတ်နမ်းများမှာ တစ်ခုဖြစ်သည်။</p>
+<p>Gotham မြို့တွင် Batman သည် ဒေါ်လာဒီချ် Harvey Dent နှင့် ပူးပေါင်းပြီး မြို့ကွင်းကို ကျန်ရှူရန် ကြိုးစားနေသော် The Joker ကနေ ခေါ်ဆိုလာပြီး နှစ်သက်သော Chaos ကို အသုံးပြုကာ Gotham မြို့ကို ဖြတ်သန်းလိုက်သည်। Heath Ledger ၏ The Joker သုံးဆောင်မှုသည် ရုပ်ရှင်များတွင် အကြီးမားဆုံးဇာတ်နမ်းများမှာ တစ်ခုဖြစ်သည်။</p>
+</div>
 
-<h2>Information</h2>
-<table>
-<tr><td>Quality</td><td>BluRay 1080p</td></tr>
-<tr><td>Format</td><td>mp4 / mkv</td></tr>
-<tr><td>Genre</td><td>Action, Crime, Drama</td></tr>
-<tr><td>Duration</td><td>02:32:00</td></tr>
-<tr><td>Subtitle</td><td>Myanmar Subtitle (Hardsub)</td></tr>
-<tr><td>Director</td><td>Christopher Nolan</td></tr>
-</table>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-info-circle"></i> Information</div>
+<div class="pd-meta-grid">
+<div class="pd-meta-item"><span class="pm-label">Quality</span><span class="pm-value">BluRay 1080p</span></div>
+<div class="pd-meta-item"><span class="pm-label">Format</span><span class="pm-value">mp4 / mkv</span></div>
+<div class="pd-meta-item genre-v"><span class="pm-label">Genre</span><span class="pm-value">Action, Crime, Drama</span></div>
+<div class="pd-meta-item"><span class="pm-label">Duration</span><span class="pm-value">02:32:00</span></div>
+<div class="pd-meta-item"><span class="pm-label">Subtitle</span><span class="pm-value">Myanmar Subtitle (Hardsub)</span></div>
+<div class="pd-meta-item"><span class="pm-label">Director</span><span class="pm-value">Christopher Nolan</span></div>
+<div class="pd-meta-item"><span class="pm-label">Release</span><span class="pm-value">2008</span></div>
+<div class="pd-meta-item"><span class="pm-label">Rating</span><span class="pm-value">⭐ 9.0 / 10</span></div>
+</div>
+</div>
 
-<h2>Server 1</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-download"></i> Server 1</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>BluRay 1080p</td><td><a href="#">Google Drive - 1.5 GB</a></td></tr>
 <tr><td>BluRay 1080p</td><td><a href="#">Mega.nz - 1.5 GB</a></td></tr>
 <tr><td>WEB-DL 720p</td><td><a href="#">Yoteshin - 1.0 GB</a></td></tr>
+<tr><td>WEB-DL 480p</td><td><a href="#">Telegram - 650 MB</a></td></tr>
 </table>
+</div>
+</div>
 
-<h2>Server 2</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-server"></i> Server 2</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>BluRay 1080p</td><td><a href="#">Megaup - 1.5 GB</a></td></tr>
 <tr><td>WEB-DL 720p</td><td><a href="#">Mediafire - 1.0 GB</a></td></tr>
+<tr><td>WEB-DL 480p</td><td><a href="#">StreamSB - 650 MB</a></td></tr>
 </table>
+</div>
+</div>
 
 <!-- ===== POST 2 END ===== -->
 
@@ -147,31 +190,47 @@
 <h2>Poster</h2>
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw1bEFT_Q0ZWoQwFOIAtdpLU9LaKL3YUPwyuPdr5Y4PykHFt_2ai4ZObY463mMcGhsoEZcxf-j_ICCL1hhjzClDqofqs7bL1Y0Q31lsrREhAoZRujponXCR2iW7NfVI8Yr-u08yJ1ms9Y-IV0XE92gFlxaazNazs0hT-N9WFURPsHulpzUsVoM0ZhJfKkg/s320/1759384257401.jpg" alt="poster"/>
 
-<h2>Synopsis</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-film"></i> Synopsis</div>
 <p><strong>One Piece</strong> သည် <strong>Eiichiro Oda</strong> ရေးသားခဲ့သော ဂျပန်းစာတွေ့ anime series ဖြစ်ပြီး Toei Animation က နောက်ထပ်ရုပ်ရှင်ပြုလုပ်ထားသည်။ Monkey D. Luffy နှင့် ၎င်း၏ Straw Hat Pirates အဖွဲ့သည် Grand Line ကို ဖြတ်သန်းကာ "One Piece" သစ်စုံကို ရှာဖွေရန် ချိန်းသွားကြသည်။</p>
 <p>ဤ series သည် တကယ်လမ်းညွှန်အရောင်ရှင်၊ ရှုပ်ထွေးမှုနှင့် နွယ်မြူမှုဆန်ဖြစ်ပြီး Luffy ၏ ခရီးစဉ်ကို ဖော်ပြထားသည်။ အချိုးသော ဇာတ်နမ်းများ၊ ကိုယ့်သူစွာဘဝကျင့်သုံးခြင်းနှင့် များပြားသော ဇာတ်လမ်းစဉ်းစားချက်များဖြင့် ကမ္ဘာကျော်ရှိ အကောင်းဆုံး anime တိုင်းတွင် တစ်ခုအပါအဝင်ဖြစ်သည်။</p>
+</div>
 
-<h2>Information</h2>
-<table>
-<tr><td>Quality</td><td>WEB-DL 1080p</td></tr>
-<tr><td>Format</td><td>mp4</td></tr>
-<tr><td>Genre</td><td>Action, Adventure, Comedy</td></tr>
-<tr><td>Duration</td><td>24 min/ep</td></tr>
-<tr><td>Subtitle</td><td>Myanmar Subtitle</td></tr>
-<tr><td>Episodes</td><td>1100+ Episodes</td></tr>
-</table>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-info-circle"></i> Information</div>
+<div class="pd-meta-grid">
+<div class="pd-meta-item"><span class="pm-label">Quality</span><span class="pm-value">WEB-DL 1080p</span></div>
+<div class="pd-meta-item"><span class="pm-label">Format</span><span class="pm-value">mp4</span></div>
+<div class="pd-meta-item genre-v"><span class="pm-label">Genre</span><span class="pm-value">Action, Adventure, Comedy</span></div>
+<div class="pd-meta-item"><span class="pm-label">Duration</span><span class="pm-value">24 min/ep</span></div>
+<div class="pd-meta-item"><span class="pm-label">Subtitle</span><span class="pm-value">Myanmar Subtitle</span></div>
+<div class="pd-meta-item"><span class="pm-label">Episodes</span><span class="pm-value">1100+ Episodes</span></div>
+<div class="pd-meta-item"><span class="pm-label">Studio</span><span class="pm-value">Toei Animation</span></div>
+<div class="pd-meta-item"><span class="pm-label">Rating</span><span class="pm-value">⭐ 9.0 / 10</span></div>
+</div>
+</div>
 
-<h2>Server 1</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-download"></i> Server 1</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>1080p</td><td><a href="#">Google Drive - Episode 1-1100+</a></td></tr>
 <tr><td>720p</td><td><a href="#">Mega.nz - Episode 1-500</a></td></tr>
 <tr><td>1080p</td><td><a href="#">Yoteshin - Episode 1-1100+</a></td></tr>
+<tr><td>480p</td><td><a href="#">Telegram - Episode 1-200</a></td></tr>
 </table>
+</div>
+</div>
 
-<h2>Server 2</h2>
+<div class="pd-card">
+<div class="pd-card-title"><i class="fas fa-server"></i> Server 2</div>
+<div class="dl-table-wrap">
 <table>
 <tr><td>1080p</td><td><a href="#">Megaup - Episode 1-1100+</a></td></tr>
 <tr><td>720p</td><td><a href="#">Mediafire - Episode 1-500</a></td></tr>
+<tr><td>480p</td><td><a href="#">StreamSB - Episode 1-200</a></td></tr>
 </table>
+</div>
+</div>
 
 <!-- ===== POST 3 END ===== -->
