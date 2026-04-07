@@ -474,7 +474,7 @@ body.no-scroll{overflow:hidden}
                         <span class='ps-url'><data:post.url/></span>
                         <span class='ps-title'><data:post.title/></span>
                         <span class='ps-img'><b:if cond='data:post.featuredImage'><data:post.featuredImage/></b:if></span>
-                        <div class='ps-body'><data:post.body/></div>
+                        <textarea class='ps-body' style='display:none'><data:post.body/></textarea>
                         <span class='ps-date'><data:post.date/></span>
                         <b:loop values='data:post.labels' var='label'>
                           <span class='ps-label'><data:label.name/></span>
@@ -596,7 +596,7 @@ body.no-scroll{overflow:hidden}
                 </div>
 
                 <!-- Hidden post body for parsing -->
-                <div class='pd-body-raw' id='pdBodyRaw'><data:post.body/></div>
+                <textarea class='pd-body-raw' id='pdBodyRaw' style='display:none'><data:post.body/></textarea>
               </div>
             </b:includable>
 
@@ -865,38 +865,40 @@ function buildHomepage(){
     if(imgEl)imgUrl=imgEl.textContent.trim();
     /* Extract Poster URL from post body */
     var posterFromBody='';
-    var bodyEl=it.querySelector('.ps-body');
-    if(bodyEl){
-      var bhtml=bodyEl.innerHTML||'';
-      var btmp=document.createElement('div');
-      btmp.innerHTML=bhtml;
-      var bchildren=btmp.children;
-      for(var k=0;k<bchildren.length;k++){
-        var bel=bchildren[k];
-        var btag=bel.tagName.toLowerCase();
-        var btext=(bel.textContent||'').trim();
-        if((btag==='h2'||btag==='h3'||btag==='h4')&&/poster/i.test(btext)){
-          var bnext=bel.nextElementSibling;
-          if(bnext){
-            var bntag=bnext.tagName.toLowerCase();
-            if(bntag==='img')posterFromBody=bnext.getAttribute('src')||'';
-            else if(bntag==='a')posterFromBody=bnext.getAttribute('href')||'';
-            else{var bimg=bnext.querySelector('img[src]');if(bimg)posterFromBody=bimg.getAttribute('src')||'';}
+    try{
+      var bodyEl=it.querySelector('.ps-body');
+      if(bodyEl){
+        var bhtml=bodyEl.value||bodyEl.textContent||'';
+        var btmp=document.createElement('div');
+        btmp.innerHTML=bhtml;
+        var bchildren=btmp.children;
+        for(var k=0;k<bchildren.length;k++){
+          var bel=bchildren[k];
+          var btag=bel.tagName.toLowerCase();
+          var btext=(bel.textContent||'').trim();
+          if((btag==='h2'||btag==='h3'||btag==='h4')&&/poster/i.test(btext)){
+            var bnext=bel.nextElementSibling;
+            if(bnext){
+              var bntag=bnext.tagName.toLowerCase();
+              if(bntag==='img')posterFromBody=bnext.getAttribute('src')||'';
+              else if(bntag==='a')posterFromBody=bnext.getAttribute('href')||'';
+              else{var bimg=bnext.querySelector('img[src]');if(bimg)posterFromBody=bimg.getAttribute('src')||'';}
+            }
+            if(!posterFromBody){var ba=bel.querySelector('a[href]');if(ba)posterFromBody=ba.getAttribute('href')||'';}
+            break;
           }
-          if(!posterFromBody){var ba=bel.querySelector('a[href]');if(ba)posterFromBody=ba.getAttribute('href')||'';}
-          break;
+        }
+        /* Fallback: check img alt/class for poster */
+        if(!posterFromBody){
+          var bimgs=btmp.querySelectorAll('img');
+          for(var m=0;m<bimgs.length;m++){
+            var balt=(bimgs[m].getAttribute('alt')||'').toLowerCase();
+            var bcls=(bimgs[m].getAttribute('class')||'').toLowerCase();
+            if(/poster/i.test(balt)||/poster/i.test(bcls)){posterFromBody=bimgs[m].getAttribute('src')||'';break;}
+          }
         }
       }
-      /* Fallback: check img alt/class for poster */
-      if(!posterFromBody){
-        var bimgs=btmp.querySelectorAll('img');
-        for(var m=0;m<bimgs.length;m++){
-          var balt=(bimgs[m].getAttribute('alt')||'').toLowerCase();
-          var bcls=(bimgs[m].getAttribute('class')||'').toLowerCase();
-          if(/poster/i.test(balt)||/poster/i.test(bcls)){posterFromBody=bimgs[m].getAttribute('src')||'';break;}
-        }
-      }
-    }
+    }catch(e){/* fallback to featured image */}
     var finalImg=posterFromBody||imgUrl||PLACEHOLDER;
     posts.push({
       url:(it.querySelector('.ps-url')||{}).textContent?it.querySelector('.ps-url').textContent.trim():'',
@@ -1088,7 +1090,7 @@ function applyPostMeta(labels){
   if(!duration){
     var body=document.getElementById('pdBodyRaw');
     if(body){
-      var txt=body.textContent||'';
+      var txt=body.value||body.textContent||'';
       var dm=txt.match(/Duration[:\s]*(\d{1,2}:\d{2}(?::\d{2})?)/i);
       if(dm)duration=dm[1];
     }
@@ -1118,7 +1120,7 @@ function extractCoverPoster(){
   var bodyEl=document.getElementById('pdBodyRaw');
   if(!bodyEl)return;
   var tmp=document.createElement('div');
-  tmp.innerHTML=bodyEl.innerHTML||'';
+  tmp.innerHTML=bodyEl.value||bodyEl.textContent||'';
   var children=tmp.children;
   var coverUrl='',posterUrl='';
   for(var i=0;i<children.length;i++){
@@ -1179,7 +1181,7 @@ function extractCoverPoster(){
 function parsePostBody(){
   var bodyEl=document.getElementById('pdBodyRaw');
   if(!bodyEl)return;
-  var bodyHTML=bodyEl.innerHTML||'';
+  var bodyHTML=bodyEl.value||bodyEl.textContent||'';
   var tmp=document.createElement('div');
   tmp.innerHTML=bodyHTML;
 
