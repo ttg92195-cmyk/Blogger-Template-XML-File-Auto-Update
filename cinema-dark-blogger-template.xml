@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='5.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<meta content='index, follow' name='robots'/>
+<meta content='#0a0a12' name='theme-color'/>
+<meta content='#0a0a12' name='msapplication-navbutton-color'/>
+<meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'/>
+<title><data:blog.pageTitle/></title>
+<link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap' rel='stylesheet'/>
+<link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+
+<b:skin><![CDATA[
+/*=======================================
+  CINEMA DARK V20 - KumaStream Redesign
+  - Clean post detail with tabs
+  - Hero banner with back/heart overlay
+  - Server card download format
+  - Homepage with Movies + Series sections
+  - Bottom nav: Home, Movies, Series, Bookmark, Recent
+  Version: 20.0
+=======================================*/
+:root{
+--bg:#0a0a12;--bg2:#11111d;--bg3:#1a1a2e;
+--card:#16162a;--card-h:#1e1e3a;
+--txt:#fff;--txt2:#9ca3af;--muted:#6b7280;
+--accent:#FF4081;--accent2:#E91E63;
+--accent-glow:rgba(255,64,129,.25);
+--orange:#FF9800;--gold:#FFD700;--red:#FF3B30;
+--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.15);
+--r:8px;--r2:12px;--r3:16px;
+--shadow:0 8px 32px rgba(0,0,0,.6);
+--tr:.3s ease;--max-w:1200px;
+--header-h:56px;--bnav-h:60px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+body.bn-visible{padding-bottom:var(--bnav-h)}
+a{text-decoration:none;color:inherit;transition:var(--tr)}
+a:hover{color:var(--accent)}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--card);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 16px}
+
+/* ========== HEADER ========== */
+.site-header{background:rgba(10,10,18,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1001;height:var(--header-h)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);padding:0 4px;gap:8px}
+.logo a{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
+.logo a i{font-size:20px}
+.header-actions{display:flex;align-items:center;gap:2px}
+.header-btn{width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:17px;background:none;border:none;border-radius:50%;cursor:pointer;transition:var(--tr)}
+.header-btn:hover{color:var(--accent);background:rgba(255,64,129,.1)}
+
+/* Hide header on post pages */
+body.post-page .site-header{display:none}
+body.post-page .search-overlay,
+body.post-page .search-bar{display:none!important}
+body.post-page .drawer-overlay,
+body.post-page .app-drawer{display:none!important}
+
+/* ========== SEARCH ========== */
+.search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1002;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(4px)}
+.search-overlay.active{opacity:1;visibility:visible}
+.search-bar{position:fixed;top:0;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:1003;padding:12px 16px;transform:translateY(-100%);transition:transform .3s ease}
+.search-bar.active{transform:translateY(0)}
+.search-bar-inner{display:flex;align-items:center;gap:10px;max-width:600px;margin:0 auto}
+.search-bar form{flex:1;display:flex;align-items:center;background:var(--bg3);border:2px solid var(--border);border-radius:50px;overflow:hidden;transition:var(--tr)}
+.search-bar form:focus-within{border-color:var(--accent)}
+.search-bar input{flex:1;background:0 0;border:none;padding:10px 18px;color:var(--txt);font-family:inherit;font-size:14px;outline:none}
+.search-bar input::placeholder{color:var(--muted)}
+.search-bar .sb-submit{width:42px;height:42px;background:var(--accent);border:none;color:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.search-bar .sb-submit:hover{background:var(--accent2)}
+.search-bar .sb-close{width:38px;height:38px;background:none;border:none;color:var(--txt2);font-size:17px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--tr);flex-shrink:0}
+.search-bar .sb-close:hover{color:var(--accent);background:rgba(255,64,129,.1)}
+
+/* ========== DRAWER ========== */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1004;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(2px)}
+.drawer-overlay.active{opacity:1;visibility:visible}
+.app-drawer{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:85vw;background:var(--bg2);z-index:1005;transform:translateX(-100%);transition:transform .3s ease;overflow-y:auto;display:flex;flex-direction:column;border-right:1px solid var(--border)}
+.app-drawer.active{transform:translateX(0)}
+.drawer-header{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dh-logo{display:flex;align-items:center;gap:10px}
+.dh-logo-icon{width:40px;height:40px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.dh-logo-text{font-size:15px;font-weight:800;color:var(--accent)}
+.dh-logo-sub{font-size:10px;color:var(--txt2);font-weight:500}
+.dh-close{width:32px;height:32px;background:none;border:none;color:var(--txt2);font-size:16px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.dh-close:hover{color:var(--accent);background:rgba(255,64,129,.1)}
+.drawer-nav{flex:1;padding:8px 0}
+.drawer-nav-label{padding:12px 20px 6px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+.drawer-nav a{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--txt2);font-size:14px;font-weight:500;transition:var(--tr);margin:1px 8px;border-radius:var(--r)}
+.drawer-nav a i{width:20px;text-align:center;font-size:15px}
+.drawer-nav a:hover{color:var(--accent);background:rgba(255,64,129,.08)}
+.drawer-nav a.active{color:var(--accent);background:rgba(255,64,129,.12);font-weight:600}
+.drawer-footer{padding:16px 20px;border-top:1px solid var(--border)}
+.dfl{display:flex;align-items:center;gap:10px;padding:8px 0;color:var(--txt2);font-size:12px;cursor:pointer;transition:var(--tr)}
+.dfl:hover{color:var(--accent)}
+.dfl i{width:18px;text-align:center;font-size:13px}
+.drawer-fb{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.drawer-fb span{font-size:11px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
+.drawer-fb span:hover{color:var(--accent)}
+
+/* ========== SECTION HEADER ========== */
+.section-header{display:flex;align-items:center;gap:8px;padding:16px 0 12px}
+.section-bar{width:3px;height:18px;background:var(--accent);border-radius:2px}
+.section-header h2{font-size:16px;font-weight:700}
+
+/* ========== POST GRID (Homepage) ========== */
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px}
+.grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
+.grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
+.grid-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.grid-card:hover .grid-poster img{transform:scale(1.05)}
+.grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red)}
+.grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
+.grid-rating i{font-size:8px;color:#FFD700}
+.grid-info{padding:8px}
+.grid-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px;color:var(--txt)}
+.grid-year{font-size:10px;color:var(--muted)}
+.grid-type-badge{position:absolute;bottom:6px;left:6px;padding:2px 7px;border-radius:3px;font-size:8px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--accent)}
+
+/* Horizontal scroll for desktop homepage sections */
+.genre-scroll{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 16px}
+.genre-scroll::-webkit-scrollbar{display:none}
+.genre-scroll .gc{min-width:150px;max-width:150px;flex-shrink:0;border-radius:var(--r2);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.genre-scroll .gc:hover{border-color:rgba(255,64,129,.3);transform:translateY(-3px);box-shadow:var(--shadow)}
+.genre-scroll .gc-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
+.genre-scroll .gc-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.genre-scroll .gc:hover .gc-poster img{transform:scale(1.05)}
+.genre-scroll .gc-info{padding:8px 10px 10px}
+.genre-scroll .gc-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px}
+.genre-scroll .gc-meta{font-size:10px;color:var(--muted)}
+.genre-scroll .gc-badge{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:3px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff}
+.genre-scroll .gc-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;gap:3px}
+.genre-scroll .gc-rating i{color:var(--accent);font-size:8px}
+
+/* ========== POST DETAIL: Hero ========== */
+.pd-wrap{margin:0 -16px}
+.pd-hero-simple{position:relative;aspect-ratio:16/9;max-height:420px;overflow:hidden;background:var(--bg3)}
+.pd-hero-simple img{width:100%;height:100%;object-fit:cover}
+.pd-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,18,.95) 0%,rgba(10,10,18,.3) 40%,rgba(10,10,18,.1) 100%);pointer-events:none}
+.pd-hero-btns{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:5;pointer-events:auto}
+.pd-hero-circle{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;border:none;transition:var(--tr)}
+.pd-hero-circle:hover{background:rgba(0,0,0,.8);transform:scale(1.05)}
+
+/* ========== POST DETAIL: Info Card ========== */
+.pd-info-card{display:flex;gap:14px;padding:16px;margin:-40px 16px 0;position:relative;z-index:10;background:var(--card);border-radius:var(--r3);border:1px solid var(--border)}
+.pd-poster-thumb{width:100px;min-width:100px;height:150px;border-radius:var(--r2);overflow:hidden;border:2px solid var(--border);background:var(--bg3);flex-shrink:0}
+.pd-poster-thumb img{width:100%;height:100%;object-fit:cover}
+.pd-info-right{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.pd-info-right h1{font-size:18px;font-weight:800;line-height:1.3;margin-bottom:8px;color:var(--txt)}
+.pd-meta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--txt2);margin-bottom:10px}
+.pd-meta-item{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--txt2)}
+.pd-meta-item i{font-size:11px;color:var(--muted)}
+.pd-meta-item.rating-item{color:var(--accent)}
+.pd-meta-item.rating-item i{color:var(--accent)}
+.pd-genre-pills{display:flex;flex-wrap:wrap;gap:6px}
+.genre-pill{padding:3px 10px;border-radius:4px;font-size:10px;font-weight:500;color:var(--txt2);background:rgba(255,255,255,.08);border:1px solid var(--border)}
+
+/* ========== POST DETAIL: Tabs ========== */
+.pd-tabs{display:flex;margin:16px 0 0;padding:0 16px;gap:0;border-bottom:1px solid var(--border)}
+.pd-tab-btn{flex:1;padding:12px 0;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;position:relative;transition:var(--tr);text-align:center}
+.pd-tab-btn:hover{color:var(--txt2)}
+.pd-tab-btn.active{color:var(--accent)}
+.pd-tab-btn.active::after{content:'';position:absolute;bottom:-1px;left:20%;right:20%;height:3px;background:var(--accent);border-radius:3px 3px 0 0}
+.pd-tab-panel{display:none;padding:16px}
+.pd-tab-panel.active{display:block}
+
+/* ========== POST DETAIL: Detail Tab ========== */
+.pd-overview-title{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--txt)}
+.pd-synopsis-text{font-size:13px;line-height:1.8;color:var(--txt2);margin-bottom:10px}
+.pd-view-more{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;margin-bottom:16px}
+.pd-view-more:hover{text-decoration:underline}
+.pd-tech-details{border-top:1px solid var(--border);padding-top:14px}
+.pd-tech-details h3{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--txt)}
+.pd-tech-list{display:flex;flex-direction:column;gap:8px}
+.pd-tech-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg3);border-radius:var(--r);font-size:12px}
+.pd-tech-icon{width:32px;height:32px;border-radius:var(--r);background:rgba(255,64,129,.1);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:13px;flex-shrink:0}
+.pd-tech-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px}
+.pd-tech-value{color:var(--txt);font-weight:500}
+
+/* ========== POST DETAIL: Download Tab ========== */
+.dl-heading{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--txt)}
+.dl-heading i{color:var(--accent)}
+.dl-server-card{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);margin-bottom:10px;overflow:hidden}
+.dl-server-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;transition:var(--tr);user-select:none}
+.dl-server-header:hover{background:var(--card-h)}
+.dl-server-left{display:flex;align-items:center;gap:10px}
+.dl-server-icon{width:32px;height:32px;border-radius:var(--r);background:rgba(255,64,129,.1);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:13px;flex-shrink:0}
+.dl-server-name{font-size:13px;font-weight:600;color:var(--txt)}
+.dl-server-qualities{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap}
+.dl-server-quality-tag{padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600;color:var(--accent);background:rgba(255,64,129,.1)}
+.dl-server-arrow{color:var(--muted);font-size:12px;transition:transform .3s ease}
+.dl-server-card.expanded .dl-server-arrow{transform:rotate(180deg)}
+.dl-server-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.dl-server-card.expanded .dl-server-body{display:block}
+.dl-quality-card{margin-top:10px;padding:12px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border)}
+.dl-quality-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.dl-quality-badge{padding:3px 10px;border-radius:50px;font-size:10px;font-weight:700;color:#fff;background:var(--red);text-transform:uppercase;letter-spacing:.3px}
+.dl-quality-label{font-size:13px;font-weight:600;color:var(--txt)}
+.dl-quality-info{font-size:11px;color:var(--muted);margin-bottom:10px}
+.dl-download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px;background:var(--red);color:#fff;border:none;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr)}
+.dl-download-btn:hover{background:#e6352b;transform:translateY(-1px)}
+.dl-download-btn i{font-size:12px}
+
+/* ========== POST DETAIL: Explore Tab ========== */
+.explore-heading{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--txt)}
+.explore-heading i{color:var(--accent)}
+.explore-scroll{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 16px}
+.explore-scroll::-webkit-scrollbar{display:none}
+.explore-card{min-width:130px;max-width:130px;flex-shrink:0;border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.explore-card:hover{border-color:rgba(255,64,129,.3);transform:translateY(-3px);box-shadow:var(--shadow)}
+.explore-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
+.explore-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.explore-card:hover .explore-poster img{transform:scale(1.05)}
+.explore-qbadge{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--red)}
+.explore-rbadge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
+.explore-rbadge i{font-size:8px;color:#FFD700}
+.explore-info{padding:6px 8px}
+.explore-title{font-size:11px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--txt)}
+.explore-year{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* Hidden post body (for JS parsing) */
+.pd-body-raw{display:none!important}
+
+/* ========== BOTTOM NAV ========== */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bnav-h);background:rgba(10,10,18,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:1000;display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:10px;font-weight:500;cursor:pointer;transition:var(--tr);padding:6px 12px;border:none;background:none}
+.bn-item i{font-size:18px;transition:var(--tr)}
+.bn-item:hover{color:var(--accent)}
+.bn-item.active{color:var(--accent)}
+.bn-item.active i{transform:scale(1.1)}
+
+/* ========== FOOTER ========== */
+.site-footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 0 0;margin-top:36px}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:20px}
+.footer-col h4{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.footer-col h4 i{color:var(--accent);font-size:12px}
+.footer-about p{color:var(--txt2);font-size:12px;line-height:1.8;margin-bottom:10px}
+.footer-links li{margin-bottom:5px}
+.footer-links li a{color:var(--txt2);font-size:12px;display:flex;align-items:center;gap:6px}
+.footer-links li a:hover{color:var(--accent);padding-left:4px}
+.footer-bottom{border-top:1px solid var(--border);padding:12px 0;text-align:center}
+.footer-bottom p{color:var(--muted);font-size:11px}
+
+/* ========== SIDEBAR ========== */
+.main-layout{display:grid;grid-template-columns:1fr 280px;gap:20px;padding:20px 0}
+.sidebar{display:flex;flex-direction:column;gap:16px}
+.sidebar-widget{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);overflow:hidden}
+.sw-title{padding:12px 14px;font-size:13px;font-weight:700;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sw-title i{color:var(--accent)}
+.sw-content{padding:12px}
+.popular-list{display:flex;flex-direction:column;gap:8px}
+.popular-item{display:flex;gap:10px;align-items:flex-start}
+.popular-num{width:24px;height:24px;background:var(--bg3);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0}
+.popular-item:nth-child(1) .popular-num{background:var(--accent);color:#fff}
+.popular-item:nth-child(2) .popular-num{background:var(--orange);color:#fff}
+.popular-item:nth-child(3) .popular-num{background:var(--gold);color:#000}
+.popular-text h4{font-size:12px;font-weight:500;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:2px}
+.popular-text h4 a:hover{color:var(--accent)}
+.popular-text span{font-size:10px;color:var(--muted)}
+.label-list{display:flex;flex-wrap:wrap;gap:5px}
+.label-list a{display:inline-block;padding:4px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:50px;color:var(--txt2);font-size:11px;font-weight:500;transition:var(--tr)}
+.label-list a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.sidebar-ad{background:var(--bg3);border:1px dashed var(--border);border-radius:var(--r2);padding:18px;text-align:center}
+.sidebar-ad i{font-size:26px;color:var(--muted);margin-bottom:8px}
+.sidebar-ad p{color:var(--muted);font-size:11px}
+
+/* ========== UTILITY ========== */
+.hidden-el{display:none!important}
+.empty-msg{text-align:center;padding:50px 20px;color:var(--txt2)}
+.empty-msg i{font-size:32px;color:var(--muted);display:block;margin-bottom:10px}
+.empty-msg small{font-size:11px;color:var(--muted)}
+.back-top{position:fixed;bottom:calc(var(--bnav-h) + 14px);right:16px;width:38px;height:38px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;cursor:pointer;opacity:0;visibility:hidden;transition:var(--tr);z-index:999;box-shadow:0 4px 16px var(--accent-glow)}
+.back-top.visible{opacity:1;visibility:visible}
+.back-top:hover{background:var(--accent2);transform:translateY(-2px)}
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;padding:24px 0}
+.pagination a{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500}
+.pagination a:hover,.pagination a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* Post body fallback */
+.post-body{color:var(--txt2);font-size:14px;line-height:1.85}
+.post-body table{width:100%;border-collapse:collapse;margin:12px 0}
+.post-body td,.post-body th{padding:8px 12px;border:1px solid var(--border);font-size:13px}
+.post-body a{color:var(--accent)}
+.post-body img{border-radius:var(--r);margin:8px 0}
+.post-body br{display:block;content:'';margin-top:4px}
+
+/* ========== HIDE BLOGGER DEFAULTS ========== */
+body.post-page .main-layout{grid-template-columns:1fr}
+body.post-page .sidebar{display:none}
+.blog-posts{display:none!important}
+.blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important}
+.status-msg-wrap,.status-msg-body,.status-msg-border{display:none!important}
+body:not(.post-page) .post-outer-container{display:none!important}
+body:not(.post-page) .post-footer{display:none!important}
+body:not(.post-page) .post-share-buttons{display:none!important}
+body:not(.post-page) .post-comment-link{display:none!important}
+body:not(.post-page) .post-timestamp{display:none!important}
+body:not(.post-page) .post-title{display:none!important}
+body:not(.post-page) .post-body{display:none!important}
+body:not(.post-page) .post-header{display:none!important}
+body:not(.post-page) .entry-content{display:none!important}
+body:not(.post-page) .post-snippet{display:none!important}
+body:not(.post-page) .post-summary{display:none!important}
+body:not(.post-page) .comment-link{display:none!important}
+.widget ul{list-style:none}
+#comments{background:none}
+body.no-scroll{overflow:hidden}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.grid-card{animation:fadeUp .3s ease forwards;opacity:0}
+.grid-card:nth-child(1){animation-delay:.02s}
+.grid-card:nth-child(2){animation-delay:.04s}
+.grid-card:nth-child(3){animation-delay:.06s}
+.grid-card:nth-child(4){animation-delay:.08s}
+.grid-card:nth-child(5){animation-delay:.10s}
+.grid-card:nth-child(6){animation-delay:.12s}
+.genre-scroll .gc{animation:fadeUp .35s ease forwards;opacity:0}
+.genre-scroll .gc:nth-child(1){animation-delay:.02s}
+.genre-scroll .gc:nth-child(2){animation-delay:.05s}
+.genre-scroll .gc:nth-child(3){animation-delay:.08s}
+.genre-scroll .gc:nth-child(4){animation-delay:.11s}
+.genre-scroll .gc:nth-child(5){animation-delay:.14s}
+.genre-scroll .gc:nth-child(6){animation-delay:.17s}
+
+/* ========== RESPONSIVE ========== */
+@media(min-width:1200px){
+  .post-grid{grid-template-columns:repeat(6,1fr)}
+}
+@media(max-width:1024px){
+  .main-layout{grid-template-columns:1fr}
+  .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .post-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+  .pd-hero-simple{aspect-ratio:16/10}
+  .pd-info-card{flex-direction:row;gap:12px;padding:14px;margin:-30px 12px 0}
+  .pd-poster-thumb{width:90px;min-width:90px;height:135px}
+  .pd-info-right h1{font-size:16px}
+  .sidebar{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .container{padding:0 12px}
+  .explore-card{min-width:110px;max-width:110px}
+  .explore-info{padding:5px 6px}
+  .explore-title{font-size:10px}
+  .grid-card:hover{transform:none}
+}
+@media(max-width:480px){
+  .pd-hero-simple{aspect-ratio:16/11}
+  .pd-info-card{gap:10px;padding:12px;margin:-24px 10px 0}
+  .pd-poster-thumb{width:80px;min-width:80px;height:120px}
+  .pd-info-right h1{font-size:15px}
+  .pd-meta-row{gap:8px}
+  .grid-title{font-size:11px}
+  .grid-info{padding:6px}
+  .explore-card{min-width:100px;max-width:100px}
+  .explore-title{font-size:9px}
+}
+@media(min-width:769px){
+  .bottom-nav{display:none}
+  body{padding-bottom:0!important}
+  .back-top{bottom:20px}
+}
+]]></b:skin>
+</head>
+
+<body>
+<b:class cond='data:blog.pageType == &quot;item&quot;' name='post-page'/>
+
+<a class='back-top' href='#' id='backTop'><i class='fas fa-chevron-up'></i></a>
+
+<!-- ========== SEARCH ========== -->
+<div class='search-overlay' id='searchOverlay'></div>
+<div class='search-bar' id='searchBar'>
+  <div class='search-bar-inner'>
+    <form expr:action='data:blog.searchUrl' method='get'>
+      <input autocomplete='off' name='q' placeholder='Search for title...' type='text'/>
+      <button class='sb-submit' type='submit'><i class='fas fa-search'></i></button>
+    </form>
+    <button class='sb-close' id='searchClose'><i class='fas fa-times'></i></button>
+  </div>
+</div>
+
+<!-- ========== DRAWER ========== -->
+<div class='drawer-overlay' id='drawerOverlay'></div>
+<div class='app-drawer' id='appDrawer'>
+  <div class='drawer-header'>
+    <div class='dh-logo'>
+      <div class='dh-logo-icon'><i class='fas fa-play'></i></div>
+      <div>
+        <div class='dh-logo-text'><data:blog.title/></div>
+        <div class='dh-logo-sub'>Movie</div>
+      </div>
+    </div>
+    <button class='dh-close' id='drawerClose'><i class='fas fa-times'></i></button>
+  </div>
+  <div class='drawer-nav'>
+    <div class='drawer-nav-label'>Navigation</div>
+    <a class='active' expr:href='data:blog.homepageUrl'><i class='fas fa-home'></i> Home</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'><i class='fas fa-film'></i> Movies</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'><i class='fas fa-tv'></i> TV Series</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/Animation&quot;'><i class='fas fa-palette'></i> Animation</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/K-Drama&quot;'><i class='fas fa-heart'></i> K-Drama</a>
+    <a expr:href='data:blog.homepageUrl + &quot;search/label/C-Drama&quot;'><i class='fas fa-yin-yang'></i> C-Drama</a>
+  </div>
+  <div class='drawer-footer'>
+    <div class='dfl' onclick='window.location.href=&quot;#&quot;'><i class='fas fa-info-circle'></i> About</div>
+    <div class='dfl' onclick='window.location.href=&quot;#&quot;'><i class='fas fa-shield-alt'></i> Privacy Policy</div>
+    <div class='dfl' onclick='window.location.href=&quot;#&quot;'><i class='fas fa-file-contract'></i> DMCA</div>
+    <div class='drawer-fb'>
+      <span onclick='location.reload()'><i class='fas fa-trash-alt'></i> Clear Cache</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class='site-header'>
+  <div class='container'>
+    <div class='header-inner'>
+      <div style='display:flex;align-items:center;gap:8px'>
+        <button class='header-btn' id='menuBtn'><i class='fas fa-bars'></i></button>
+        <div class='logo'>
+          <a expr:href='data:blog.homepageUrl'><i class='fas fa-play-circle'></i><span><data:blog.title/></span></a>
+        </div>
+      </div>
+      <div class='header-actions'>
+        <button class='header-btn' id='searchBtn'><i class='fas fa-search'></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main>
+  <div class='container'>
+    <div class='main-layout'>
+      <div class='main-content'>
+
+        <b:section class='main-blog-section' id='main' name='Main Blog Posts' showaddelement='yes'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+            <b:includable id='main' var='this'>
+
+              <!-- ========== POST DETAIL PAGE ========== -->
+              <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                <b:loop values='data:posts' var='post'>
+                  <b:include data='post' name='postDetail'/>
+                </b:loop>
+              </b:if>
+
+              <!-- ========== HOMEPAGE / LABEL / SEARCH ========== -->
+              <b:if cond='data:blog.pageType != &quot;item&quot;'>
+                <div class='home-area' id='homeArea'>
+                  <div id='postStore' class='hidden-el'>
+                    <b:loop values='data:posts' var='post'>
+                      <div class='ps-item'>
+                        <span class='ps-url'><data:post.url/></span>
+                        <span class='ps-title'><data:post.title/></span>
+                        <span class='ps-img'><b:if cond='data:post.featuredImage'><data:post.featuredImage/></b:if></span>
+                        <span class='ps-date'><data:post.date/></span>
+                        <b:loop values='data:post.labels' var='label'>
+                          <span class='ps-label'><data:label.name/></span>
+                        </b:loop>
+                      </div>
+                    </b:loop>
+                  </div>
+                  <!-- Sections will be built by JS -->
+                  <div id='homeSections'></div>
+                  <b:if cond='data:posts.empty'>
+                    <div class='empty-msg'>
+                      <i class='fas fa-film'></i> No posts yet.
+                      <br/><small>Create posts with Movie or Series label.</small>
+                    </div>
+                  </b:if>
+                  <b:if cond='data:newerPageUrl'>
+                    <div class='pagination'>
+                      <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
+                      <b:if cond='data:olderPageUrl'>
+                        <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
+                      </b:if>
+                    </div>
+                  </b:if>
+                </div>
+              </b:if>
+
+            </b:includable>
+
+            <!-- ===== POST DETAIL ===== -->
+            <b:includable id='postDetail' var='post'>
+              <div class='pd-wrap' id='pdWrap'>
+                <!-- Label injection via .push() -->
+                <script type='text/javascript'>
+                //<![CDATA[
+                window._pl=[];
+                //]]>
+                </script>
+                <b:loop values='data:post.labels' var='label'>
+                  <script type='text/javascript'>window._pl.push("<data:label.name/>");</script>
+                </b:loop>
+                <!-- Hidden fallback spans -->
+                <b:loop values='data:post.labels' var='label'>
+                  <span class='hidden-el label-data'><data:label.name/></span>
+                </b:loop>
+                <span class='hidden-el post-date-data'><data:post.date/></span>
+                <span class='hidden-el post-url-data'><data:post.url/></span>
+
+                <!-- Hero Banner -->
+                <div class='pd-hero-simple' id='pdHeroSimple'>
+                  <b:if cond='data:post.featuredImage'>
+                    <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                  </b:if>
+                  <div class='pd-hero-overlay'></div>
+                  <div class='pd-hero-btns'>
+                    <button class='pd-hero-circle' id='pdBackBtn' onclick='history.back()'>
+                      <i class='fas fa-arrow-left'></i>
+                    </button>
+                    <button class='pd-hero-circle' id='pdHeartBtn'>
+                      <i class='far fa-heart'></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class='pd-info-card'>
+                  <div class='pd-poster-thumb' id='pdPosterThumb'>
+                    <b:if cond='data:post.featuredImage'>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                    </b:if>
+                  </div>
+                  <div class='pd-info-right'>
+                    <h1 id='pdTitle'><data:post.title/></h1>
+                    <div class='pd-meta-row' id='pdMetaRow'>
+                      <div class='pd-meta-item rating-item'>
+                        <i class='fas fa-star'></i>
+                        <span id='postRating'>--</span>
+                      </div>
+                      <div class='pd-meta-item'>
+                        <i class='far fa-calendar'></i>
+                        <span id='postYear'></span>
+                      </div>
+                      <div class='pd-meta-item'>
+                        <i class='far fa-clock'></i>
+                        <span id='postDuration'>--</span>
+                      </div>
+                    </div>
+                    <div class='pd-genre-pills' id='pdGenrePills'></div>
+                  </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class='pd-tabs' id='pdTabs'>
+                  <button class='pd-tab-btn active' data-tab='detail'>Detail</button>
+                  <button class='pd-tab-btn' data-tab='download'>Download</button>
+                  <button class='pd-tab-btn' data-tab='explore'>Explore</button>
+                </div>
+
+                <!-- Detail Tab -->
+                <div class='pd-tab-panel active' id='tabDetail'>
+                  <div class='pd-overview-title'>Overview</div>
+                  <div class='pd-synopsis-text' id='pdSynopsisText'></div>
+                  <div class='pd-view-more' id='pdViewMore' style='display:none'><span>View More</span> <i class='fas fa-chevron-down'></i></div>
+                  <div class='pd-tech-details' id='pdTechDetails'>
+                    <h3>Information</h3>
+                    <div class='pd-tech-list' id='pdTechList'></div>
+                  </div>
+                </div>
+
+                <!-- Download Tab -->
+                <div class='pd-tab-panel' id='tabDownload'>
+                  <div class='dl-heading'><i class='fas fa-download'></i> Download Options</div>
+                  <div id='dlServerList'></div>
+                </div>
+
+                <!-- Explore Tab -->
+                <div class='pd-tab-panel' id='tabExplore'>
+                  <div class='explore-heading'><i class='fas fa-compass'></i> You may also like</div>
+                  <div class='explore-scroll' id='exploreGrid'></div>
+                </div>
+
+                <!-- Hidden post body for parsing -->
+                <div class='pd-body-raw' id='pdBodyRaw'><data:post.body/></div>
+              </div>
+            </b:includable>
+
+            <b:includable id='post' var='post'></b:includable>
+
+            <b:includable id='comments' var='post'>
+              <div class='comments-block'>
+                <b:if cond='data:post.embedCommentForm'>
+                  <b:include data='post' name='threaded-comment-form'/>
+                </b:if>
+              </div>
+            </b:includable>
+            <b:includable id='threaded-comment-form' var='post'>
+              <div id='comment-editor'></div>
+              <script type='text/javascript'>BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);</script>
+            </b:includable>
+            <b:includable id='postCommentsAndAd' var='post'></b:includable>
+            <b:includable id='commentDeleteIcon' var='comment'></b:includable>
+            <b:includable id='backlinkDeleteIcon' var='backlink'></b:includable>
+            <b:includable id='postQuickEdit' var='post'></b:includable>
+            <b:includable id='threadedCommentJs' var='post'></b:includable>
+            <b:includable id='backlinks' var='post'></b:includable>
+            <b:includable id='feedLinks'></b:includable>
+            <b:includable id='feedLinksBody' var='links'></b:includable>
+            <b:includable id='nextprev'>
+              <div class='pagination'>
+                <b:if cond='data:newerPageUrl'>
+                  <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
+                </b:if>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class='sidebar'>
+        <b:section id='sidebar' name='Sidebar Widgets' showaddelement='yes'>
+          <b:widget id='PopularPosts1' locked='false' title='Popular' type='PopularPosts' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='numItemsToShow'>6</b:widget-setting>
+              <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+              <b:widget-setting name='showSnippets'>false</b:widget-setting>
+              <b:widget-setting name='timeRange'>LAST_YEAR</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main' var='this'>
+              <div class='sidebar-widget'>
+                <div class='sw-title'><i class='fas fa-fire'></i> Popular</div>
+                <div class='sw-content'>
+                  <div class='popular-list'>
+                    <b:loop index='i' values='data:posts' var='post'>
+                      <div class='popular-item'>
+                        <span class='popular-num'><b:eval expr='data:i + 1'/></span>
+                        <div class='popular-text'>
+                          <h4><a expr:href='data:post.url'><data:post.title/></a></h4>
+                          <span><data:post.date/></span>
+                        </div>
+                      </div>
+                    </b:loop>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+          <b:widget id='Label1' locked='false' title='Genre' type='Label' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+              <b:widget-setting name='display'>LIST</b:widget-setting>
+              <b:widget-setting name='selectedLabelsList'></b:widget-setting>
+              <b:widget-setting name='showType'>ALL</b:widget-setting>
+              <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main' var='this'>
+              <div class='sidebar-widget'>
+                <div class='sw-title'><i class='fas fa-tags'></i> Genre</div>
+                <div class='sw-content'>
+                  <div class='label-list'>
+                    <b:loop values='data:labels' var='label'>
+                      <a expr:href='data:label.url'><data:label.name/></a>
+                    </b:loop>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+          <b:widget id='HTML1' locked='false' title='Ad Space' type='HTML' version='2' visible='true'>
+            <b:widget-settings><b:widget-setting name='content'></b:widget-setting></b:widget-settings>
+            <b:includable id='main'>
+              <div class='sidebar-ad'><i class='fas fa-ad'></i><p>Ad Space - 300x250</p></div>
+            </b:includable>
+          </b:widget>
+          <b:widget id='HTML2' locked='false' title='Custom CSS' type='HTML' version='2' visible='true'>
+            <b:widget-settings><b:widget-setting name='content'>/* Custom CSS here */</b:widget-setting></b:widget-settings>
+            <b:includable id='main'>
+              <div class='hidden-el' id='customCSSStore'><data:content/></div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class='site-footer'>
+  <div class='container'>
+    <div class='footer-grid'>
+      <div class='footer-col footer-about'>
+        <h4><i class='fas fa-play-circle'></i> <data:blog.title/></h4>
+        <p>Watch the latest movies and series with Myanmar subtitle. Your ultimate movie streaming blog.</p>
+      </div>
+      <div class='footer-col'>
+        <h4><i class='fas fa-link'></i> Quick Links</h4>
+        <ul class='footer-links'>
+          <li><a expr:href='data:blog.homepageUrl'>Home</a></li>
+          <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Movie&quot;'>Movies</a></li>
+          <li><a expr:href='data:blog.homepageUrl + &quot;search/label/Series&quot;'>Series</a></li>
+          <li><a href='#'>Privacy Policy</a></li>
+          <li><a href='#'>DMCA</a></li>
+        </ul>
+      </div>
+      <div class='footer-col'>
+        <h4><i class='fas fa-info-circle'></i> About</h4>
+        <ul class='footer-links'>
+          <li><a href='#'>Contact Us</a></li>
+          <li><a href='#'>Disclaimer</a></li>
+          <li><a href='#'>Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='footer-bottom'>
+      <p>&#169; <span id='footerYear'>2026</span> <a expr:href='data:blog.homepageUrl'><data:blog.title/></a> - All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== BOTTOM NAV (Mobile) ========== -->
+<nav class='bottom-nav' id='bottomNav'>
+  <button class='bn-item active' data-page='home' onclick='window.location.href=window.location.origin'>
+    <i class='fas fa-home'></i><span>Home</span>
+  </button>
+  <button class='bn-item' data-page='movies' onclick='window.location.href=window.location.origin+&quot;/search/label/Movie&quot;'>
+    <i class='fas fa-film'></i><span>Movies</span>
+  </button>
+  <button class='bn-item' data-page='series' onclick='window.location.href=window.location.origin+&quot;/search/label/Series&quot;'>
+    <i class='fas fa-tv'></i><span>Series</span>
+  </button>
+  <button class='bn-item' data-page='bookmark' id='bnBookmark'>
+    <i class='fas fa-bookmark'></i><span>Bookmark</span>
+  </button>
+  <button class='bn-item' data-page='recent' id='bnRecent'>
+    <i class='fas fa-clock-rotate-left'></i><span>Recent</span>
+  </button>
+</nav>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+//<![CDATA[
+(function(){
+
+/* ===== Custom CSS Injection ===== */
+function injectCSS(){
+  var s=document.getElementById('customCSSStore');
+  if(!s)return;
+  var t=(s.textContent||'').trim();
+  if(!t||t.indexOf('Custom CSS')!==-1)return;
+  var st=document.getElementById('dynCSS');
+  if(st){st.textContent=t;}
+  else{var e=document.createElement('style');e.id='dynCSS';e.textContent=t;document.head.appendChild(e);}
+}
+
+/* ===== Drawer Menu ===== */
+var menuBtn=document.getElementById('menuBtn');
+var drawer=document.getElementById('appDrawer');
+var drawerOv=document.getElementById('drawerOverlay');
+var drawerClose=document.getElementById('drawerClose');
+var bnBookmark=document.getElementById('bnBookmark');
+var bnRecent=document.getElementById('bnRecent');
+
+function openDrawer(){drawer.classList.add('active');drawerOv.classList.add('active');document.body.classList.add('no-scroll');}
+function closeDrawer(){drawer.classList.remove('active');drawerOv.classList.remove('active');document.body.classList.remove('no-scroll');}
+
+if(menuBtn)menuBtn.addEventListener('click',openDrawer);
+if(drawerClose)drawerClose.addEventListener('click',closeDrawer);
+if(drawerOv)drawerOv.addEventListener('click',closeDrawer);
+if(bnBookmark)bnBookmark.addEventListener('click',openDrawer);
+if(bnRecent)bnRecent.addEventListener('click',openDrawer);
+
+var dLinks=drawer?drawer.querySelectorAll('.drawer-nav a'):[];
+for(var i=0;i<dLinks.length;i++){dLinks[i].addEventListener('click',closeDrawer);}
+
+/* ===== Search ===== */
+var searchBar=document.getElementById('searchBar');
+var searchOv=document.getElementById('searchOverlay');
+var searchInput=null;
+var searchBtn=document.getElementById('searchBtn');
+var searchCloseBtn=document.getElementById('searchClose');
+
+function openSearch(){searchBar.classList.add('active');searchOv.classList.add('active');document.body.classList.add('no-scroll');setTimeout(function(){if(searchInput)searchInput.focus();},350);}
+function closeSearch(){searchBar.classList.remove('active');searchOv.classList.remove('active');document.body.classList.remove('no-scroll');}
+
+if(searchBtn)searchBtn.addEventListener('click',openSearch);
+if(searchCloseBtn)searchCloseBtn.addEventListener('click',closeSearch);
+if(searchOv)searchOv.addEventListener('click',closeSearch);
+if(searchBar){searchInput=searchBar.querySelector('input');}
+
+/* ===== Back to Top ===== */
+var bt=document.getElementById('backTop');
+if(bt){
+  window.addEventListener('scroll',function(){bt.classList.toggle('visible',window.pageYOffset>300);});
+  bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+}
+
+/* ===== Footer Year ===== */
+var fy=document.getElementById('footerYear');
+if(fy)fy.textContent=new Date().getFullYear();
+
+/* ===== ESC Key ===== */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeDrawer();closeSearch();}
+});
+
+/* ===== Heart Toggle ===== */
+var heartBtn=document.getElementById('pdHeartBtn');
+if(heartBtn){
+  heartBtn.addEventListener('click',function(){
+    var icon=this.querySelector('i');
+    if(icon.classList.contains('far')){
+      icon.classList.remove('far');
+      icon.classList.add('fas');
+      icon.style.color='var(--red)';
+    }else{
+      icon.classList.remove('fas');
+      icon.classList.add('far');
+      icon.style.color='';
+    }
+  });
+}
+
+/* ===== Utility Functions ===== */
+function extractYear(d){if(!d)return'';var y=new Date(d).getFullYear();return isNaN(y)?'':y;}
+function getRating(lbl){var n=(lbl||'').trim();var m=n.match(/Rating[-:\s]*(\d+\.?\d*)/i);if(m)return m[1];m=n.match(/IMDb\s*Rating\s*\(?\s*([\d.]+)\s*\)?/i);if(m)return m[1];return null;}
+function getDuration(lbl){var n=(lbl||'').trim();var m=n.match(/Duration[-:\s]*(\d{1,2}:\d{2}(?::\d{2})?)/i);return m?m[1]:null;}
+var SKIP=['Movie','Movies','Series','Rating','Duration','IMDb','zDub','Subtitle','Language','Dub','Season','Episode','Bluray','BluRay','HD','HDRip','DVDRip','WebRip','WebDL','CAM','HDCAM','HDTV','BDRip','DVDScr','PPV','REMUX','Remux','Proper','Repack'];
+function isGenre(n){var t=(n||'').trim();for(var i=0;i<SKIP.length;i++){if(t===SKIP[i])return false;}if(/Rating/i.test(t))return false;if(/^Duration/i.test(t))return false;if(/^\d/.test(t))return false;return true;}
+var PLACEHOLDER='https://via.placeholder.com/400x600/16162a/FF4081?text=No+Poster';
+
+/* ===== HOMEPAGE: Build Sections ===== */
+function buildHomepage(){
+  var store=document.getElementById('postStore');
+  if(!store)return;
+  var items=store.querySelectorAll('.ps-item');
+  if(items.length===0)return;
+  var posts=[];
+  for(var i=0;i<items.length;i++){
+    var it=items[i];
+    var labels=[];
+    var lEls=it.querySelectorAll('.ps-label');
+    for(var j=0;j<lEls.length;j++){var v=lEls[j].textContent.trim();if(v)labels.push(v);}
+    var imgUrl='';
+    var imgEl=it.querySelector('.ps-img');
+    if(imgEl)imgUrl=imgEl.textContent.trim();
+    posts.push({
+      url:(it.querySelector('.ps-url')||{}).textContent?it.querySelector('.ps-url').textContent.trim():'',
+      title:(it.querySelector('.ps-title')||{}).textContent?it.querySelector('.ps-title').textContent.trim():'',
+      img:imgUrl||PLACEHOLDER,
+      date:(it.querySelector('.ps-date')||{}).textContent?it.querySelector('.ps-date').textContent.trim():'',
+      labels:labels
+    });
+  }
+
+  var url=window.location.href;
+  var isHomepage=url.indexOf('/search/')===-1&&url.indexOf('/p/')===-1;
+  var container=document.getElementById('homeSections');
+  if(!container)return;
+  var html='';
+
+  function getPostRating(labels){for(var r=0;r<labels.length;r++){var rt=getRating(labels[r]);if(rt)return rt;}return null;}
+  function getPostQuality(labels){var q='HD';for(var j=0;j<labels.length;j++){var lb=labels[j].trim();if(/4K|2160p/i.test(lb))return'4K';if(/1080p/i.test(lb))return'1080p';if(/720p/i.test(lb))return'720p';if(/BluRay|Blu-ray/i.test(lb))return'BluRay';}return q;}
+  function isType(labels,type){for(var j=0;j<labels.length;j++){if(labels[j].trim()===type)return true;}return false;}
+  function renderCard(p,cls){
+    var rating=getPostRating(p.labels);
+    var quality=getPostQuality(p.labels);
+    var year=extractYear(p.date);
+    var isSeries=isType(p.labels,'Series');
+    var h='<a href="'+p.url+'" class="'+(cls||'grid-card')+'">';
+    if(cls==='gc'){
+      h+='<div class="gc-poster">';
+      h+='<img src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+      h+='<span class="gc-badge">'+quality+'</span>';
+      if(rating)h+='<span class="gc-rating"><i class="fas fa-star"></i> '+rating+'</span>';
+      h+='</div><div class="gc-info"><div class="gc-title">'+p.title+'</div>';
+      if(year)h+='<div class="gc-meta">'+year+'</div>';
+      h+='</div>';
+    }else{
+      h+='<div class="grid-poster">';
+      h+='<img src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+      h+='<span class="grid-quality">'+quality+'</span>';
+      if(rating)h+='<span class="grid-rating"><i class="fas fa-star"></i> '+rating+'</span>';
+      if(isSeries)h+='<span class="grid-type-badge">Series</span>';
+      h+='</div><div class="grid-info"><div class="grid-title">'+p.title+'</div>';
+      if(year)h+='<div class="grid-year">'+year+'</div>';
+      h+='</div>';
+    }
+    h+='</a>';
+    return h;
+  }
+
+  if(isHomepage){
+    /* Homepage: All Movies + Series sections */
+    var moviePosts=[],seriesPosts=[];
+    for(var i=0;i<posts.length;i++){
+      if(isType(posts[i].labels,'Series'))seriesPosts.push(posts[i]);
+      else moviePosts.push(posts[i]);
+    }
+    if(moviePosts.length>0){
+      html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-film" style="color:var(--accent);margin-right:6px"></i>All Movies</h2></div>';
+      html+='<div class="genre-scroll" id="moviesScroll">';
+      for(var i=0;i<moviePosts.length;i++)html+=renderCard(moviePosts[i],'gc');
+      html+='</div>';
+      html+='<div class="post-grid" id="moviesGrid" style="display:none">';
+      for(var i=0;i<moviePosts.length;i++)html+=renderCard(moviePosts[i],'grid-card');
+      html+='</div>';
+    }
+    if(seriesPosts.length>0){
+      html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-tv" style="color:var(--accent);margin-right:6px"></i>Series</h2></div>';
+      html+='<div class="genre-scroll" id="seriesScroll">';
+      for(var i=0;i<seriesPosts.length;i++)html+=renderCard(seriesPosts[i],'gc');
+      html+='</div>';
+      html+='<div class="post-grid" id="seriesGrid" style="display:none">';
+      for(var i=0;i<seriesPosts.length;i++)html+=renderCard(seriesPosts[i],'grid-card');
+      html+='</div>';
+    }
+  }else{
+    /* Label/Search page: single grid */
+    var heading='All Posts';
+    if(url.indexOf('/search/label/Movie')!==-1)heading='Movies';
+    else if(url.indexOf('/search/label/Series')!==-1)heading='Series';
+    else if(url.indexOf('/search')!==-1)heading='Search Results';
+    html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-th-large" style="color:var(--accent);margin-right:6px"></i>'+heading+'</h2></div>';
+    html+='<div class="post-grid">';
+    for(var i=0;i<posts.length;i++)html+=renderCard(posts[i],'grid-card');
+    html+='</div>';
+  }
+  container.innerHTML=html;
+
+  /* Responsive scroll vs grid */
+  function handleResize(){
+    var ww=window.innerWidth;
+    var ms=document.getElementById('moviesScroll');
+    var mg=document.getElementById('moviesGrid');
+    var ss=document.getElementById('seriesScroll');
+    var sg=document.getElementById('seriesGrid');
+    if(ms&&mg){ms.style.display=ww>768?'flex':'none';mg.style.display=ww>768?'none':'grid';}
+    if(ss&&sg){ss.style.display=ww>768?'flex':'none';sg.style.display=ww>768?'none':'grid';}
+  }
+  handleResize();
+  window.addEventListener('resize',handleResize);
+}
+
+/* ===== POST DETAIL: Tabs ===== */
+function initTabs(){
+  var tabBtns=document.querySelectorAll('.pd-tab-btn');
+  var panels=document.querySelectorAll('.pd-tab-panel');
+  for(var i=0;i<tabBtns.length;i++){
+    tabBtns[i].addEventListener('click',function(){
+      var tab=this.getAttribute('data-tab');
+      for(var j=0;j<tabBtns.length;j++)tabBtns[j].classList.remove('active');
+      for(var j=0;j<panels.length;j++)panels[j].classList.remove('active');
+      this.classList.add('active');
+      var target=document.getElementById('tab'+tab.charAt(0).toUpperCase()+tab.slice(1));
+      if(target)target.classList.add('active');
+      /* Load explore on first click */
+      if(tab==='explore'&&!exploreLoaded){loadExplore();exploreLoaded=true;}
+    });
+  }
+}
+
+/* ===== POST DETAIL: Process Labels & Meta ===== */
+function processPostDetail(){
+  var rEl=document.getElementById('postRating');
+  if(!rEl)return;
+
+  var labels=[];
+  if(window._pl&&Array.isArray(window._pl)&&window._pl.length>0){
+    labels=window._pl.slice();
+  }
+  if(labels.length===0){
+    var wrap=document.getElementById('pdWrap');
+    if(wrap){
+      var spans=wrap.querySelectorAll('.label-data');
+      for(var i=0;i<spans.length;i++){var v=spans[i].textContent.trim();if(v)labels.push(v);}
+    }
+  }
+  if(labels.length===0){
+    var feedUrl=window.location.origin+'/feeds/posts/default/'+encodeURIComponent(window.location.pathname.split('/').pop())+'?alt=json';
+    fetch(feedUrl).then(function(r){return r.json();}).then(function(d){
+      var lbs=[];
+      if(d.entry&&d.entry.category){d.entry.category.forEach(function(c){if(c.term)lbs.push(c.term);});}
+      applyPostMeta(lbs);
+    }).catch(function(){});
+    return;
+  }
+  applyPostMeta(labels);
+}
+
+function applyPostMeta(labels){
+  /* Rating */
+  var rating=null;
+  for(var i=0;i<labels.length;i++){var r=getRating(labels[i]);if(r){rating=r;break;}}
+  var rEl=document.getElementById('postRating');
+  if(rEl)rEl.textContent=rating||'--';
+
+  /* Year - try labels first, then post date, then title */
+  var wrap=document.getElementById('pdWrap');
+  var yEl=document.getElementById('postYear');
+  if(wrap&&yEl){
+    var y='';
+    /* Extract year from labels (e.g. '2024', 'Year-2024') */
+    for(var i=0;i<labels.length;i++){
+      var lb=labels[i].trim();
+      var ym=lb.match(/^(\d{4})$/);
+      if(!ym)ym=lb.match(/[Yy]ear[-:]?(\d{4})/);
+      if(ym){y=ym[1];break;}
+    }
+    /* Fallback: post date */
+    if(!y){
+      var ds=wrap.querySelector('.post-date-data');
+      y=extractYear(ds?ds.textContent.trim():'');
+    }
+    /* Fallback: extract from title like 'Inception (2010)' */
+    if(!y){
+      var tEl=document.getElementById('pdTitle');
+      if(tEl){var tm=(tEl.textContent||'').match(/\((\d{4})\)/);if(tm)y=tm[1];}
+    }
+    if(y)yEl.textContent=y;
+  }
+
+  /* Duration */
+  var duration='';
+  for(var i=0;i<labels.length;i++){var d=getDuration(labels[i]);if(d){duration=d;break;}}
+  if(!duration){
+    var body=document.getElementById('pdBodyRaw');
+    if(body){
+      var txt=body.textContent||'';
+      var dm=txt.match(/Duration[:\s]*(\d{1,2}:\d{2}(?::\d{2})?)/i);
+      if(dm)duration=dm[1];
+    }
+  }
+  var dEl=document.getElementById('postDuration');
+  if(dEl&&duration)dEl.textContent=duration;
+
+  /* Genre pills */
+  var genres=[];
+  for(var i=0;i<labels.length;i++){if(isGenre(labels[i]))genres.push(labels[i].trim());}
+  var gc=document.getElementById('pdGenrePills');
+  if(gc){
+    var html='';
+    for(var i=0;i<genres.length&&i<5;i++)html+='<span class="genre-pill">'+genres[i]+'</span>';
+    gc.innerHTML=html;
+  }
+
+  /* Extract Cover & Poster URLs from post body */
+  extractCoverPoster();
+
+  /* Parse post body for tabs */
+  parsePostBody();
+}
+
+/* ===== POST DETAIL: Extract Cover & Poster URLs ===== */
+function extractCoverPoster(){
+  var bodyEl=document.getElementById('pdBodyRaw');
+  if(!bodyEl)return;
+  var tmp=document.createElement('div');
+  tmp.innerHTML=bodyEl.innerHTML||'';
+  var children=tmp.children;
+  var coverUrl='',posterUrl='';
+  for(var i=0;i<children.length;i++){
+    var el=children[i];
+    var tag=el.tagName.toLowerCase();
+    var text=(el.textContent||'').trim();
+    if((tag==='h2'||tag==='h3'||tag==='h4')&&text){
+      if(/cover|banner/i.test(text)){
+        var next=el.nextElementSibling;
+        if(next){
+          var ntag=next.tagName.toLowerCase();
+          if(ntag==='img')coverUrl=next.getAttribute('src')||'';
+          else if(ntag==='a')coverUrl=next.getAttribute('href')||'';
+          else if(ntag==='p'){
+            var img=next.querySelector('img');
+            if(img)coverUrl=img.getAttribute('src')||'';
+            if(!coverUrl){var a=next.querySelector('a[href]');if(a)coverUrl=a.getAttribute('href')||'';}
+          }else{var img2=next.querySelector('img[src]');if(img2)coverUrl=img2.getAttribute('src')||'';}
+        }
+        var aIn=el.querySelector('a[href]');
+        if(aIn&&!coverUrl)coverUrl=aIn.getAttribute('href')||'';
+        continue;
+      }
+      if(/poster/i.test(text)){
+        var next=el.nextElementSibling;
+        if(next){
+          var ntag=next.tagName.toLowerCase();
+          if(ntag==='img')posterUrl=next.getAttribute('src')||'';
+          else if(ntag==='a')posterUrl=next.getAttribute('href')||'';
+          else if(ntag==='p'){
+            var img=next.querySelector('img');
+            if(img)posterUrl=img.getAttribute('src')||'';
+            if(!posterUrl){var a=next.querySelector('a[href]');if(a)posterUrl=a.getAttribute('href')||'';}
+          }else{var img2=next.querySelector('img[src]');if(img2)posterUrl=img2.getAttribute('src')||'';}
+        }
+        var aIn=el.querySelector('a[href]');
+        if(aIn&&!posterUrl)posterUrl=aIn.getAttribute('href')||'';
+        continue;
+      }
+    }
+  }
+  if(!coverUrl||!posterUrl){
+    var allImgs=tmp.querySelectorAll('img');
+    for(var j=0;j<allImgs.length;j++){
+      var img=allImgs[j];
+      var alt=(img.getAttribute('alt')||'').toLowerCase();
+      var cls=(img.getAttribute('class')||'').toLowerCase();
+      var src=img.getAttribute('src')||'';
+      if((/cover|banner/i.test(alt)||/cover|banner/i.test(cls))&&!coverUrl)coverUrl=src;
+      if((/poster/i.test(alt)||/poster/i.test(cls))&&!posterUrl)posterUrl=src;
+    }
+  }
+  if(coverUrl){var heroImg=document.querySelector('#pdHeroSimple img');if(heroImg)heroImg.src=coverUrl;}
+  if(posterUrl){var posterImg=document.querySelector('#pdPosterThumb img');if(posterImg)posterImg.src=posterUrl;}
+}
+
+/* ===== POST DETAIL: Parse Post Body ===== */
+function parsePostBody(){
+  var bodyEl=document.getElementById('pdBodyRaw');
+  if(!bodyEl)return;
+  var bodyHTML=bodyEl.innerHTML||'';
+  var tmp=document.createElement('div');
+  tmp.innerHTML=bodyHTML;
+
+  /* Extract all text nodes and elements */
+  var paragraphs=[];
+  var tables=[];
+  var headings=[];
+  var allLinks=[];
+  var allDivs=tmp.querySelectorAll('div, p, h1, h2, h3, h4, table, a, br, span');
+
+  /* Collect paragraphs (non-empty text blocks before tables) */
+  var children=tmp.children;
+  var synopsisParts=[];
+  var downloadSection=false;
+  var techSection=false;
+  var techTable=null;
+  var serverSections=[];
+
+  for(var i=0;i<children.length;i++){
+    var el=children[i];
+    var tag=el.tagName.toLowerCase();
+    var text=(el.textContent||'').trim();
+
+    /* Detect download section by heading text */
+    if((tag==='h2'||tag==='h3'||tag==='h4')&&text){
+      if(/download|server|link/i.test(text)){
+        downloadSection=true;
+        techSection=false;
+        serverSections.push({name:text,items:[]});
+        continue;
+      }
+      if(/info|detail|technical|spec/i.test(text)){
+        techSection=true;
+        downloadSection=false;
+        continue;
+      }
+    }
+
+    /* Collect synopsis paragraphs (before any download/info heading) */
+    if(!downloadSection&&!techSection&&text.length>20&&!/^\d+$/.test(text)){
+      if(tag==='p'||tag==='div'){
+        synopsisParts.push(text);
+      }
+    }
+
+    /* Collect tech info table */
+    if(techSection&&tag==='table'){
+      techTable=el;
+    }
+
+    /* Collect download links/tables */
+    if(downloadSection){
+      if(tag==='table'){
+        var rows=el.querySelectorAll('tr');
+        for(var r=0;r<rows.length;r++){
+          var cells=rows[r].querySelectorAll('td, th');
+          if(cells.length>=2){
+            var qName=(cells[0].textContent||'').trim();
+            var link=cells[1].querySelector('a');
+            var href=link?link.getAttribute('href'):'';
+            var linkText=(cells[1].textContent||'').trim();
+            var format='';
+            /* Try to extract format from second cell */
+            var allText=cells[1].textContent||'';
+            var fmtMatch=allText.match(/(MKV|MP4|AVI|WEB-DL|BluRay|HDRip|DVDRip)/i);
+            if(fmtMatch)format=fmtMatch[1];
+            var subtitleMatch=allText.match(/(Myanmar|English|Korean|Japanese|Chinese|Hardsub|Softsub)[\s]*(Subtitle)?/i);
+            if(subtitleMatch)format+=(format?' \u00b7 ':'')+subtitleMatch[0];
+
+            if(serverSections.length>0){
+              serverSections[serverSections.length-1].items.push({
+                quality:qName,
+                format:format||linkText,
+                link:href
+              });
+            }
+          }
+        }
+      }
+      /* Also check for standalone links */
+      if(tag==='a'){
+        var href=el.getAttribute('href');
+        var linkText=(el.textContent||'').trim();
+        if(href&&serverSections.length>0){
+          serverSections[serverSections.length-1].items.push({
+            quality:linkText,
+            format:'',
+            link:href
+          });
+        }
+      }
+    }
+
+    /* Collect all links from any part */
+    if(tag==='a'){
+      allLinks.push({text:(el.textContent||'').trim(),href:el.getAttribute('href')||''});
+    }
+  }
+
+  /* ===== RENDER DETAIL TAB ===== */
+  var synEl=document.getElementById('pdSynopsisText');
+  var viewMoreBtn=document.getElementById('pdViewMore');
+  if(synEl){
+    var synText=synopsisParts.length>0?synopsisParts.join(' '):'No synopsis available.';
+    if(synText.length>200){
+      synEl.textContent=synText.substring(0,200)+'...';
+      synEl.dataset.full=synText;
+      if(viewMoreBtn){
+        viewMoreBtn.style.display='inline-flex';
+        viewMoreBtn.addEventListener('click',function(){
+          if(this.classList.contains('expanded')){
+            synEl.textContent=synEl.dataset.full.substring(0,200)+'...';
+            this.classList.remove('expanded');
+            this.querySelector('span').textContent='View More';
+            this.querySelector('i').className='fas fa-chevron-down';
+          }else{
+            synEl.textContent=synEl.dataset.full;
+            this.classList.add('expanded');
+            this.querySelector('span').textContent='View Less';
+            this.querySelector('i').className='fas fa-chevron-up';
+          }
+        });
+      }
+    }else{
+      synEl.textContent=synText;
+    }
+  }
+
+  /* Render tech details */
+  renderTechDetails(techTable, tmp);
+
+  /* ===== RENDER DOWNLOAD TAB ===== */
+  renderDownloadTab(serverSections, allLinks, tmp);
+}
+
+function renderTechDetails(table, body){
+  var listEl=document.getElementById('pdTechList');
+  if(!listEl)return;
+
+  var techData={};
+  /* Try extracting from table */
+  if(table){
+    var rows=table.querySelectorAll('tr');
+    for(var i=0;i<rows.length;i++){
+      var cells=rows[i].querySelectorAll('td, th');
+      if(cells.length>=2){
+        var key=(cells[0].textContent||'').trim();
+        var val=(cells[1].textContent||'').trim();
+        techData[key]=val;
+      }
+    }
+  }
+
+  /* Fallback: extract from post body text */
+  if(Object.keys(techData).length===0){
+    var text=(body?body.textContent:'')||'';
+    var patterns=[
+      {key:'Quality',regex:/Quality[:\s]*([^\n\r,]+)/i,icon:'fa-cog'},
+      {key:'Format',regex:/Format[:\s]*([^\n\r,]+)/i,icon:'fa-file-video'},
+      {key:'Genre',regex:/Genre[:\s]*([^\n\r,]+)/i,icon:'fa-masks-theater'},
+      {key:'Duration',regex:/Duration[:\s]*(\d{1,2}:\d{2}(?::\d{2})?)/i,icon:'fa-clock'},
+      {key:'Subtitle',regex:/(?:Sub[\s]*title|Language)[:\s]*([^\n\r,]+)/i,icon:'fa-closed-captioning'},
+      {key:'Director',regex:/(?:Director|Directed[\s]*by)[:\s]*([^\n\r,]+)/i,icon:'fa-video'}
+    ];
+    for(var i=0;i<patterns.length;i++){
+      var m=text.match(patterns[i].regex);
+      if(m)techData[patterns[i].key]=m[1].trim();
+    }
+  }
+
+  var iconMap={Quality:'fa-cog',Format:'fa-file-video',Genre:'fa-masks-theater',Duration:'fa-clock',Subtitle:'fa-closed-captioning',Director:'fa-video',Resolution:'fa-expand',Size:'fa-hard-drive',Release:'fa-calendar',Country:'fa-globe',Language:'fa-language'};
+  var html='';
+  var keys=['Quality','Format','Genre','Duration','Subtitle','Director','Resolution','Size','Release','Country','Language'];
+  for(var i=0;i<keys.length;i++){
+    var k=keys[i];
+    if(techData[k]){
+      var icon=iconMap[k]||'fa-circle-info';
+      html+='<div class="pd-tech-item">';
+      html+='<div class="pd-tech-icon"><i class="fas '+icon+'"></i></div>';
+      html+='<div><div class="pd-tech-label">'+k+'</div><div class="pd-tech-value">'+techData[k]+'</div></div>';
+      html+='</div>';
+    }
+  }
+  if(!html)html='<div style="color:var(--muted);font-size:12px;text-align:center;padding:20px">No technical details found.</div>';
+  listEl.innerHTML=html;
+}
+
+function renderDownloadTab(sections, allLinks, body){
+  var listEl=document.getElementById('dlServerList');
+  if(!listEl)return;
+
+  /* If no structured sections found, try to extract from all links */
+  if(sections.length===0){
+    /* Look for download-related links in post body */
+    var dlLinks=[];
+    if(body){
+      var links=body.querySelectorAll('a');
+      for(var i=0;i<links.length;i++){
+        var href=links[i].getAttribute('href')||'';
+        var text=(links[i].textContent||'').trim();
+        if(href&&(href.indexOf('http')===0||href.indexOf('/p/')===0||href.indexOf('drive.google')!==-1||href.indexOf('mega.nz')!==-1||href.indexOf('mediafire')!==-1)){
+          dlLinks.push({text:text,href:href});
+        }
+      }
+    }
+    if(dlLinks.length>0){
+      sections=[{name:'Server 1',items:[]}];
+      for(var i=0;i<dlLinks.length;i++){
+        sections[0].items.push({quality:'Download '+(i+1),format:dlLinks[i].text,link:dlLinks[i].href});
+      }
+    }
+  }
+
+  /* If still no sections, extract from tables in body */
+  if(sections.length===0&&body){
+    var tables=body.querySelectorAll('table');
+    var serverCount=0;
+    for(var t=0;t<tables.length;t++){
+      var rows=tables[t].querySelectorAll('tr');
+      var hasLinks=false;
+      for(var r=0;r<rows.length;r++){
+        if(rows[r].querySelector('a[href]')){hasLinks=true;break;}
+      }
+      if(hasLinks){
+        serverCount++;
+        var section={name:'Server '+serverCount,items:[]};
+        for(var r=0;r<rows.length;r++){
+          var cells=rows[r].querySelectorAll('td, th');
+          if(cells.length>=2){
+            var link=cells[1].querySelector('a');
+            if(link){
+              var qName=(cells[0].textContent||'').trim();
+              var href=link.getAttribute('href');
+              var allText=cells[1].textContent||'';
+              section.items.push({quality:qName,format:allText.trim(),link:href});
+            }
+          }
+        }
+        if(section.items.length>0)sections.push(section);
+      }
+    }
+  }
+
+  /* Render server cards */
+  var html='';
+  if(sections.length===0){
+    html='<div style="text-align:center;padding:30px;color:var(--muted);font-size:13px"><i class="fas fa-download" style="font-size:28px;display:block;margin-bottom:10px;color:var(--border)"></i>No download links found.</div>';
+  }else{
+    for(var s=0;s<sections.length;s++){
+      var sec=sections[s];
+      var qualityTags=[];
+      for(var q=0;q<sec.items.length&&q<4;q++)qualityTags.push(sec.items[q].quality);
+      html+='<div class="dl-server-card" data-server="'+s+'">';
+      html+='<div class="dl-server-header" onclick="toggleServer(this)">';
+      html+='<div class="dl-server-left">';
+      html+='<div class="dl-server-icon"><i class="fas fa-server"></i></div>';
+      html+='<div><div class="dl-server-name">'+sec.name+'</div>';
+      html+='<div class="dl-server-qualities">';
+      for(var q=0;q<qualityTags.length;q++)html+='<span class="dl-server-quality-tag">'+qualityTags[q]+'</span>';
+      html+='</div></div></div>';
+      html+='<i class="fas fa-chevron-down dl-server-arrow"></i>';
+      html+='</div>';
+      html+='<div class="dl-server-body">';
+      for(var q=0;q<sec.items.length;q++){
+        var item=sec.items[q];
+        html+='<div class="dl-quality-card">';
+        html+='<div class="dl-quality-top">';
+        html+='<span class="dl-quality-badge">'+item.quality+'</span>';
+        html+='<span class="dl-quality-label">'+item.quality+'</span>';
+        html+='</div>';
+        if(item.format)html+='<div class="dl-quality-info">'+item.format+'</div>';
+        if(item.link){
+          html+='<a href="'+item.link+'" target="_blank" rel="nofollow noopener" class="dl-download-btn">';
+          html+='<i class="fas fa-download"></i> Download '+item.quality;
+          html+='</a>';
+        }else{
+          html+='<button class="dl-download-btn" style="opacity:.5;cursor:not-allowed" disabled><i class="fas fa-download"></i> Unavailable</button>';
+        }
+        html+='</div>';
+      }
+      html+='</div></div>';
+    }
+  }
+  listEl.innerHTML=html;
+}
+
+/* Toggle server card expand/collapse */
+window.toggleServer=function(el){
+  var card=el.parentElement;
+  card.classList.toggle('expanded');
+};
+
+/* ===== POST DETAIL: Explore Tab (Related Posts) ===== */
+var exploreLoaded=false;
+function loadExplore(){
+  var c=document.getElementById('exploreGrid');
+  if(!c)return;
+  var labels=(window._pl&&window._pl.length>0)?window._pl:[];
+  if(labels.length===0){
+    var wrap=document.getElementById('pdWrap');
+    if(wrap){
+      var spans=wrap.querySelectorAll('.label-data');
+      for(var i=0;i<spans.length;i++){var v=spans[i].textContent.trim();if(v)labels.push(v);}
+    }
+  }
+  var feedLabel='';
+  for(var i=0;i<labels.length;i++){
+    if(isGenre(labels[i])){feedLabel=labels[i];break;}
+  }
+  if(!feedLabel&&labels.length>0)feedLabel=labels[0];
+  if(!feedLabel){
+    c.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">No recommendations available.</div>';
+    return;
+  }
+
+    c.innerHTML='<div style="flex:1;text-align:center;padding:30px;color:var(--muted);font-size:12px"><i class="fas fa-spinner fa-spin" style="font-size:20px;margin-bottom:8px;display:block"></i>Loading...</div>';
+
+  var feedUrl=window.location.origin+'/feeds/posts/default/-/'+encodeURIComponent(feedLabel)+'?max-results=6&alt=json';
+  var currentUrl=window.location.href;
+  fetch(feedUrl).then(function(r){return r.json();}).then(function(d){
+    if(!d.feed||!d.feed.entry){
+      c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
+      return;
+    }
+    var h='';
+    d.feed.entry.forEach(function(e){
+      var t=e.title.$t,l='',img=PLACEHOLDER;
+      e.link.forEach(function(k){if(k.rel==='alternate')l=k.href;});
+      if(e.media$thumbnail)img=e.media$thumbnail.url.replace('/s72-c/','/w300-h450-c/');
+      if(l&&t&&l!==currentUrl){
+        var rating=getRating(null);
+        /* Try to get rating from categories */
+        if(e.category){
+          for(var i=0;i<e.category.length;i++){
+            var r=getRating(e.category[i].term);
+            if(r){rating=r;break;}
+          }
+        }
+        var year='';
+        if(e.published)year=new Date(e.published.$t).getFullYear();
+        var quality='HD';
+        if(e.category){
+          for(var i=0;i<e.category.length;i++){
+            var lb=e.category[i].term||'';
+            if(/4K|2160p/i.test(lb)){quality='4K';break;}
+            if(/1080p/i.test(lb))quality='1080p';
+            else if(/720p/i.test(lb))quality='720p';
+          }
+        }
+        h+='<a href="'+l+'" class="explore-card">';
+        h+='<div class="explore-poster">';
+        h+='<img alt="'+t+'" src="'+img+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+        h+='<span class="explore-qbadge">'+quality+'</span>';
+        if(rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+rating+'</span>';
+        h+='</div>';
+        h+='<div class="explore-info"><div class="explore-title">'+t+'</div>';
+        if(year)h+='<div class="explore-year">'+year+'</div>';
+        h+='</div></a>';
+      }
+    });
+    if(!h)h='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
+    c.innerHTML=h;
+  }).catch(function(){
+    c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">Failed to load recommendations.</div>';
+  });
+}
+
+/* ===== Bottom Nav Active State ===== */
+(function(){
+  var url=window.location.href;
+  var bns=document.querySelectorAll('.bn-item');
+  for(var i=0;i<bns.length;i++){
+    bns[i].classList.remove('active');
+    var pg=bns[i].getAttribute('data-page');
+    if(pg==='home'&&url.indexOf('/search/')===-1&&url.indexOf('/p/')===-1)bns[i].classList.add('active');
+    if(url.indexOf('/search/label/Movie')!==-1&&pg==='movies')bns[i].classList.add('active');
+    if(url.indexOf('/search/label/Series')!==-1&&pg==='series')bns[i].classList.add('active');
+  }
+})();
+
+/* ===== Clean Blogger Defaults ===== */
+function cleanBlogger(){
+  var sels=['.status-msg-wrap','.blog-posts','.blog-pager','.feed-links','.blog-feeds'];
+  for(var i=0;i<sels.length;i++){
+    var els=document.querySelectorAll(sels[i]);
+    for(var j=0;j<els.length;j++){try{els[j].style.display='none';}catch(e){}}
+  }
+}
+
+/* ===== Init ===== */
+function init(){
+  injectCSS();
+  cleanBlogger();
+  buildHomepage();
+  processPostDetail();
+  initTabs();
+  /* Bottom nav padding */
+  if(window.innerWidth<=768)document.body.classList.add('bn-visible');
+  window.addEventListener('resize',function(){
+    if(window.innerWidth<=768)document.body.classList.add('bn-visible');
+    else document.body.classList.remove('bn-visible');
+  });
+}
+
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+else init();
+setTimeout(function(){injectCSS();cleanBlogger();},1000);
+
+})();
+//]]>
+</script>
+
+</body>
+</html>
