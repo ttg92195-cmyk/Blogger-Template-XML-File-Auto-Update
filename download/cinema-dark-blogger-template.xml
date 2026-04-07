@@ -153,10 +153,10 @@ body.post-page .app-drawer{display:none!important}
 .pd-wrap{margin:0 -16px}
 .pd-hero-simple{position:relative;aspect-ratio:16/9;max-height:420px;overflow:hidden;background:var(--bg3)}
 .pd-hero-simple img{width:100%;height:100%;object-fit:cover}
-.pd-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,18,.95) 0%,rgba(10,10,18,.3) 40%,rgba(10,10,18,.1) 100%);pointer-events:none}
-.pd-hero-btns{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:5;pointer-events:auto}
-.pd-hero-circle{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;border:none;transition:var(--tr)}
-.pd-hero-circle:hover{background:rgba(0,0,0,.8);transform:scale(1.05)}
+.pd-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,18,.65) 0%,rgba(10,10,18,.15) 50%,rgba(10,10,18,.05) 100%);pointer-events:none}
+.pd-hero-btns{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;z-index:5;pointer-events:auto}
+.pd-hero-circle{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;cursor:pointer;border:none;transition:var(--tr)}
+.pd-hero-circle:hover{background:rgba(0,0,0,.6);transform:scale(1.05)}
 
 /* ========== POST DETAIL: Info Card ========== */
 .pd-info-card{display:flex;gap:14px;padding:16px;margin:-40px 16px 0;position:relative;z-index:10;background:var(--card);border-radius:var(--r3);border:1px solid var(--border)}
