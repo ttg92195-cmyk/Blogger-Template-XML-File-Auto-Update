@@ -122,8 +122,9 @@ body.post-page .app-drawer{display:none!important}
 .grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
 .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
 .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
-.grid-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
-.grid-card:hover .grid-poster img{transform:scale(1.05)}
+.grid-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease,opacity .4s ease;opacity:0}
+.grid-poster img.loaded{opacity:1}
+.grid-card:hover .grid-poster img.loaded{transform:scale(1.05)}
 .grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red)}
 .grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
 .grid-rating i{font-size:8px;color:#FFD700}
@@ -867,42 +868,25 @@ function buildHomepage(){
     var imgUrl='';
     var imgEl=it.querySelector('.ps-img');
     if(imgEl)imgUrl=imgEl.textContent.trim();
-    /* Extract Poster URL from post body */
+    /* Extract Poster URL from post body using fast regex (no DOM creation) */
     var posterFromBody='';
     try{
       var bodyEl=it.querySelector('.ps-body');
       if(bodyEl){
         var bhtml=bodyEl.value||bodyEl.textContent||'';
-        var btmp=document.createElement('div');
-        btmp.innerHTML=bhtml;
-        var bchildren=btmp.children;
-        for(var k=0;k<bchildren.length;k++){
-          var bel=bchildren[k];
-          var btag=bel.tagName.toLowerCase();
-          var btext=(bel.textContent||'').trim();
-          if((btag==='h2'||btag==='h3'||btag==='h4')&&/poster/i.test(btext)){
-            var bnext=bel.nextElementSibling;
-            if(bnext){
-              var bntag=bnext.tagName.toLowerCase();
-              if(bntag==='img')posterFromBody=bnext.getAttribute('src')||'';
-              else if(bntag==='a')posterFromBody=bnext.getAttribute('href')||'';
-              else{var bimg=bnext.querySelector('img[src]');if(bimg)posterFromBody=bimg.getAttribute('src')||'';}
-            }
-            if(!posterFromBody){var ba=bel.querySelector('a[href]');if(ba)posterFromBody=ba.getAttribute('href')||'';}
-            break;
-          }
-        }
-        /* Fallback: check img alt/class for poster */
+        /* Fast regex: find <h2>Poster</h2> then <img src="..."> */
+        var pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>\s*<img[^>]*src\s*=\s*["']([^"']+)["']/i);
+        if(!pMatch)pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>\s*<a[^>]*href\s*=\s*["']([^"']+)["']/i);
+        if(!pMatch)pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>[\s\S]*?<img[^>]*src\s*=\s*["']([^"']+)["']/i);
+        if(pMatch)posterFromBody=pMatch[1];
+        /* Fallback: img with alt=poster or class containing poster */
         if(!posterFromBody){
-          var bimgs=btmp.querySelectorAll('img');
-          for(var m=0;m<bimgs.length;m++){
-            var balt=(bimgs[m].getAttribute('alt')||'').toLowerCase();
-            var bcls=(bimgs[m].getAttribute('class')||'').toLowerCase();
-            if(/poster/i.test(balt)||/poster/i.test(bcls)){posterFromBody=bimgs[m].getAttribute('src')||'';break;}
-          }
+          var altMatch=bhtml.match(/<img[^>]+alt\s*=\s*["'][^"']*poster[^"']*["'][^>]*src\s*=\s*["']([^"']+)["']/i);
+          if(!altMatch)altMatch=bhtml.match(/<img[^>]+src\s*=\s*["']([^"']+)["'][^>]*alt\s*=\s*["'][^"']*poster[^"']*["']/i);
+          if(altMatch)posterFromBody=altMatch[1];
         }
       }
-    }catch(e){/* fallback to featured image */}
+    }catch(e){}
     var finalImg=posterFromBody||imgUrl||PLACEHOLDER;
     posts.push({
       url:(it.querySelector('.ps-url')||{}).textContent?it.querySelector('.ps-url').textContent.trim():'',
@@ -912,6 +896,8 @@ function buildHomepage(){
       labels:labels
     });
   }
+  /* Remove postStore from DOM to free memory - we only need the data now */
+  store.innerHTML='';
 
   var url=window.location.href;
   var isHomepage=url.indexOf('/search/')===-1&&url.indexOf('/p/')===-1;
@@ -989,6 +975,32 @@ function buildHomepage(){
     html+='</div>';
   }
   container.innerHTML=html;
+  /* Lazy load images with IntersectionObserver for smooth scrolling */
+  var lazyImgs=container.querySelectorAll('img[loading="lazy"]');
+  if(lazyImgs.length>0&&'IntersectionObserver'in window){
+    var imgObs=new IntersectionObserver(function(entries){
+      for(var e=0;e<entries.length;e++){
+        if(entries[e].isIntersecting){
+          var img=entries[e].target;
+          if(img.dataset.src){img.src=img.dataset.src;img.removeAttribute('data-src');}
+          img.addEventListener('load',function(){this.classList.add('loaded');},{once:true});
+          imgObs.unobserve(img);
+        }
+      }
+    },{rootMargin:'200px'});
+    for(var li=0;li<lazyImgs.length;li++){
+      var limg=lazyImgs[li];
+      limg.dataset.src=limg.src;
+      limg.src='';
+      imgObs.observe(limg);
+    }
+  }else{
+    /* Fallback: just show all images */
+    var allImgs=container.querySelectorAll('img');
+    for(var ai=0;ai<allImgs.length;ai++){
+      allImgs[ai].classList.add('loaded');
+    }
+  }
 }
 
 /* ===== POST DETAIL: Tabs ===== */
