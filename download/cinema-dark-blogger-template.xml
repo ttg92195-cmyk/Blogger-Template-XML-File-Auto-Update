@@ -352,7 +352,7 @@ body.no-scroll{overflow:hidden}
   .explore-info{padding:5px 6px}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
-  .post-grid{grid-template-columns:repeat(3,1fr)}
+  .post-grid{grid-template-columns:repeat(4,1fr)}
   .grid-info{height:48px}
   .grid-title{font-size:11px}
   .genre-scroll .gc{min-width:130px;max-width:130px}
@@ -364,6 +364,7 @@ body.no-scroll{overflow:hidden}
   .pd-info-right h1{font-size:15px}
   .pd-meta-row{gap:8px}
   .grid-info{height:44px;padding:6px}
+  .post-grid{grid-template-columns:repeat(3,1fr)}
   .explore-card{min-width:100px;max-width:100px}
   .explore-title{font-size:9px}
   .section-header h2{font-size:14px}
@@ -519,8 +520,9 @@ body.no-scroll{overflow:hidden}
 
                 <!-- Hero Banner -->
                 <div class='pd-hero-simple' id='pdHeroSimple'>
+                    <img id='pdHeroImg' alt='' src=''/>
                   <b:if cond='data:post.featuredImage'>
-                    <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' style='display:none'/>
                   </b:if>
                   <div class='pd-hero-overlay'></div>
                   <div class='pd-hero-btns'>
@@ -536,8 +538,9 @@ body.no-scroll{overflow:hidden}
                 <!-- Info Card -->
                 <div class='pd-info-card'>
                   <div class='pd-poster-thumb' id='pdPosterThumb'>
+                    <img id='pdPosterImg' alt='' src=''/>
                     <b:if cond='data:post.featuredImage'>
-                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' style='display:none'/>
                     </b:if>
                   </div>
                   <div class='pd-info-right'>
@@ -1115,11 +1118,14 @@ function extractCoverPoster(){
   var coverUrl='',posterUrl='';
   /* Fast regex for Cover */
   var cMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Cover[\s]*<\/h[2-4]>\s*<img[^>]*src\s*=\s*["']([^"']+)["']/i);
+  /* Also check for anchor-wrapped images: <h2>Poster</h2><a href="..."><img src="..."></a> */
+  if(!cMatch)cMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Cover[\s]*<\/h[2-4]>\s*<a[^>]+><img[^>]*src\s*=\s*["']([^"']+)["']/i);
   if(!cMatch)cMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Cover[\s]*<\/h[2-4]>\s*<a[^>]*href\s*=\s*["']([^"']+)["']/i);
   if(!cMatch)cMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Cover[\s]*<\/h[2-4]>[\s\S]*?<img[^>]*src\s*=\s*["']([^"']+)["']/i);
   if(cMatch)coverUrl=cMatch[1];
   /* Fast regex for Poster */
   var pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>\s*<img[^>]*src\s*=\s*["']([^"']+)["']/i);
+  if(!pMatch)pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>\s*<a[^>]+><img[^>]*src\s*=\s*["']([^"']+)["']/i);
   if(!pMatch)pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>\s*<a[^>]*href\s*=\s*["']([^"']+)["']/i);
   if(!pMatch)pMatch=bhtml.match(/<h[2-4][^>]*>[\s]*Poster[\s]*<\/h[2-4]>[\s\S]*?<img[^>]*src\s*=\s*["']([^"']+)["']/i);
   if(pMatch)posterUrl=pMatch[1];
@@ -1135,8 +1141,26 @@ function extractCoverPoster(){
       if(!posterUrl&&/poster/i.test(allImgSrcs[j].attr))posterUrl=allImgSrcs[j].src;
     }
   }
-  if(coverUrl){var heroImg=document.querySelector('#pdHeroSimple img');if(heroImg)heroImg.src=coverUrl;}
-  if(posterUrl){var posterImg=document.querySelector('#pdPosterThumb img');if(posterImg)posterImg.src=posterUrl;}
+  /* Set cover image on hero */
+  var heroImg=document.getElementById('pdHeroImg');
+  if(heroImg){
+    if(coverUrl){heroImg.src=coverUrl;}
+    else{
+      /* Fallback: use Blogger featured image */
+      var fiHero=document.querySelector('#pdHeroSimple img[style*="display:none"]');
+      if(fiHero&&fiHero.src){heroImg.src=fiHero.src;}
+    }
+  }
+  /* Set poster image on thumb */
+  var posterImg=document.getElementById('pdPosterImg');
+  if(posterImg){
+    if(posterUrl){posterImg.src=posterUrl;}
+    else{
+      /* Fallback: use Blogger featured image */
+      var fiPoster=document.querySelector('#pdPosterThumb img[style*="display:none"]');
+      if(fiPoster&&fiPoster.src){posterImg.src=fiPoster.src;}
+    }
+  }
 }
 
 /* ===== POST DETAIL: Parse Post Body ===== */
