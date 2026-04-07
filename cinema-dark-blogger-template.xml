@@ -118,19 +118,18 @@ body.post-page .app-drawer{display:none!important}
 .view-all-link i{font-size:10px;transition:var(--tr)}
 
 /* ========== POST GRID (Homepage) ========== */
-.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px}
-.grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px;will-change:transform}
+.grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint;backface-visibility:hidden}
 .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
 .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
-.grid-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease,opacity .4s ease;opacity:0}
+.grid-poster img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease;will-change:opacity}
 .grid-poster img.loaded{opacity:1}
-.grid-card:hover .grid-poster img.loaded{transform:scale(1.05)}
 .grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red)}
 .grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
 .grid-rating i{font-size:8px;color:#FFD700}
-.grid-info{padding:8px}
+.grid-info{padding:8px;height:52px;overflow:hidden}
 .grid-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px;color:var(--txt)}
-.grid-year{font-size:10px;color:var(--muted)}
+.grid-year{font-size:10px;color:var(--muted);min-height:14px}
 .grid-type-badge{position:absolute;bottom:6px;left:6px;padding:2px 7px;border-radius:3px;font-size:8px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--accent)}
 
 /* Horizontal scroll for desktop homepage sections */
@@ -222,7 +221,7 @@ body.post-page .app-drawer{display:none!important}
 .explore-heading i{color:var(--accent)}
 .explore-scroll{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 16px}
 .explore-scroll::-webkit-scrollbar{display:none}
-.explore-card{min-width:130px;max-width:130px;flex-shrink:0;border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:var(--tr);cursor:pointer}
+.explore-card{min-width:130px;max-width:130px;flex-shrink:0;border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease;cursor:pointer;contain:layout style paint}
 .explore-card:hover{border-color:rgba(255,64,129,.3);transform:translateY(-3px);box-shadow:var(--shadow)}
 .explore-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
 .explore-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
@@ -323,21 +322,11 @@ body:not(.post-page) .comment-link{display:none!important}
 body.no-scroll{overflow:hidden}
 
 /* ========== ANIMATIONS ========== */
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.grid-card{animation:fadeUp .3s ease forwards;opacity:0}
-.grid-card:nth-child(1){animation-delay:.02s}
-.grid-card:nth-child(2){animation-delay:.04s}
-.grid-card:nth-child(3){animation-delay:.06s}
-.grid-card:nth-child(4){animation-delay:.08s}
-.grid-card:nth-child(5){animation-delay:.10s}
-.grid-card:nth-child(6){animation-delay:.12s}
-.genre-scroll .gc{animation:fadeUp .35s ease forwards;opacity:0}
+/* FadeUp removed from grid cards to prevent scroll jank */
+.genre-scroll .gc{animation:fadeUp .3s ease forwards;opacity:0}
 .genre-scroll .gc:nth-child(1){animation-delay:.02s}
 .genre-scroll .gc:nth-child(2){animation-delay:.05s}
 .genre-scroll .gc:nth-child(3){animation-delay:.08s}
-.genre-scroll .gc:nth-child(4){animation-delay:.11s}
-.genre-scroll .gc:nth-child(5){animation-delay:.14s}
-.genre-scroll .gc:nth-child(6){animation-delay:.17s}
 
 /* ========== RESPONSIVE ========== */
 @media(min-width:1200px){
@@ -364,6 +353,8 @@ body.no-scroll{overflow:hidden}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
   .post-grid{grid-template-columns:repeat(3,1fr)}
+  .grid-info{height:48px}
+  .grid-title{font-size:11px}
   .genre-scroll .gc{min-width:130px;max-width:130px}
 }
 @media(max-width:480px){
@@ -372,8 +363,7 @@ body.no-scroll{overflow:hidden}
   .pd-poster-thumb{width:80px;min-width:80px;height:120px}
   .pd-info-right h1{font-size:15px}
   .pd-meta-row{gap:8px}
-  .grid-title{font-size:11px}
-  .grid-info{padding:6px}
+  .grid-info{height:44px;padding:6px}
   .explore-card{min-width:100px;max-width:100px}
   .explore-title{font-size:9px}
   .section-header h2{font-size:14px}
@@ -916,7 +906,7 @@ function buildHomepage(){
     var h='<a href="'+p.url+'" class="'+(cls||'grid-card')+'">';
     if(cls==='gc'){
       h+='<div class="gc-poster">';
-      h+='<img src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+      h+='<img src="" data-src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
       h+='<span class="gc-badge">'+quality+'</span>';
       if(rating)h+='<span class="gc-rating"><i class="fas fa-star"></i> '+rating+'</span>';
       h+='</div><div class="gc-info"><div class="gc-title">'+p.title+'</div>';
@@ -924,7 +914,7 @@ function buildHomepage(){
       h+='</div>';
     }else{
       h+='<div class="grid-poster">';
-      h+='<img src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+      h+='<img src="" data-src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
       h+='<span class="grid-quality">'+quality+'</span>';
       if(rating)h+='<span class="grid-rating"><i class="fas fa-star"></i> '+rating+'</span>';
       if(isSeries)h+='<span class="grid-type-badge">Series</span>';
@@ -976,28 +966,29 @@ function buildHomepage(){
   }
   container.innerHTML=html;
   /* Lazy load images with IntersectionObserver for smooth scrolling */
-  var lazyImgs=container.querySelectorAll('img[loading="lazy"]');
+  var lazyImgs=container.querySelectorAll('img[data-src]');
   if(lazyImgs.length>0&&'IntersectionObserver'in window){
     var imgObs=new IntersectionObserver(function(entries){
       for(var e=0;e<entries.length;e++){
         if(entries[e].isIntersecting){
           var img=entries[e].target;
-          if(img.dataset.src){img.src=img.dataset.src;img.removeAttribute('data-src');}
+          if(img.dataset.src){
+            img.src=img.dataset.src;
+            img.removeAttribute('data-src');
+          }
           img.addEventListener('load',function(){this.classList.add('loaded');},{once:true});
           imgObs.unobserve(img);
         }
       }
-    },{rootMargin:'200px'});
+    },{rootMargin:'300px'});
     for(var li=0;li<lazyImgs.length;li++){
-      var limg=lazyImgs[li];
-      limg.dataset.src=limg.src;
-      limg.src='';
-      imgObs.observe(limg);
+      imgObs.observe(lazyImgs[li]);
     }
   }else{
-    /* Fallback: just show all images */
-    var allImgs=container.querySelectorAll('img');
+    /* Fallback: load all images immediately */
+    var allImgs=container.querySelectorAll('img[data-src]');
     for(var ai=0;ai<allImgs.length;ai++){
+      allImgs[ai].src=allImgs[ai].dataset.src;
       allImgs[ai].classList.add('loaded');
     }
   }
@@ -1507,7 +1498,7 @@ function loadExplore(){
         }
         h+='<a href="'+l+'" class="explore-card">';
         h+='<div class="explore-poster">';
-        h+='<img alt="'+t+'" src="'+img+'" onerror="this.src=\''+PLACEHOLDER+'\'" loading="lazy"/>';
+        h+='<img alt="'+t+'" data-src="'+img+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
         h+='<span class="explore-qbadge">'+quality+'</span>';
         if(rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+rating+'</span>';
         h+='</div>';
@@ -1518,6 +1509,24 @@ function loadExplore(){
     });
     if(!h)h='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
     c.innerHTML=h;
+    /* Lazy load explore images */
+    var expImgs=c.querySelectorAll('img[data-src]');
+    if(expImgs.length>0&&'IntersectionObserver'in window){
+      var eObs=new IntersectionObserver(function(entries){
+        for(var ei=0;ei<entries.length;ei++){
+          if(entries[ei].isIntersecting){
+            var ei2=entries[ei].target;
+            if(ei2.dataset.src){ei2.src=ei2.dataset.src;ei2.removeAttribute('data-src');}
+            eObs.unobserve(ei2);
+          }
+        }
+      },{rootMargin:'200px'});
+      for(var ex=0;ex<expImgs.length;ex++)eObs.observe(expImgs[ex]);
+    }else{
+      for(var ef=0;ef<expImgs.length;ef++){
+        if(expImgs[ef].dataset.src){expImgs[ef].src=expImgs[ef].dataset.src;}
+      }
+    }
   }).catch(function(){
     c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">Failed to load recommendations.</div>';
   });
