@@ -341,6 +341,8 @@ body.no-scroll{overflow:hidden}
 /* ========== RESPONSIVE ========== */
 @media(min-width:1200px){
   .post-grid{grid-template-columns:repeat(6,1fr)}
+  .genre-scroll{display:none!important}
+  .mobile-grid{display:grid!important}
 }
 @media(max-width:1024px){
   .main-layout{grid-template-columns:1fr}
@@ -360,6 +362,8 @@ body.no-scroll{overflow:hidden}
   .explore-info{padding:5px 6px}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
+  .post-grid{grid-template-columns:repeat(3,1fr)}
+  .genre-scroll .gc{min-width:130px;max-width:130px}
 }
 @media(max-width:480px){
   .pd-hero-simple{aspect-ratio:16/11}
@@ -947,7 +951,7 @@ function buildHomepage(){
   }
 
   if(isHomepage){
-    /* Homepage: All Movies + Series sections (10 posts each) */
+    /* Homepage: Movies + Series grid sections (10 posts each) */
     var moviePosts=[],seriesPosts=[];
     for(var i=0;i<posts.length;i++){
       if(isType(posts[i].labels,'Series'))seriesPosts.push(posts[i]);
@@ -958,24 +962,18 @@ function buildHomepage(){
     var seriesHome=seriesPosts.slice(0,homeLimit);
     var blogHome=window.location.href.replace(/\/$/,'');
     if(moviePosts.length>0){
-      html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-film" style="color:var(--accent);margin-right:6px"></i>All Movies</h2>';
-      if(moviePosts.length>homeLimit)html+='<a class="view-all-link" href="'+blogHome+'/search/label/Movie">View All <i class="fas fa-chevron-right"></i></a>';
+      html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-film" style="color:var(--accent);margin-right:6px"></i>Movies</h2>';
+      html+='<a class="view-all-link" href="'+blogHome+'/search/label/Movie">View All <i class="fas fa-chevron-right"></i></a>';
       html+='</div>';
-      html+='<div class="genre-scroll" id="moviesScroll">';
-      for(var i=0;i<movieHome.length;i++)html+=renderCard(movieHome[i],'gc');
-      html+='</div>';
-      html+='<div class="post-grid" id="moviesGrid" style="display:none">';
+      html+='<div class="post-grid">';
       for(var i=0;i<movieHome.length;i++)html+=renderCard(movieHome[i],'grid-card');
       html+='</div>';
     }
     if(seriesPosts.length>0){
       html+='<div class="section-header"><div class="section-bar"></div><h2><i class="fas fa-tv" style="color:var(--accent);margin-right:6px"></i>Series</h2>';
-      if(seriesPosts.length>homeLimit)html+='<a class="view-all-link" href="'+blogHome+'/search/label/Series">View All <i class="fas fa-chevron-right"></i></a>';
+      html+='<a class="view-all-link" href="'+blogHome+'/search/label/Series">View All <i class="fas fa-chevron-right"></i></a>';
       html+='</div>';
-      html+='<div class="genre-scroll" id="seriesScroll">';
-      for(var i=0;i<seriesHome.length;i++)html+=renderCard(seriesHome[i],'gc');
-      html+='</div>';
-      html+='<div class="post-grid" id="seriesGrid" style="display:none">';
+      html+='<div class="post-grid">';
       for(var i=0;i<seriesHome.length;i++)html+=renderCard(seriesHome[i],'grid-card');
       html+='</div>';
     }
@@ -991,19 +989,6 @@ function buildHomepage(){
     html+='</div>';
   }
   container.innerHTML=html;
-
-  /* Responsive scroll vs grid */
-  function handleResize(){
-    var ww=window.innerWidth;
-    var ms=document.getElementById('moviesScroll');
-    var mg=document.getElementById('moviesGrid');
-    var ss=document.getElementById('seriesScroll');
-    var sg=document.getElementById('seriesGrid');
-    if(ms&&mg){ms.style.display=ww>768?'flex':'none';mg.style.display=ww>768?'none':'grid';}
-    if(ss&&sg){ss.style.display=ww>768?'flex':'none';sg.style.display=ww>768?'none':'grid';}
-  }
-  handleResize();
-  window.addEventListener('resize',handleResize);
 }
 
 /* ===== POST DETAIL: Tabs ===== */
