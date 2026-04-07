@@ -11,7 +11,7 @@
 <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'/>
 <title><data:blog.pageTitle/></title>
 <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
-<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap' rel='stylesheet'/>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
 <link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
 
 <b:skin><![CDATA[
@@ -38,7 +38,7 @@
 --header-h:56px;--bnav-h:60px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+html{-webkit-tap-highlight-color:transparent}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
 body.bn-visible{padding-bottom:var(--bnav-h)}
 a{text-decoration:none;color:inherit;transition:var(--tr)}
@@ -53,7 +53,7 @@ ul,ol{list-style:none}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 16px}
 
 /* ========== HEADER ========== */
-.site-header{background:rgba(10,10,18,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1001;height:var(--header-h)}
+.site-header{background:rgba(10,10,18,.97);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1001;height:var(--header-h)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);padding:0 4px;gap:8px}
 .logo a{display:flex;align-items:center;gap:6px;font-size:17px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
 .logo a i{font-size:20px}
@@ -69,7 +69,7 @@ body.post-page .drawer-overlay,
 body.post-page .app-drawer{display:none!important}
 
 /* ========== SEARCH ========== */
-.search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1002;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(4px)}
+.search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1002;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
 .search-overlay.active{opacity:1;visibility:visible}
 .search-bar{position:fixed;top:0;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:1003;padding:12px 16px;transform:translateY(-100%);transition:transform .3s ease}
 .search-bar.active{transform:translateY(0)}
@@ -84,7 +84,7 @@ body.post-page .app-drawer{display:none!important}
 .search-bar .sb-close:hover{color:var(--accent);background:rgba(255,64,129,.1)}
 
 /* ========== DRAWER ========== */
-.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1004;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(2px)}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1004;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
 .drawer-overlay.active{opacity:1;visibility:visible}
 .app-drawer{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:85vw;background:var(--bg2);z-index:1005;transform:translateX(-100%);transition:transform .3s ease;overflow-y:auto;display:flex;flex-direction:column;border-right:1px solid var(--border)}
 .app-drawer.active{transform:translateX(0)}
@@ -118,7 +118,7 @@ body.post-page .app-drawer{display:none!important}
 .view-all-link i{font-size:10px;transition:var(--tr)}
 
 /* ========== POST GRID (Homepage) ========== */
-.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px;will-change:transform}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px}
 .grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint;opacity:0;animation:cardFadeIn .4s ease forwards}
 .grid-card:nth-child(1){animation-delay:.03s}
 .grid-card:nth-child(2){animation-delay:.06s}
@@ -137,7 +137,7 @@ body.post-page .app-drawer{display:none!important}
 .grid-poster::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3) 25%,rgba(255,255,255,.04) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;z-index:1;opacity:1;transition:opacity .3s ease}
 .grid-poster.img-ready::after,.grid-poster:has(.loaded)::after{opacity:0;pointer-events:none}
 .grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red);z-index:2}
-.grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px;z-index:2}
+.grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.85);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px;z-index:2}
 .grid-rating i{font-size:8px;color:#FFD700}
 .grid-info{padding:8px;height:52px;overflow:hidden}
 .grid-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px;color:var(--txt)}
@@ -165,7 +165,7 @@ body.post-page .app-drawer{display:none!important}
 .pd-hero-simple img{width:100%;height:100%;object-fit:cover}
 .pd-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,18,.95) 0%,rgba(10,10,18,.3) 40%,rgba(10,10,18,.1) 100%);pointer-events:none}
 .pd-hero-btns{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:5;pointer-events:auto}
-.pd-hero-circle{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;border:none;transition:var(--tr)}
+.pd-hero-circle{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer;border:none;transition:var(--tr)}
 .pd-hero-circle:hover{background:rgba(0,0,0,.8);transform:scale(1.05)}
 
 /* ========== POST DETAIL: Info Card ========== */
@@ -239,7 +239,7 @@ body.post-page .app-drawer{display:none!important}
 .explore-poster img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .explore-card:hover .explore-poster img{transform:scale(1.05)}
 .explore-qbadge{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--red)}
-.explore-rbadge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
+.explore-rbadge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.85);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px}
 .explore-rbadge i{font-size:8px;color:#FFD700}
 .explore-info{padding:6px 8px}
 .explore-title{font-size:11px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--txt)}
@@ -249,7 +249,7 @@ body.post-page .app-drawer{display:none!important}
 .pd-body-raw{display:none!important}
 
 /* ========== BOTTOM NAV ========== */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bnav-h);background:rgba(10,10,18,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:1000;display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bnav-h);background:rgba(10,10,18,.97);border-top:1px solid var(--border);z-index:1000;display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}
 .bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:10px;font-weight:500;cursor:pointer;transition:var(--tr);padding:6px 12px;border:none;background:none}
 .bn-item i{font-size:18px;transition:var(--tr)}
 .bn-item:hover{color:var(--accent)}
@@ -336,6 +336,29 @@ body.no-scroll{overflow:hidden}
 /* ========== ANIMATIONS ========== */
 @keyframes cardFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes skelPulse{0%,100%{opacity:.4}50%{opacity:.7}}
+
+/* ========== POST DETAIL: Skeleton Loading ========== */
+.skel{position:relative;overflow:hidden;background:var(--bg3);border-radius:var(--r)}
+.skel::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.skel-hero{width:100%;aspect-ratio:16/9;max-height:420px;border-radius:0}
+.skel-info{display:flex;gap:14px;padding:16px;margin:-40px 16px 0;position:relative;z-index:10;background:var(--card);border-radius:var(--r3);border:1px solid var(--border)}
+.skel-poster{width:100px;min-width:100px;height:150px;border-radius:var(--r2)}
+.skel-lines{flex:1;display:flex;flex-direction:column;gap:8px;padding-top:8px}
+.skel-line{height:12px;background:var(--bg3);border-radius:6px;position:relative;overflow:hidden}
+.skel-line::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.skel-line.w60{width:60%}.skel-line.w80{width:80%}.skel-line.w40{width:40%}.skel-line.w70{width:70%}
+.skel-pills{display:flex;gap:6px;margin-top:4px}
+.skel-pill{height:22px;width:60px;background:var(--bg3);border-radius:4px;position:relative;overflow:hidden}
+.skel-pill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.skel-tabs{display:flex;margin:16px 0 0;padding:0 16px;gap:0;border-bottom:1px solid var(--border)}
+.skel-tab{flex:1;height:12px;margin:12px 0;background:var(--bg3);border-radius:6px;position:relative;overflow:hidden}
+.skel-tab::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.skel-content{padding:16px;display:flex;flex-direction:column;gap:10px}
+#pdSkeleton{transition:opacity .3s ease}
+#pdSkeleton.hide{opacity:0;pointer-events:none}
+#pdWrap{opacity:0;transition:opacity .3s ease}
+#pdWrap.show{opacity:1}
 .genre-scroll .gc{animation:cardFadeIn .3s ease forwards;opacity:0}
 .genre-scroll .gc:nth-child(1){animation-delay:.02s}
 .genre-scroll .gc:nth-child(2){animation-delay:.05s}
@@ -514,6 +537,34 @@ body.no-scroll{overflow:hidden}
 
             <!-- ===== POST DETAIL ===== -->
             <b:includable id='postDetail' var='post'>
+              <!-- Skeleton Loading -->
+              <div id='pdSkeleton'>
+                <div class='skel skel-hero'></div>
+                <div class='skel-info'>
+                  <div class='skel skel-poster'></div>
+                  <div class='skel-lines'>
+                    <div class='skel-line w80'></div>
+                    <div class='skel-line w60'></div>
+                    <div class='skel-pills'>
+                      <div class='skel-pill'></div>
+                      <div class='skel-pill'></div>
+                      <div class='skel-pill'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='skel-tabs'>
+                  <div class='skel-tab'></div>
+                  <div class='skel-tab'></div>
+                  <div class='skel-tab'></div>
+                </div>
+                <div class='skel-content'>
+                  <div class='skel-line w100' style='width:100%'></div>
+                  <div class='skel-line w100' style='width:100%'></div>
+                  <div class='skel-line w80'></div>
+                  <div class='skel-line w60'></div>
+                </div>
+              </div>
+
               <div class='pd-wrap' id='pdWrap'>
                 <!-- Label injection via .push() -->
                 <script type='text/javascript'>
@@ -524,12 +575,6 @@ body.no-scroll{overflow:hidden}
                 <b:loop values='data:post.labels' var='label'>
                   <script type='text/javascript'>window._pl.push("<data:label.name/>");</script>
                 </b:loop>
-                <!-- Hidden fallback spans -->
-                <b:loop values='data:post.labels' var='label'>
-                  <span class='hidden-el label-data'><data:label.name/></span>
-                </b:loop>
-                <span class='hidden-el post-date-data'><data:post.date/></span>
-                <span class='hidden-el post-url-data'><data:post.url/></span>
 
                 <!-- Hero Banner -->
                 <div class='pd-hero-simple' id='pdHeroSimple'>
@@ -1123,6 +1168,12 @@ function applyPostMeta(labels){
   /* Remove pdBodyRaw from DOM to free memory */
   var rawBody=document.getElementById('pdBodyRaw');
   if(rawBody)rawBody.innerHTML='';
+
+  /* Hide skeleton, show post content */
+  var skel=document.getElementById('pdSkeleton');
+  var pdW=document.getElementById('pdWrap');
+  if(skel)skel.classList.add('hide');
+  if(pdW)pdW.classList.add('show');
 }
 
 /* ===== POST DETAIL: Extract Cover & Poster URLs ===== */
@@ -1610,7 +1661,6 @@ function init(){
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
 else init();
-setTimeout(function(){injectCSS();cleanBlogger();},1000);
 
 })();
 //]]>
