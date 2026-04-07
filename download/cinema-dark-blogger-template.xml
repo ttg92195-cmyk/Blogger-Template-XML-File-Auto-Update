@@ -469,6 +469,7 @@ body.no-scroll{overflow:hidden}
                         <span class='ps-url'><data:post.url/></span>
                         <span class='ps-title'><data:post.title/></span>
                         <span class='ps-img'><b:if cond='data:post.featuredImage'><data:post.featuredImage/></b:if></span>
+                        <span class='ps-body'><data:post.body/></span>
                         <span class='ps-date'><data:post.date/></span>
                         <b:loop values='data:post.labels' var='label'>
                           <span class='ps-label'><data:label.name/></span>
@@ -857,10 +858,45 @@ function buildHomepage(){
     var imgUrl='';
     var imgEl=it.querySelector('.ps-img');
     if(imgEl)imgUrl=imgEl.textContent.trim();
+    /* Extract Poster URL from post body */
+    var posterFromBody='';
+    var bodyEl=it.querySelector('.ps-body');
+    if(bodyEl){
+      var bhtml=bodyEl.innerHTML||'';
+      var btmp=document.createElement('div');
+      btmp.innerHTML=bhtml;
+      var bchildren=btmp.children;
+      for(var k=0;k<bchildren.length;k++){
+        var bel=bchildren[k];
+        var btag=bel.tagName.toLowerCase();
+        var btext=(bel.textContent||'').trim();
+        if((btag==='h2'||btag==='h3'||btag==='h4')&&/poster/i.test(btext)){
+          var bnext=bel.nextElementSibling;
+          if(bnext){
+            var bntag=bnext.tagName.toLowerCase();
+            if(bntag==='img')posterFromBody=bnext.getAttribute('src')||'';
+            else if(bntag==='a')posterFromBody=bnext.getAttribute('href')||'';
+            else{var bimg=bnext.querySelector('img[src]');if(bimg)posterFromBody=bimg.getAttribute('src')||'';}
+          }
+          if(!posterFromBody){var ba=bel.querySelector('a[href]');if(ba)posterFromBody=ba.getAttribute('href')||'';}
+          break;
+        }
+      }
+      /* Fallback: check img alt/class for poster */
+      if(!posterFromBody){
+        var bimgs=btmp.querySelectorAll('img');
+        for(var m=0;m<bimgs.length;m++){
+          var balt=(bimgs[m].getAttribute('alt')||'').toLowerCase();
+          var bcls=(bimgs[m].getAttribute('class')||'').toLowerCase();
+          if(/poster/i.test(balt)||/poster/i.test(bcls)){posterFromBody=bimgs[m].getAttribute('src')||'';break;}
+        }
+      }
+    }
+    var finalImg=posterFromBody||imgUrl||PLACEHOLDER;
     posts.push({
       url:(it.querySelector('.ps-url')||{}).textContent?it.querySelector('.ps-url').textContent.trim():'',
       title:(it.querySelector('.ps-title')||{}).textContent?it.querySelector('.ps-title').textContent.trim():'',
-      img:imgUrl||PLACEHOLDER,
+      img:finalImg,
       date:(it.querySelector('.ps-date')||{}).textContent?it.querySelector('.ps-date').textContent.trim():'',
       labels:labels
     });
