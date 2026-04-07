@@ -474,7 +474,7 @@ body.no-scroll{overflow:hidden}
                         <span class='ps-url'><data:post.url/></span>
                         <span class='ps-title'><data:post.title/></span>
                         <span class='ps-img'><b:if cond='data:post.featuredImage'><data:post.featuredImage/></b:if></span>
-                        <span class='ps-body'><data:post.body/></span>
+                        <div class='ps-body'><data:post.body/></div>
                         <span class='ps-date'><data:post.date/></span>
                         <b:loop values='data:post.labels' var='label'>
                           <span class='ps-label'><data:label.name/></span>
