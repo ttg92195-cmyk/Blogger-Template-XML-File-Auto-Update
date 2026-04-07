@@ -243,6 +243,26 @@ body.post-page .container{padding:0}
 .explore-title{font-size:11px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--txt)}
 .explore-year{font-size:10px;color:var(--muted);margin-top:2px}
 
+/* ========== POST DETAIL: Related Posts Grid ========== */
+.related-grid-section{padding:0 16px 16px;margin-top:4px}
+.related-grid-heading{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--txt)}
+.related-grid-heading i{color:var(--accent)}
+.related-posts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.related-posts-grid .grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint;text-decoration:none;display:block}
+.related-posts-grid .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
+.related-posts-grid .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
+.related-posts-grid .grid-poster img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;will-change:opacity}
+.related-posts-grid .grid-poster img.loaded{opacity:1}
+.related-posts-grid .grid-poster::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3) 25%,rgba(255,255,255,.04) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;z-index:1;opacity:1;transition:opacity .3s ease}
+.related-posts-grid .grid-poster.img-ready::after,.related-posts-grid .grid-poster:has(.loaded)::after{opacity:0;pointer-events:none}
+.related-posts-grid .grid-info{padding:8px;height:52px;overflow:hidden}
+.related-posts-grid .grid-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px;color:var(--txt)}
+.related-posts-grid .grid-year{font-size:10px;color:var(--muted);min-height:14px}
+.related-posts-grid .grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red);z-index:2}
+.related-posts-grid .grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.85);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px;z-index:2}
+.related-posts-grid .grid-rating i{font-size:8px;color:#FFD700}
+.related-posts-grid .grid-type-badge{position:absolute;bottom:6px;left:6px;padding:2px 7px;border-radius:3px;font-size:8px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--accent);z-index:2}
+
 /* Hidden post body (for JS parsing) */
 .pd-body-raw{display:none!important}
 
@@ -387,6 +407,8 @@ body.no-scroll{overflow:hidden}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
   .post-grid{grid-template-columns:repeat(4,1fr)}
+  .related-posts-grid{grid-template-columns:repeat(4,1fr)}
+  .related-grid-section{padding:0 12px 16px}
   .grid-info{height:48px}
   .grid-title{font-size:11px}
   .genre-scroll .gc{min-width:130px;max-width:130px}
@@ -400,6 +422,9 @@ body.no-scroll{overflow:hidden}
   .pd-meta-row{gap:8px}
   .grid-info{height:44px;padding:6px}
   .post-grid{grid-template-columns:repeat(3,1fr)}
+  .related-posts-grid{grid-template-columns:repeat(3,1fr)}
+  .related-grid-section{padding:0 10px 16px}
+  .related-grid-heading{font-size:14px}
   .explore-card{min-width:100px;max-width:100px}
   .explore-title{font-size:9px}
   .section-header h2{font-size:14px}
@@ -647,6 +672,11 @@ body.no-scroll{overflow:hidden}
                 <div class='pd-tab-panel' id='tabExplore'>
                   <div class='explore-heading'><i class='fas fa-compass'></i> You may also like</div>
                   <div class='explore-scroll' id='exploreGrid'></div>
+                  <!-- Related Posts Grid (10 posts, homepage style) -->
+                  <div class='related-grid-section' id='relatedGridSection' style='display:none'>
+                    <div class='related-grid-heading'><i class='fas fa-fire'></i> Related Posts</div>
+                    <div class='related-posts-grid' id='relatedPostsGrid'></div>
+                  </div>
                 </div>
 
               </div>
@@ -1549,25 +1579,31 @@ function loadExplore(){
 
     c.innerHTML='<div style="flex:1;text-align:center;padding:30px;color:var(--muted);font-size:12px"><i class="fas fa-spinner fa-spin" style="font-size:20px;margin-bottom:8px;display:block"></i>Loading...</div>';
 
-  var feedUrl=window.location.origin+'/feeds/posts/default/-/'+encodeURIComponent(feedLabel)+'?max-results=6&alt=json';
-  var currentUrl=window.location.href;
+  /* Fetch 12 posts (6 for horizontal scroll + 10 for grid, exclude current) */
+  var feedUrl=window.location.origin+'/feeds/posts/default/-/'+encodeURIComponent(feedLabel)+'?max-results=12&alt=json';
+  var currentUrl=window.location.href.replace(/\/$/, '').replace(/\?m=1$/,'').replace(/\?m=0$/,'');
   fetch(feedUrl).then(function(r){return r.json();}).then(function(d){
     if(!d.feed||!d.feed.entry){
       c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
       return;
     }
-    var h='';
+
+    /* Collect all valid related posts */
+    var relatedPosts=[];
     d.feed.entry.forEach(function(e){
       var t=e.title.$t,l='',img=PLACEHOLDER;
       e.link.forEach(function(k){if(k.rel==='alternate')l=k.href;});
       if(e.media$thumbnail)img=e.media$thumbnail.url.replace('/s72-c/','/w300-h450-c/');
-      if(l&&t&&l!==currentUrl){
+      var postUrl=l.replace(/\/$/, '').replace(/\?m=1$/,'').replace(/\?m=0$/,'');
+      if(l&&t&&postUrl!==currentUrl){
         var rating=getRating(null);
-        /* Try to get rating from categories */
+        var isSeriesPost=false;
         if(e.category){
           for(var i=0;i<e.category.length;i++){
-            var r=getRating(e.category[i].term);
-            if(r){rating=r;break;}
+            var cat=e.category[i].term||'';
+            var r=getRating(cat);
+            if(r){rating=r;}
+            if(cat==='Series')isSeriesPost=true;
           }
         }
         var year='';
@@ -1581,35 +1617,79 @@ function loadExplore(){
             else if(/720p/i.test(lb))quality='720p';
           }
         }
-        h+='<a href="'+l+'" class="explore-card">';
-        h+='<div class="explore-poster">';
-        h+='<img alt="'+t+'" data-src="'+img+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
-        h+='<span class="explore-qbadge">'+quality+'</span>';
-        if(rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+rating+'</span>';
-        h+='</div>';
-        h+='<div class="explore-info"><div class="explore-title">'+t+'</div>';
-        if(year)h+='<div class="explore-year">'+year+'</div>';
-        h+='</div></a>';
+        relatedPosts.push({title:t,url:l,img:img,rating:rating,year:year,quality:quality,isSeries:isSeriesPost});
       }
     });
+
+    /* --- Horizontal scroll cards (first 6) --- */
+    var h='';
+    var scrollPosts=relatedPosts.slice(0,6);
+    for(var i=0;i<scrollPosts.length;i++){
+      var p=scrollPosts[i];
+      h+='<a href="'+p.url+'" class="explore-card">';
+      h+='<div class="explore-poster">';
+      h+='<img alt="'+p.title+'" data-src="'+p.img+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
+      h+='<span class="explore-qbadge">'+p.quality+'</span>';
+      if(p.rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+p.rating+'</span>';
+      h+='</div>';
+      h+='<div class="explore-info"><div class="explore-title">'+p.title+'</div>';
+      if(p.year)h+='<div class="explore-year">'+p.year+'</div>';
+      h+='</div></a>';
+    }
     if(!h)h='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
     c.innerHTML=h;
-    /* Lazy load explore images */
-    var expImgs=c.querySelectorAll('img[data-src]');
-    if(expImgs.length>0&&'IntersectionObserver'in window){
-      var eObs=new IntersectionObserver(function(entries){
-        for(var ei=0;ei<entries.length;ei++){
-          if(entries[ei].isIntersecting){
-            var ei2=entries[ei].target;
-            if(ei2.dataset.src){ei2.src=ei2.dataset.src;ei2.removeAttribute('data-src');}
-            eObs.unobserve(ei2);
+
+    /* --- Related Posts Grid (10 posts, homepage style) --- */
+    var gridSection=document.getElementById('relatedGridSection');
+    var gridContainer=document.getElementById('relatedPostsGrid');
+    if(gridSection&&gridContainer){
+      var gridPosts=relatedPosts.slice(0,10);
+      if(gridPosts.length>0){
+        var gh='';
+        for(var i=0;i<gridPosts.length;i++){
+          var p=gridPosts[i];
+          gh+='<a href="'+p.url+'" class="grid-card">';
+          gh+='<div class="grid-poster">';
+          gh+='<img src="" data-src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
+          gh+='<span class="grid-quality">'+p.quality+'</span>';
+          if(p.rating)gh+='<span class="grid-rating"><i class="fas fa-star"></i> '+p.rating+'</span>';
+          if(p.isSeries)gh+='<span class="grid-type-badge">Series</span>';
+          gh+='</div><div class="grid-info"><div class="grid-title">'+p.title+'</div>';
+          if(p.year)gh+='<div class="grid-year">'+p.year+'</div>';
+          gh+='</div></a>';
+        }
+        gridContainer.innerHTML=gh;
+        gridSection.style.display='block';
+      }
+    }
+
+    /* Lazy load ALL images in explore tab (scroll cards + grid cards) */
+    var tabExplore=document.getElementById('tabExplore');
+    if(tabExplore){
+      var allImgs=tabExplore.querySelectorAll('img[data-src]');
+      if(allImgs.length>0&&'IntersectionObserver'in window){
+        var eObs=new IntersectionObserver(function(entries){
+          for(var ei=0;ei<entries.length;ei++){
+            if(entries[ei].isIntersecting){
+              var ei2=entries[ei].target;
+              if(ei2.dataset.src){
+                ei2.src=ei2.dataset.src;
+                ei2.removeAttribute('data-src');
+                ei2.onload=function(){this.classList.add('loaded');this.parentElement.classList.add('img-ready');};
+                if(ei2.complete&&ei2.naturalWidth>0){ei2.classList.add('loaded');ei2.parentElement.classList.add('img-ready');}
+              }
+              eObs.unobserve(ei2);
+            }
+          }
+        },{rootMargin:'300px'});
+        for(var ex=0;ex<allImgs.length;ex++)eObs.observe(allImgs[ex]);
+      }else{
+        for(var ef=0;ef<allImgs.length;ef++){
+          if(allImgs[ef].dataset.src){
+            allImgs[ef].src=allImgs[ef].dataset.src;
+            allImgs[ef].onload=function(){this.classList.add('loaded');this.parentElement.classList.add('img-ready');};
           }
         }
-      },{rootMargin:'200px'});
-      for(var ex=0;ex<expImgs.length;ex++)eObs.observe(expImgs[ex]);
-    }else{
-      for(var ef=0;ef<expImgs.length;ef++){
-        if(expImgs[ef].dataset.src){expImgs[ef].src=expImgs[ef].dataset.src;}
       }
     }
   }).catch(function(){
