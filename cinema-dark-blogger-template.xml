@@ -111,14 +111,31 @@ body.post-page .app-drawer{display:none!important}
 
 /* ========== SECTION HEADER ========== */
 .section-header{display:flex;align-items:center;gap:8px;padding:16px 0 12px}
-.section-bar{width:3px;height:18px;background:var(--accent);border-radius:2px}
-.section-header h2{font-size:16px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.view-all-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--accent);white-space:nowrap;transition:var(--tr);margin-left:auto;flex-shrink:0}
+.section-bar{width:3px;height:18px;background:var(--accent);border-radius:2px;flex-shrink:0}
+.section-header h2{font-size:16px;font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view-all-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--accent);white-space:nowrap;transition:var(--tr);margin-left:8px;flex-shrink:0}
 .view-all-link:hover{color:var(--accent2);gap:6px}
 .view-all-link i{font-size:10px;transition:var(--tr)}
 
 /* ========== POST GRID (Homepage) ========== */
 .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px}
+
+/* ========== HOMEPAGE SKELETON ========== */
+.home-skeleton{padding:0 0 16px}
+.home-skeleton .skel-section-head{display:flex;align-items:center;gap:8px;padding:16px 0 12px}
+.home-skeleton .skel-bar{width:3px;height:18px;background:var(--accent);border-radius:2px;opacity:.5}
+.home-skeleton .skel-bar-text{width:100px;height:16px;background:var(--bg3);border-radius:6px;position:relative;overflow:hidden}
+.home-skeleton .skel-bar-text::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.home-skeleton .skel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.home-skeleton .skel-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border)}
+.home-skeleton .skel-card-poster{aspect-ratio:2/3;background:var(--bg3);position:relative;overflow:hidden}
+.home-skeleton .skel-card-poster::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3) 25%,rgba(255,255,255,.04) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.home-skeleton .skel-card-info{padding:8px;height:52px}
+.home-skeleton .skel-card-title{height:12px;background:var(--bg3);border-radius:6px;width:80%;margin-bottom:8px;position:relative;overflow:hidden}
+.home-skeleton .skel-card-title::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.home-skeleton .skel-card-year{height:10px;background:var(--bg3);border-radius:5px;width:40%;position:relative;overflow:hidden}
+.home-skeleton .skel-card-year::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
+.home-skeleton.hide{opacity:0;pointer-events:none;position:absolute;width:100%;visibility:hidden}
 .grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint}
 .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
 .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
@@ -167,7 +184,7 @@ body.post-page .container{padding:0}
 .pd-hero-circle:hover{background:rgba(0,0,0,.65);transform:scale(1.08)}
 
 /* ========== POST DETAIL: Info Card ========== */
-.pd-info-card{display:flex;gap:14px;padding:16px;margin:-30px 16px 0;position:relative;z-index:10;background:var(--card);border-radius:var(--r3);border:1px solid var(--border)}
+.pd-info-card{display:flex;gap:14px;padding:16px;margin:-35px 16px 0;position:relative;z-index:10;background:var(--card);border-radius:var(--r3);border:1px solid var(--border)}
 .pd-poster-thumb{width:100px;min-width:100px;height:150px;border-radius:var(--r2);overflow:hidden;border:2px solid var(--border);background:var(--bg3);flex-shrink:0}
 .pd-poster-thumb img{width:100%;height:100%;object-fit:cover}
 .pd-info-right{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
@@ -243,26 +260,6 @@ body.post-page .container{padding:0}
 .explore-title{font-size:11px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--txt)}
 .explore-year{font-size:10px;color:var(--muted);margin-top:2px}
 
-/* ========== POST DETAIL: Related Posts Grid ========== */
-.related-grid-section{padding:0 16px 16px;margin-top:4px}
-.related-grid-heading{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--txt)}
-.related-grid-heading i{color:var(--accent)}
-.related-posts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.related-posts-grid .grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint;text-decoration:none;display:block}
-.related-posts-grid .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
-.related-posts-grid .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
-.related-posts-grid .grid-poster img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;will-change:opacity}
-.related-posts-grid .grid-poster img.loaded{opacity:1}
-.related-posts-grid .grid-poster::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3) 25%,rgba(255,255,255,.04) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite;z-index:1;opacity:1;transition:opacity .3s ease}
-.related-posts-grid .grid-poster.img-ready::after,.related-posts-grid .grid-poster:has(.loaded)::after{opacity:0;pointer-events:none}
-.related-posts-grid .grid-info{padding:8px;height:52px;overflow:hidden}
-.related-posts-grid .grid-title{font-size:12px;font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px;color:var(--txt)}
-.related-posts-grid .grid-year{font-size:10px;color:var(--muted);min-height:14px}
-.related-posts-grid .grid-quality{position:absolute;top:6px;left:6px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:#fff;background:var(--red);z-index:2}
-.related-posts-grid .grid-rating{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.85);padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;color:#FFD700;display:flex;align-items:center;gap:3px;z-index:2}
-.related-posts-grid .grid-rating i{font-size:8px;color:#FFD700}
-.related-posts-grid .grid-type-badge{position:absolute;bottom:6px;left:6px;padding:2px 7px;border-radius:3px;font-size:8px;font-weight:700;text-transform:uppercase;color:#fff;background:var(--accent);z-index:2}
-
 /* Hidden post body (for JS parsing) */
 .pd-body-raw{display:none!important}
 
@@ -318,8 +315,9 @@ body.post-page .container{padding:0}
 .back-top.visible{opacity:1;visibility:visible}
 .back-top:hover{background:var(--accent2);transform:translateY(-2px)}
 .pagination{display:flex;align-items:center;justify-content:center;gap:6px;padding:24px 0}
-.pagination a{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500}
-.pagination a:hover,.pagination a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pagination a,.pagination span{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--txt2);font-size:13px;font-weight:500;transition:var(--tr);padding:0 4px}
+.pagination a:hover,.pagination span.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pagination span.active{cursor:default;pointer-events:none}
 
 /* Post body fallback */
 .post-body{color:var(--txt2);font-size:14px;line-height:1.85}
@@ -336,6 +334,7 @@ body.post-page .main-content{padding:0}
 body.post-page .pd-wrap{margin:0}
 body.post-page .pd-info-card{margin-left:16px;margin-right:16px}
 body.post-page .sidebar{display:none}
+body.post-page .site-footer{display:none}
 .blog-posts{display:none!important}
 .blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important}
 .status-msg-wrap,.status-msg-body,.status-msg-border{display:none!important}
@@ -384,14 +383,19 @@ body.no-scroll{overflow:hidden}
 /* ========== RESPONSIVE ========== */
 @media(min-width:1200px){
   .post-grid{grid-template-columns:repeat(6,1fr)}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(6,1fr)}
   .genre-scroll{display:none!important}
   .mobile-grid{display:grid!important}
+  .pd-hero-simple{height:60vh;min-height:350px;max-height:500px}
+  .pd-tabs{margin:16px 24px 0}
+  .pd-tab-panel{padding:16px 24px}
 }
 @media(max-width:1024px){
   .main-layout{grid-template-columns:1fr}
   .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:repeat(2,1fr)}
   .post-grid{grid-template-columns:repeat(4,1fr)}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(4,1fr)}
 }
 @media(max-width:768px){
   .pd-hero-simple{height:50vh;min-height:240px;max-height:380px}
@@ -407,8 +411,7 @@ body.no-scroll{overflow:hidden}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
   .post-grid{grid-template-columns:repeat(4,1fr)}
-  .related-posts-grid{grid-template-columns:repeat(4,1fr)}
-  .related-grid-section{padding:0 12px 16px}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(4,1fr)}
   .grid-info{height:48px}
   .grid-title{font-size:11px}
   .genre-scroll .gc{min-width:130px;max-width:130px}
@@ -422,9 +425,7 @@ body.no-scroll{overflow:hidden}
   .pd-meta-row{gap:8px}
   .grid-info{height:44px;padding:6px}
   .post-grid{grid-template-columns:repeat(3,1fr)}
-  .related-posts-grid{grid-template-columns:repeat(3,1fr)}
-  .related-grid-section{padding:0 10px 16px}
-  .related-grid-heading{font-size:14px}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(3,1fr)}
   .explore-card{min-width:100px;max-width:100px}
   .explore-title{font-size:9px}
   .section-header h2{font-size:14px}
@@ -538,6 +539,18 @@ body.no-scroll{overflow:hidden}
                       </div>
                     </b:loop>
                   </div>
+                  <!-- Homepage Skeleton Loading -->
+                  <div class='home-skeleton' id='homeSkeleton'>
+                    <div class='skel-section-head'><div class='skel-bar'></div><div class='skel-bar-text'></div></div>
+                    <div class='skel-grid'>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                      <div class='skel-card'><div class='skel-card-poster'></div><div class='skel-card-info'><div class='skel-card-title'></div><div class='skel-card-year'></div></div></div>
+                    </div>
+                  </div>
                   <!-- Sections will be built by JS -->
                   <div id='homeSections'></div>
                   <b:if cond='data:posts.empty'>
@@ -546,14 +559,7 @@ body.no-scroll{overflow:hidden}
                       <br/><small>Create posts with Movie or Series label.</small>
                     </div>
                   </b:if>
-                  <b:if cond='data:newerPageUrl'>
-                    <div class='pagination'>
-                      <a expr:href='data:newerPageUrl'><i class='fas fa-chevron-left'></i></a>
-                      <b:if cond='data:olderPageUrl'>
-                        <a expr:href='data:olderPageUrl'><i class='fas fa-chevron-right'></i></a>
-                      </b:if>
-                    </div>
-                  </b:if>
+                  <div id='homePagination'></div>
                 </div>
               </b:if>
 
@@ -672,11 +678,6 @@ body.no-scroll{overflow:hidden}
                 <div class='pd-tab-panel' id='tabExplore'>
                   <div class='explore-heading'><i class='fas fa-compass'></i> You may also like</div>
                   <div class='explore-scroll' id='exploreGrid'></div>
-                  <!-- Related Posts Grid (10 posts, homepage style) -->
-                  <div class='related-grid-section' id='relatedGridSection' style='display:none'>
-                    <div class='related-grid-heading'><i class='fas fa-fire'></i> Related Posts</div>
-                    <div class='related-posts-grid' id='relatedPostsGrid'></div>
-                  </div>
                 </div>
 
               </div>
@@ -833,10 +834,10 @@ body.no-scroll{overflow:hidden}
     <i class='fas fa-tv'></i><span>Series</span>
   </button>
   <button class='bn-item' data-page='bookmark' id='bnBookmark'>
-    <i class='fas fa-bookmark'></i><span>Bookmark</span>
+    <i class='fas fa-bookmark'></i><span>Save</span>
   </button>
   <button class='bn-item' data-page='recent' id='bnRecent'>
-    <i class='fas fa-clock-rotate-left'></i><span>Recent</span>
+    <i class='fas fa-clock-rotate-left'></i><span>History</span>
   </button>
 </nav>
 
@@ -1054,6 +1055,13 @@ function buildHomepage(){
     html+='</div>';
   }
   container.innerHTML=html;
+  /* Hide homepage skeleton */
+  var homeSkel=document.getElementById('homeSkeleton');
+  if(homeSkel)homeSkel.classList.add('hide');
+  /* Build pagination for label/search pages */
+  if(!isHomepage){
+    buildPagination(url);
+  }
   /* Lazy load images with IntersectionObserver for smooth scrolling */
   var lazyImgs=container.querySelectorAll('img[data-src]');
   if(lazyImgs.length>0&&'IntersectionObserver'in window){
@@ -1083,6 +1091,52 @@ function buildHomepage(){
       if(pEl&&pEl.classList)pEl.classList.add('img-ready');
     }
   }
+}
+
+/* ===== PAGINATION (Label/Search Pages) ===== */
+function buildPagination(url){
+  var pagEl=document.getElementById('homePagination');
+  if(!pagEl)return;
+  /* Check for Blogger's newer/older page links in the DOM */
+  var newerLink='',olderLink='';
+  var pagerLinks=document.querySelectorAll('.blog-pager a[href]');
+  for(var i=0;i<pagerLinks.length;i++){
+    var href=pagerLinks[i].href||'';
+    var txt=(pagerLinks[i].textContent||'').trim().toLowerCase();
+    if(txt.indexOf('newer')!==-1||txt.indexOf('prev')!==-1)newerLink=href;
+    if(txt.indexOf('older')!==-1||txt.indexOf('next')!==-1)olderLink=href;
+  }
+  /* Fallback: check for data attributes or common patterns */
+  if(!newerLink){
+    var nl=document.querySelector('[data-newer-url]');
+    if(nl)newerLink=nl.getAttribute('data-newer-url');
+  }
+  if(!olderLink){
+    var ol=document.querySelector('[data-older-url]');
+    if(ol)olderLink=ol.getAttribute('data-older-url');
+  }
+  if(!newerLink&&!olderLink){pagEl.innerHTML='';return;}
+  /* Extract current page from URL */
+  var pageNum=1;
+  var pm=url.match(/[?&]page=(\d+)/);
+  if(pm)pageNum=parseInt(pm[1],10);
+  var baseLabel=url.replace(/[?&].*/,'').replace(/\/$/,'');
+  var html='<div class="pagination">';
+  if(newerLink)html+='<a href="'+newerLink+'"><i class="fas fa-chevron-left"></i></a>';
+  /* Show page numbers around current */
+  var startPage=Math.max(1,pageNum-2);
+  var endPage=pageNum+2;
+  for(var p=startPage;p<=endPage;p++){
+    var pageUrl=baseLabel+'?page='+p;
+    if(p===pageNum){
+      html+='<span class="active">'+p+'</span>';
+    }else{
+      html+='<a href="'+pageUrl+'">'+p+'</a>';
+    }
+  }
+  if(olderLink)html+='<a href="'+olderLink+'"><i class="fas fa-chevron-right"></i></a>';
+  html+='</div>';
+  pagEl.innerHTML=html;
 }
 
 /* ===== POST DETAIL: Tabs ===== */
@@ -1573,124 +1627,56 @@ function loadExplore(){
   }
   if(!feedLabel&&labels.length>0)feedLabel=labels[0];
   if(!feedLabel){
-    c.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:13px">No recommendations available.</div>';
+    c.innerHTML='<div style="flex:1;text-align:center;padding:30px;color:var(--muted);font-size:13px">No recommendations available.</div>';
     return;
   }
-
-    c.innerHTML='<div style="flex:1;text-align:center;padding:30px;color:var(--muted);font-size:12px"><i class="fas fa-spinner fa-spin" style="font-size:20px;margin-bottom:8px;display:block"></i>Loading...</div>';
-
-  /* Fetch 12 posts (6 for horizontal scroll + 10 for grid, exclude current) */
-  var feedUrl=window.location.origin+'/feeds/posts/default/-/'+encodeURIComponent(feedLabel)+'?max-results=12&alt=json';
+  c.innerHTML='<div style="flex:1;text-align:center;padding:30px;color:var(--muted);font-size:12px"><i class="fas fa-spinner fa-spin" style="font-size:20px;margin-bottom:8px;display:block"></i>Loading...</div>';
+  var feedUrl=window.location.origin+'/feeds/posts/default/-/'+encodeURIComponent(feedLabel)+'?max-results=10&alt=json';
   var currentUrl=window.location.href.replace(/\/$/, '').replace(/\?m=1$/,'').replace(/\?m=0$/,'');
   fetch(feedUrl).then(function(r){return r.json();}).then(function(d){
     if(!d.feed||!d.feed.entry){
       c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
       return;
     }
-
-    /* Collect all valid related posts */
-    var relatedPosts=[];
+    var h='';
+    var count=0;
     d.feed.entry.forEach(function(e){
+      if(count>=10)return;
       var t=e.title.$t,l='',img=PLACEHOLDER;
       e.link.forEach(function(k){if(k.rel==='alternate')l=k.href;});
       if(e.media$thumbnail)img=e.media$thumbnail.url.replace('/s72-c/','/w300-h450-c/');
       var postUrl=l.replace(/\/$/, '').replace(/\?m=1$/,'').replace(/\?m=0$/,'');
       if(l&&t&&postUrl!==currentUrl){
         var rating=getRating(null);
-        var isSeriesPost=false;
-        if(e.category){
-          for(var i=0;i<e.category.length;i++){
-            var cat=e.category[i].term||'';
-            var r=getRating(cat);
-            if(r){rating=r;}
-            if(cat==='Series')isSeriesPost=true;
-          }
-        }
-        var year='';
-        if(e.published)year=new Date(e.published.$t).getFullYear();
+        if(e.category){for(var i=0;i<e.category.length;i++){var r=getRating(e.category[i].term);if(r){rating=r;break;}}}
+        var year='';if(e.published)year=new Date(e.published.$t).getFullYear();
         var quality='HD';
-        if(e.category){
-          for(var i=0;i<e.category.length;i++){
-            var lb=e.category[i].term||'';
-            if(/4K|2160p/i.test(lb)){quality='4K';break;}
-            if(/1080p/i.test(lb))quality='1080p';
-            else if(/720p/i.test(lb))quality='720p';
-          }
-        }
-        relatedPosts.push({title:t,url:l,img:img,rating:rating,year:year,quality:quality,isSeries:isSeriesPost});
+        if(e.category){for(var i=0;i<e.category.length;i++){var lb=e.category[i].term||'';if(/4K|2160p/i.test(lb)){quality='4K';break;}if(/1080p/i.test(lb))quality='1080p';else if(/720p/i.test(lb))quality='720p';}}
+        h+='<a href="'+l+'" class="explore-card">';
+        h+='<div class="explore-poster">';
+        h+='<img alt="'+t+'" data-src="'+img+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
+        h+='<span class="explore-qbadge">'+quality+'</span>';
+        if(rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+rating+'</span>';
+        h+='</div>';
+        h+='<div class="explore-info"><div class="explore-title">'+t+'</div>';
+        if(year)h+='<div class="explore-year">'+year+'</div>';
+        h+='</div></a>';
+        count++;
       }
     });
-
-    /* --- Horizontal scroll cards (first 6) --- */
-    var h='';
-    var scrollPosts=relatedPosts.slice(0,6);
-    for(var i=0;i<scrollPosts.length;i++){
-      var p=scrollPosts[i];
-      h+='<a href="'+p.url+'" class="explore-card">';
-      h+='<div class="explore-poster">';
-      h+='<img alt="'+p.title+'" data-src="'+p.img+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
-      h+='<span class="explore-qbadge">'+p.quality+'</span>';
-      if(p.rating)h+='<span class="explore-rbadge"><i class="fas fa-star"></i> '+p.rating+'</span>';
-      h+='</div>';
-      h+='<div class="explore-info"><div class="explore-title">'+p.title+'</div>';
-      if(p.year)h+='<div class="explore-year">'+p.year+'</div>';
-      h+='</div></a>';
-    }
     if(!h)h='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">No related posts found.</div>';
     c.innerHTML=h;
-
-    /* --- Related Posts Grid (10 posts, homepage style) --- */
-    var gridSection=document.getElementById('relatedGridSection');
-    var gridContainer=document.getElementById('relatedPostsGrid');
-    if(gridSection&&gridContainer){
-      var gridPosts=relatedPosts.slice(0,10);
-      if(gridPosts.length>0){
-        var gh='';
-        for(var i=0;i<gridPosts.length;i++){
-          var p=gridPosts[i];
-          gh+='<a href="'+p.url+'" class="grid-card">';
-          gh+='<div class="grid-poster">';
-          gh+='<img src="" data-src="'+p.img+'" alt="'+p.title+'" onerror="this.src=\''+PLACEHOLDER+'\'" decoding="async"/>';
-          gh+='<span class="grid-quality">'+p.quality+'</span>';
-          if(p.rating)gh+='<span class="grid-rating"><i class="fas fa-star"></i> '+p.rating+'</span>';
-          if(p.isSeries)gh+='<span class="grid-type-badge">Series</span>';
-          gh+='</div><div class="grid-info"><div class="grid-title">'+p.title+'</div>';
-          if(p.year)gh+='<div class="grid-year">'+p.year+'</div>';
-          gh+='</div></a>';
+    /* Lazy load images */
+    var expImgs=c.querySelectorAll('img[data-src]');
+    if(expImgs.length>0&&'IntersectionObserver'in window){
+      var eObs=new IntersectionObserver(function(entries){
+        for(var ei=0;ei<entries.length;ei++){
+          if(entries[ei].isIntersecting){var ei2=entries[ei].target;if(ei2.dataset.src){ei2.src=ei2.dataset.src;ei2.removeAttribute('data-src');}eObs.unobserve(ei2);}
         }
-        gridContainer.innerHTML=gh;
-        gridSection.style.display='block';
-      }
-    }
-
-    /* Lazy load ALL images in explore tab (scroll cards + grid cards) */
-    var tabExplore=document.getElementById('tabExplore');
-    if(tabExplore){
-      var allImgs=tabExplore.querySelectorAll('img[data-src]');
-      if(allImgs.length>0&&'IntersectionObserver'in window){
-        var eObs=new IntersectionObserver(function(entries){
-          for(var ei=0;ei<entries.length;ei++){
-            if(entries[ei].isIntersecting){
-              var ei2=entries[ei].target;
-              if(ei2.dataset.src){
-                ei2.src=ei2.dataset.src;
-                ei2.removeAttribute('data-src');
-                ei2.onload=function(){this.classList.add('loaded');this.parentElement.classList.add('img-ready');};
-                if(ei2.complete&&ei2.naturalWidth>0){ei2.classList.add('loaded');ei2.parentElement.classList.add('img-ready');}
-              }
-              eObs.unobserve(ei2);
-            }
-          }
-        },{rootMargin:'300px'});
-        for(var ex=0;ex<allImgs.length;ex++)eObs.observe(allImgs[ex]);
-      }else{
-        for(var ef=0;ef<allImgs.length;ef++){
-          if(allImgs[ef].dataset.src){
-            allImgs[ef].src=allImgs[ef].dataset.src;
-            allImgs[ef].onload=function(){this.classList.add('loaded');this.parentElement.classList.add('img-ready');};
-          }
-        }
-      }
+      },{rootMargin:'200px'});
+      for(var ex=0;ex<expImgs.length;ex++)eObs.observe(expImgs[ex]);
+    }else{
+      for(var ef=0;ef<expImgs.length;ef++){if(expImgs[ef].dataset.src){expImgs[ef].src=expImgs[ef].dataset.src;}}
     }
   }).catch(function(){
     c.innerHTML='<div style="flex:1;text-align:center;padding:20px;color:var(--muted);font-size:12px">Failed to load recommendations.</div>';
