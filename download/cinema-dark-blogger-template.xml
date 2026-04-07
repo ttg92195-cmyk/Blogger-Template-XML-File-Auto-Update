@@ -119,17 +119,7 @@ body.post-page .app-drawer{display:none!important}
 
 /* ========== POST GRID (Homepage) ========== */
 .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 0 16px}
-.grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint;opacity:0;animation:cardFadeIn .4s ease forwards}
-.grid-card:nth-child(1){animation-delay:.03s}
-.grid-card:nth-child(2){animation-delay:.06s}
-.grid-card:nth-child(3){animation-delay:.09s}
-.grid-card:nth-child(4){animation-delay:.12s}
-.grid-card:nth-child(5){animation-delay:.15s}
-.grid-card:nth-child(6){animation-delay:.18s}
-.grid-card:nth-child(7){animation-delay:.21s}
-.grid-card:nth-child(8){animation-delay:.24s}
-.grid-card:nth-child(9){animation-delay:.27s}
-.grid-card:nth-child(10){animation-delay:.30s}
+.grid-card{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--border);transition:border-color .3s ease,box-shadow .3s ease;cursor:pointer;contain:layout style paint}
 .grid-card:hover{border-color:rgba(255,64,129,.3);box-shadow:var(--shadow)}
 .grid-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--bg3)}
 .grid-poster img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease;will-change:opacity}
@@ -334,9 +324,7 @@ body:not(.post-page) .comment-link{display:none!important}
 body.no-scroll{overflow:hidden}
 
 /* ========== ANIMATIONS ========== */
-@keyframes cardFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-@keyframes skelPulse{0%,100%{opacity:.4}50%{opacity:.7}}
 
 /* ========== POST DETAIL: Skeleton Loading ========== */
 .skel{position:relative;overflow:hidden;background:var(--bg3);border-radius:var(--r)}
@@ -356,13 +344,10 @@ body.no-scroll{overflow:hidden}
 .skel-tab::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 1.5s ease-in-out infinite}
 .skel-content{padding:16px;display:flex;flex-direction:column;gap:10px}
 #pdSkeleton{transition:opacity .3s ease}
-#pdSkeleton.hide{opacity:0;pointer-events:none}
+#pdSkeleton.hide{opacity:0;pointer-events:none;position:absolute;width:100%;visibility:hidden}
 #pdWrap{opacity:0;transition:opacity .3s ease}
 #pdWrap.show{opacity:1}
-.genre-scroll .gc{animation:cardFadeIn .3s ease forwards;opacity:0}
-.genre-scroll .gc:nth-child(1){animation-delay:.02s}
-.genre-scroll .gc:nth-child(2){animation-delay:.05s}
-.genre-scroll .gc:nth-child(3){animation-delay:.08s}
+/* genre-scroll cards - no animation */
 
 /* ========== RESPONSIVE ========== */
 @media(min-width:1200px){
@@ -575,13 +560,14 @@ body.no-scroll{overflow:hidden}
                 <b:loop values='data:post.labels' var='label'>
                   <script type='text/javascript'>window._pl.push("<data:label.name/>");</script>
                 </b:loop>
+                <!-- Featured Image URL for JS fallback -->
+                <b:if cond='data:post.featuredImage'>
+                  <span class='hidden-el' id='pdFeaturedImg'><data:post.featuredImage/></span>
+                </b:if>
 
                 <!-- Hero Banner -->
                 <div class='pd-hero-simple' id='pdHeroSimple'>
-                    <img id='pdHeroImg' alt='' src=''/>
-                  <b:if cond='data:post.featuredImage'>
-                    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' style='display:none'/>
-                  </b:if>
+                    <img id='pdHeroImg' alt='' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='/>
                   <div class='pd-hero-overlay'></div>
                   <div class='pd-hero-btns'>
                     <button class='pd-hero-circle' id='pdBackBtn' onclick='history.back()'>
@@ -596,10 +582,7 @@ body.no-scroll{overflow:hidden}
                 <!-- Info Card -->
                 <div class='pd-info-card'>
                   <div class='pd-poster-thumb' id='pdPosterThumb'>
-                    <img id='pdPosterImg' alt='' src=''/>
-                    <b:if cond='data:post.featuredImage'>
-                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' style='display:none'/>
-                    </b:if>
+                    <img id='pdPosterImg' alt='' src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='/>
                   </div>
                   <div class='pd-info-right'>
                     <h1 id='pdTitle'><data:post.title/></h1>
@@ -651,9 +634,9 @@ body.no-scroll{overflow:hidden}
                   <div class='explore-scroll' id='exploreGrid'></div>
                 </div>
 
-                <!-- Hidden post body for parsing -->
-                <textarea class='pd-body-raw' id='pdBodyRaw' style='display:none'><data:post.body/></textarea>
               </div>
+              <!-- Hidden post body for parsing (outside pdWrap for clean data separation) -->
+              <textarea class='pd-body-raw' id='pdBodyRaw' style='display:none'><data:post.body/></textarea>
             </b:includable>
 
             <b:includable id='post' var='post'></b:includable>
@@ -1207,25 +1190,22 @@ function extractCoverPoster(){
       if(!posterUrl&&/poster/i.test(allImgSrcs[j].attr))posterUrl=allImgSrcs[j].src;
     }
   }
+  /* Get featured image fallback URL */
+  var featuredUrl='';
+  var fiEl=document.getElementById('pdFeaturedImg');
+  if(fiEl)featuredUrl=(fiEl.textContent||'').trim();
+
   /* Set cover image on hero */
   var heroImg=document.getElementById('pdHeroImg');
   if(heroImg){
     if(coverUrl){heroImg.src=coverUrl;}
-    else{
-      /* Fallback: use Blogger featured image */
-      var fiHero=document.querySelector('#pdHeroSimple img[style*="display:none"]');
-      if(fiHero&&fiHero.src){heroImg.src=fiHero.src;}
-    }
+    else if(featuredUrl){heroImg.src=featuredUrl;}
   }
   /* Set poster image on thumb */
   var posterImg=document.getElementById('pdPosterImg');
   if(posterImg){
     if(posterUrl){posterImg.src=posterUrl;}
-    else{
-      /* Fallback: use Blogger featured image */
-      var fiPoster=document.querySelector('#pdPosterThumb img[style*="display:none"]');
-      if(fiPoster&&fiPoster.src){posterImg.src=fiPoster.src;}
-    }
+    else if(featuredUrl){posterImg.src=featuredUrl;}
   }
 }
 
