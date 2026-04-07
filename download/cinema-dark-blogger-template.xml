@@ -2,7 +2,23 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='5.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
-<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover' name='viewport'/>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover' name='viewport'/>
+<meta content='telephone=no' name='format-detection'/>
+<script type='text/javascript'>
+//<![CDATA[
+/* Force viewport: prevent auto-zoom on refresh */
+if(document.querySelector&&document.querySelector('meta[name="viewport"]')){
+  document.querySelector('meta[name="viewport"]').setAttribute('content','width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover');
+}
+/* Prevent pinch-zoom on iOS Safari */
+document.addEventListener('gesturestart',function(e){e.preventDefault();},{passive:false});
+document.addEventListener('gesturechange',function(e){e.preventDefault();},{passive:false});
+document.addEventListener('gestureend',function(e){e.preventDefault();},{passive:false});
+/* Prevent double-tap zoom */
+var lastTouchEnd=0;
+document.addEventListener('touchend',function(e){var now=Date.now();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},{passive:false});
+//]]>
+</script>
 <style>/* Prevent Blogger responsive override */.content-outer,.content-fauxcolumns,.fauxcolumn-outer,.fauxcolumn-right-inner,.fauxcolumn-left-inner,.column-right-outer,.column-left-outer{display:none!important}#layout{display:none!important}.region-inner{min-width:0!important;max-width:100%!important;width:auto!important}</style>
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 <meta content='blogger' name='generator'/>
@@ -39,8 +55,8 @@
 --header-h:56px;--bnav-h:60px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-tap-highlight-color:transparent}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+html{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;touch-action:manipulation}
 body.bn-visible{padding-bottom:var(--bnav-h)}
 a{text-decoration:none;color:inherit;transition:var(--tr)}
 a:hover{color:var(--accent)}
@@ -285,8 +301,8 @@ body.post-page .container{padding:0}
 .footer-bottom p{color:var(--muted);font-size:11px}
 
 /* ========== SIDEBAR ========== */
-.main-layout{display:grid;grid-template-columns:1fr 280px;gap:16px;padding:0}
-.sidebar{display:flex;flex-direction:column;gap:16px}
+.main-layout{display:grid;grid-template-columns:1fr;gap:0;padding:0}
+.sidebar{display:none}
 .sidebar-widget{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);overflow:hidden}
 .sw-title{padding:12px 14px;font-size:13px;font-weight:700;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .sw-title i{color:var(--accent)}
@@ -334,7 +350,6 @@ body.post-page .main-content{padding:0}
 /* container padding removed for post pages - handled by pd-wrap children */
 body.post-page .pd-wrap{margin:0}
 body.post-page .pd-info-card{margin-left:16px;margin-right:16px}
-body.post-page .sidebar{display:none}
 body.post-page .site-footer{display:none}
 .blog-posts{display:none!important}
 .blog-pager,.widget .blog-pager,.feed-links,.blog-feeds{display:none!important}
@@ -392,8 +407,6 @@ body.no-scroll{overflow:hidden}
   .pd-tab-panel{padding:16px 24px}
 }
 @media(max-width:1024px){
-  .main-layout{grid-template-columns:1fr}
-  .sidebar{display:grid;grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:repeat(2,1fr)}
   .post-grid{grid-template-columns:repeat(4,1fr)}
   .home-skeleton .skel-grid{grid-template-columns:repeat(4,1fr)}
@@ -404,7 +417,6 @@ body.no-scroll{overflow:hidden}
   body.post-page .pd-info-card{margin-left:12px;margin-right:12px}
   .pd-poster-thumb{width:90px;min-width:90px;height:135px}
   .pd-info-right h1{font-size:16px}
-  .sidebar{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .container{padding:0 10px}
   .explore-card{min-width:110px;max-width:110px}
