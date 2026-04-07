@@ -397,20 +397,45 @@ body.no-scroll{overflow:hidden}
 /* genre-scroll cards - no animation */
 
 /* ========== RESPONSIVE ========== */
+
+/* ===== Desktop: 1200px+ ===== */
 @media(min-width:1200px){
-  .post-grid{grid-template-columns:repeat(6,1fr)}
-  .home-skeleton .skel-grid{grid-template-columns:repeat(6,1fr)}
+  .container{padding:0 20px}
+  .header-inner{padding:0 8px}
+  .logo a{font-size:20px}
+  .logo a i{font-size:24px}
+  .post-grid{grid-template-columns:repeat(6,1fr);gap:14px}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(6,1fr);gap:14px}
   .genre-scroll{display:none!important}
   .mobile-grid{display:grid!important}
   .pd-hero-simple{height:60vh;min-height:350px;max-height:500px}
-  .pd-tabs{margin:16px 24px 0}
-  .pd-tab-panel{padding:16px 24px}
+  .pd-info-card{margin:-40px 24px 0;padding:20px;gap:16px}
+  body.post-page .pd-info-card{margin-left:24px;margin-right:24px}
+  .pd-poster-thumb{width:120px;min-width:120px;height:180px}
+  .pd-info-right h1{font-size:22px}
+  .pd-tabs{margin:20px 24px 0}
+  .pd-tab-btn{font-size:14px;padding:14px 0}
+  .pd-tab-panel{padding:20px 24px}
+  .section-header{padding:16px 0 10px}
+  .section-header h2{font-size:18px}
+  .view-all-link{font-size:13px}
+  .grid-info{height:56px;padding:10px}
+  .grid-title{font-size:13px}
+  .grid-year{font-size:11px}
+  .explore-card{min-width:140px;max-width:140px}
+  .pagination a,.pagination span{min-width:40px;height:40px;font-size:14px}
 }
-@media(max-width:1024px){
-  .footer-grid{grid-template-columns:repeat(2,1fr)}
+
+/* ===== Tablet: 769px - 1199px ===== */
+@media(min-width:769px) and (max-width:1199px){
   .post-grid{grid-template-columns:repeat(4,1fr)}
   .home-skeleton .skel-grid{grid-template-columns:repeat(4,1fr)}
+  .genre-scroll .gc{min-width:160px;max-width:160px}
+  .pd-info-card{margin:-35px 20px 0}
+  body.post-page .pd-info-card{margin-left:20px;margin-right:20px}
 }
+
+/* ===== Large Phone: 481px - 768px ===== */
 @media(max-width:768px){
   .pd-hero-simple{height:50vh;min-height:240px;max-height:380px}
   .pd-info-card{flex-direction:row;gap:12px;padding:14px;margin:-30px 12px 0}
@@ -423,12 +448,14 @@ body.no-scroll{overflow:hidden}
   .explore-info{padding:5px 6px}
   .explore-title{font-size:10px}
   .grid-card:hover{transform:none}
-  .post-grid{grid-template-columns:repeat(4,1fr)}
-  .home-skeleton .skel-grid{grid-template-columns:repeat(4,1fr)}
+  .post-grid{grid-template-columns:repeat(3,1fr)}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(3,1fr)}
   .grid-info{height:48px}
   .grid-title{font-size:11px}
   .genre-scroll .gc{min-width:130px;max-width:130px}
 }
+
+/* ===== Small Phone: 480px and below ===== */
 @media(max-width:480px){
   .pd-hero-simple{height:48vh;min-height:220px;max-height:340px}
   .pd-info-card{gap:10px;padding:12px;margin:-28px 10px 0}
@@ -437,13 +464,16 @@ body.no-scroll{overflow:hidden}
   .pd-info-right h1{font-size:15px}
   .pd-meta-row{gap:8px}
   .grid-info{height:44px;padding:6px}
-  .post-grid{grid-template-columns:repeat(3,1fr)}
-  .home-skeleton .skel-grid{grid-template-columns:repeat(3,1fr)}
+  .post-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .home-skeleton .skel-grid{grid-template-columns:repeat(3,1fr);gap:8px}
   .explore-card{min-width:100px;max-width:100px}
   .explore-title{font-size:9px}
   .section-header h2{font-size:14px}
   .view-all-link{font-size:11px}
+  .pd-tab-btn{font-size:12px;padding:10px 0}
 }
+
+/* ===== Desktop: hide mobile nav ===== */
 @media(min-width:769px){
   .bottom-nav{display:none}
   body{padding-bottom:0!important}
@@ -1107,41 +1137,85 @@ function buildHomepage(){
 }
 
 /* ===== PAGINATION (Label/Search Pages) ===== */
+var POSTS_PER_PAGE=20;
 function buildPagination(url){
   var pagEl=document.getElementById('homePagination');
   if(!pagEl)return;
-  /* Check for Blogger's newer/older page links in the DOM */
+  /* Blogger returns newer/older links in .blog-pager (even though CSS hides it) */
   var newerLink='',olderLink='';
   var pagerLinks=document.querySelectorAll('.blog-pager a[href]');
   for(var i=0;i<pagerLinks.length;i++){
-    var href=pagerLinks[i].href||'';
+    var href=(pagerLinks[i].getAttribute('href')||'');
     var txt=(pagerLinks[i].textContent||'').trim().toLowerCase();
     if(txt.indexOf('newer')!==-1||txt.indexOf('prev')!==-1)newerLink=href;
     if(txt.indexOf('older')!==-1||txt.indexOf('next')!==-1)olderLink=href;
   }
-  /* Fallback: check for data attributes or common patterns */
-  if(!newerLink){
-    var nl=document.querySelector('[data-newer-url]');
-    if(nl)newerLink=nl.getAttribute('data-newer-url');
+  /* If no blog-pager links, build pagination from current URL + max-results */
+  if(!newerLink&&!olderLink){
+    /* Calculate page from start-index in URL */
+    var currentPage=1;
+    var siMatch=url.match(/[?&]start-index=(\d+)/i);
+    if(siMatch)currentPage=Math.ceil(parseInt(siMatch[1],10)/POSTS_PER_PAGE);
+    /* Build base URL (remove pagination params) */
+    var baseUrl=url.replace(/[?&].*/,'').replace(/\/$/,'');
+    /* Determine if this is a label or search page */
+    var labelMatch=url.match(/\/search\/label\/([^?&]+)/);
+    var searchQMatch=url.match(/[?&]q=([^&]+)/);
+    var baseQuery='';
+    if(labelMatch)baseQuery='/search/label/'+labelMatch[1];
+    else if(searchQMatch)baseQuery='/search?q='+searchQMatch[1];
+    else baseQuery='';
+    if(!baseQuery){pagEl.innerHTML='';return;}
+    /* Build page links with start-index */
+    var html='<div class="pagination">';
+    if(currentPage>1){
+      var prevStart=(currentPage-2)*POSTS_PER_PAGE+1;
+      html+='<a href="'+baseUrl+baseQuery+'?&max-results='+POSTS_PER_PAGE+'&start-index='+prevStart+'"><i class="fas fa-chevron-left"></i></a>';
+    }
+    var startP=Math.max(1,currentPage-2);
+    var endP=currentPage+2;
+    for(var p=startP;p<=endP;p++){
+      var startIdx=(p-1)*POSTS_PER_PAGE+1;
+      var pageUrl=baseUrl+baseQuery+'?&max-results='+POSTS_PER_PAGE+'&start-index='+startIdx;
+      if(p===currentPage){
+        html+='<span class="active">'+p+'</span>';
+      }else{
+        html+='<a href="'+pageUrl+'">'+p+'</a>';
+      }
+    }
+    /* Check if there might be a next page (we loaded POSTS_PER_PAGE items = likely more) */
+    var store=document.getElementById('postStore');
+    var itemCount=store?store.querySelectorAll('.ps-item').length:0;
+    if(itemCount>=POSTS_PER_PAGE){
+      var nextStart=currentPage*POSTS_PER_PAGE+1;
+      html+='<a href="'+baseUrl+baseQuery+'?&max-results='+POSTS_PER_PAGE+'&start-index='+nextStart+'"><i class="fas fa-chevron-right"></i></a>';
+    }
+    html+='</div>';
+    pagEl.innerHTML=html;
+    return;
   }
-  if(!olderLink){
-    var ol=document.querySelector('[data-older-url]');
-    if(ol)olderLink=ol.getAttribute('data-older-url');
+  /* If Blogger pager links exist, extract page info from them */
+  var currentPage=1;
+  var siMatch=url.match(/[?&]start-index=(\d+)/i);
+  if(siMatch)currentPage=Math.ceil(parseInt(siMatch[1],10)/POSTS_PER_PAGE);
+  /* Calculate total pages from older link's start-index */
+  var maxPage=currentPage+1;
+  if(olderLink){
+    var oSi=olderLink.match(/[?&]start-index=(\d+)/i);
+    if(oSi)maxPage=Math.ceil(parseInt(oSi[1],10)/POSTS_PER_PAGE);
   }
-  if(!newerLink&&!olderLink){pagEl.innerHTML='';return;}
-  /* Extract current page from URL */
-  var pageNum=1;
-  var pm=url.match(/[?&]page=(\d+)/);
-  if(pm)pageNum=parseInt(pm[1],10);
-  var baseLabel=url.replace(/[?&].*/,'').replace(/\/$/,'');
   var html='<div class="pagination">';
   if(newerLink)html+='<a href="'+newerLink+'"><i class="fas fa-chevron-left"></i></a>';
-  /* Show page numbers around current */
-  var startPage=Math.max(1,pageNum-2);
-  var endPage=pageNum+2;
-  for(var p=startPage;p<=endPage;p++){
-    var pageUrl=baseLabel+'?page='+p;
-    if(p===pageNum){
+  var startP=Math.max(1,currentPage-2);
+  var endP=Math.min(maxPage,currentPage+2);
+  for(var p=startP;p<=endP;p++){
+    var startIdx=(p-1)*POSTS_PER_PAGE+1;
+    var baseForPage=url.replace(/[?&]start-index=[^&]*/i,'').replace(/[?&]max-results=[^&]*/i,'').replace(/[?&]page=\d+/g,'');
+    /* Ensure base has at least ? */
+    if(baseForPage.indexOf('?')===-1)baseForPage+='?';
+    var sep=baseForPage.charAt(baseForPage.length-1)==='?'?'':'&';
+    var pageUrl=baseForPage+sep+'max-results='+POSTS_PER_PAGE+'&start-index='+startIdx;
+    if(p===currentPage){
       html+='<span class="active">'+p+'</span>';
     }else{
       html+='<a href="'+pageUrl+'">'+p+'</a>';
